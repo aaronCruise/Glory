@@ -9,12 +9,6 @@ router.post('/register', async  (req, res) => {
         return res.status(400).send('please fill in all fields');
     }
 
-    if (typeof process !== 'undefined' && process.versions && process.versions.node) {
-        console.log('Running in Node.js');
-    } else {
-        console.log('Not running in Node.js');
-    }
-
     try {
         const [user] = await db.pool.query(
           'SELECT Count(*) as count FROM users WHERE email = ?',[email]);
