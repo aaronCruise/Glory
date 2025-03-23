@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql2');
 const app = express();
+const registerRoute = require('./js/register');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,6 +30,9 @@ connection.connect(err => {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'LoginPage', 'login.html'));
 });
+
+app.use(express.json);
+app.post('/register', registerRoute);
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
