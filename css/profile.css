@@ -1,0 +1,300 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    overflow-x: hidden;
+}
+
+.main-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    background-color: black;
+    z-index: 1000;
+    margin: 0 auto;
+    padding: 0 50px;
+    position: fixed;
+}
+
+#navbar-logo {
+    width: 80px;
+    height: 75px;
+    overflow-y: hidden;
+}
+
+#logo {
+    width: 100%;
+    height: inherit;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0 auto;
+}
+
+.navbar-item {
+    height: 80px;
+}
+
+.navbar-link {
+    color: gold;
+    text-decoration: none;
+    height: 100%;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-link:hover {
+    color: royalblue;
+    transition: all 0.3s ease;
+}
+
+.navbar-btn {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-btn.mobile,
+.navbar-toggle {
+    display: none;
+}
+
+
+.navbar-btn.desktop {
+    display: flex;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: gray;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    color: gold;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: gold;
+    color: royalblue;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 968px) {
+    .fa-bars {
+        line-height: normal !important;
+    }
+
+    .navbar-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: gold;
+        z-index: 10;
+        font-size: 1.5rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100% - 80px);
+        opacity: 0;
+        transition: all 0.5s ease;
+        background-color: black;
+        z-index: 10;
+        margin: 0;
+    }
+
+    .navbar-menu.active {
+        left: 0;
+        opacity: 1;
+    }
+
+    .navbar-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar-link {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Sign Up Button */
+    .navbar-btn.desktop {
+        display: none;
+    }
+
+    .navbar-btn.mobile {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+
+    .button {
+        width: 80%;
+        height: 60px;
+        justify-content: center;
+    }
+}
+
+
+/* Hero CSS */
+.hero {
+    background-color: #141414;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    margin: 0 auto;
+    height: 90vh;
+    width: 100%;
+    padding: 150px 50px;
+    max-width: 1300px;
+}
+
+.hero-content {
+    color: gold;
+    background-color: #606060;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+}
+
+.basic-info {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.basic-info img {
+    width: 50%;
+    max-width: 50%;
+    height: auto;
+}
+
+.basic-info h3 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.edit-button {
+    font-size: 1rem;
+    background: royalblue;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 2rem;
+    color: gold;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+    background: gold;
+    color: royalblue;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.profile-info {
+    background: #606060;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+}
+
+.profile-menu {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-item {
+    border-bottom: 2px solid black;
+    margin-bottom: 1rem;
+    margin-top: 8px;
+    color: white;
+}
+
+#credit-card {
+    margin-bottom: 0;
+}
+
+.profile-button {
+    align-self: center;
+}
+
+label {
+    color: gold;
+    font-size: 1.2rem;
+}
+
+/* Hero Mobile Responsive CSS */
+@media screen and (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 60px 0px;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+        padding: 0 32px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+    }
+
+    .basic-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .basic-info button {
+        font-size: 1.2rem;
+    }
+
+    .profile-info {
+        margin: 0;
+        padding: 0;
+    }
+}
