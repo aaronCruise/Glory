@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql2');
 const app = express();
-const registerRoute = require('./js/register');
+const registerRoute = require('./data_access/register');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

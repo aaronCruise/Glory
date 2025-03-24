@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./db');
+const db = require('../data_store/db.js');
 
 router.post('/register', async  (req, res) => {
     const {firstName, lastName, email, password, dob, phone } = req.body;
