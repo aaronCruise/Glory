@@ -10,4 +10,4 @@ const pool = mysql.createPool({
 });
 
 // Export the pool
-module.exports = pool.promise(); // Use .promise() to enable async/await queries
+module.exports = pool.promise();
