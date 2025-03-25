@@ -1,71 +1,51 @@
-const express = require('express');
-const path = require('path');
-const mysql = require('mysql2');
-const app = express();
-const registerRoute = require('./js/register');
+const express = require('express')
+const db = require('./db')
+const app = express()
+const port = 8080
+const bodyParser = require("body-parser");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, 'LoginPage')));
-
-// Create a connection to the  database
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'glory',
-    password: 'your_password',
-    database: 'customer'
-});
-
-// Test the connection
-connection.connect(err => {
-    if (err) {
-        console.error('Error connecting to the database:', err.stack);
-        return;
+// GET
+app.get('/tasks', async (req, res) => {
+    try {
+        const result = await db.pool.query("select * from tasks");
+        res.send(result);
+    } catch (err) {
+        throw err;
     }
-    console.log('Connected to the MariaDB database.');
 });
 
-// simple route to serve the login page
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'LoginPage', 'login.html'));
+// POST
+app.post('/tasks', async (req, res) => {
+    let task = req.body;
+    try {
+        const result = await db.pool.query("insert into tasks (description) values (?)", [task.description]);
+        res.send(result);
+    } catch (err) {
+        throw err;
+    }
 });
 
-app.use(express.json);
-app.post('/register', registerRoute);
-
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-
-    console.log('email:', email);
-    console.log('password:', password);
-
-    const query = 'SELECT * FROM user WHERE email = ? AND password = ?';
-
-    connection.query(query, [email, password], (err, results) => {
-        if (err) {
-            console.error('Error executing query:', err);
-            return res.status(500).send({ message: 'Internal server error' });
-        }
-
-        console.log('Query Results:', results);
-
-        if (results.length > 0) {
-            // User found
-            res.send({ message: 'Login successful!' });
-        } else {
-            // No match found
-            res.status(401).send({ message: 'Invalid email or password.' });
-        }
-    });
+app.put('/tasks', async (req, res) => {
+    let task = req.body;
+    try {
+        const result = await db.pool.query("update tasks set description = ?, completed = ? where id = ?", [task.description, task.completed, task.id]);
+        res.send(result);
+    } catch (err) {
+        throw err;
+    }
 });
 
-
-
-
-// Starting the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.delete('/tasks', async (req, res) => {
+    let id = req.query.id;
+    try {
+        const result = await db.pool.query("delete from tasks where id = ?", [id]);
+        res.send(result);
+    } catch (err) {
+        throw err;
+    }
 });
 
+app.listen(port, () => console.log(`Listening on port ${port}`));
