@@ -3,9 +3,17 @@ const db = require('./db')
 const app = express()
 const port = 8080
 const bodyParser = require("body-parser");
+const registerRoute = require('./js/register');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/register', registerRoute);
+
+app.use((req, res, next) => {
+  console.log(`Received request on ${req.url} with body:`, req.body);
+  next();
+});
 
 // GET
 app.get('/tasks', async (req, res) => {
