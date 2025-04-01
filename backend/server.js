@@ -1,5 +1,5 @@
 const express = require('express')
-const db = require('./db')
+const db = require('./database')
 const app = express()
 const port = 8080
 const bodyParser = require("body-parser");
