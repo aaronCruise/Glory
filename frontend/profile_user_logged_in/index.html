@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory | Buy Your Fitness Merchandise</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Link -->
+    <script src="https://kit.fontawesome.com/a2aade69e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="main-nav" role="navigation">
+            <div class="main-nav-container">
+                <a href="/index.html" id="navbar-logo">
+                    <img id="logo" src="images/glory-logo-noback.png" alt="Brand logo">
+                </a>
+                <ul class="navbar-menu">
+                    <li class="navbar-item">
+                        <a href="/index.html" class="navbar-link">Home</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/shop.html" class="navbar-link">Shop</a>
+                    </li>
+                    <li class="nvabar-item">
+                        <a href="/cart.html" class="navbar-link">Cart</a> 
+                    </li>
+                    <li class="navbar-btn mobile">
+                        <a href="/signup.html" class="button">Sign Up</a>
+                    </li>
+                </ul>
+
+                <div class="navbar-btn desktop">
+                    <a href="/signup.html" class="button">Sign Up</a>
+                </div>
+
+                <button  
+                    class="navbar-toggle" 
+                    id="mobile-menu" 
+                    aria-label="Toggle Navigation" 
+                    aria-expanded="" 
+                    false
+                    >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Welcome to Your Profile!</h1>
+                    <div class="basic-info">
+                        <img src="/images/undraw_profile-pic_fatv.svg" alt="">
+                        <h3 class="user-name">John Doe</h3>
+                        <button class="edit-button">Edit Profile Picture</button>
+                    </div> 
+                </div>
+                    
+                <div class="profile-info">
+                    <ul class="profile-menu">
+                        <label for="full-name">Full Name:</label>
+                        <li class="profile-item" id="full-name">
+                            John Doe
+                        </li>
+                        <label for="email">Email:</label>
+                        <li class="profile-item" id="email">
+                            someone@gmail.com
+                        </li>
+                        <label for="phone">Phone:</label>
+                        <li class="profile-item" id="phone">
+                            123-456-7891
+                        </li>
+                    </ul>
+                    <button class="profile-button edit-button">Edit Profile Info</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="/js/app.js"></script>
+</body>
+</html>
