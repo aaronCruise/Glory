@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../database');
-
+const path = require('path');
 
 function verifyDate(dateInput) {
     //console.log('Date input received in verifyDate:', dateInput);
@@ -61,6 +61,10 @@ function verifyInput(FName, LName, Password, DOB, Phone) {
     }
 
 }
+
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/profile_user_logged_in/index.html'));
+});
 
 router.put('/', async  (req, res) => {
     const {firstName, lastName, email, password, dob, phone } = req.body;

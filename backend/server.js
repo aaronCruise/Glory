@@ -1,9 +1,14 @@
+
 const express = require('express');
 const loginController = require('./controllers/loginController');
 const path = require('path'); // Required to work with file paths
+const db = require('./database')
+const app = express()
+const port = 8080
+const bodyParser = require("body-parser");
+const registerRoute = require('./controllers/registerationController');
+const profileRoute = require('./controllers/profileController');
 
-const app = express();
-const port = 8080;
 
 // Middleware to handle POST data
 app.use(express.urlencoded({ extended: true }));  // For form data
@@ -28,7 +33,11 @@ console.log('Generated file path:', filePath);
             console.log(`✅ Successfully served: ${filePath}`);
         }
     });
-});
+
+
+app.use('/register', registerRoute);
+
+app.use('/profile', profileRoute);
 
 app.use('/login', loginController);
 
