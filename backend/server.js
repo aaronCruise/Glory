@@ -1,59 +1,32 @@
-const express = require('express')
-const db = require('./database')
-const app = express()
-const port = 8080
-const bodyParser = require("body-parser");
-const registerRoute = require('./controllers/registerationController');
+const express = require('express');
+const path = require('path'); // Required to work with file paths
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const app = express();
+const port = 8080;
 
-app.use('/register', registerRoute);
+// Serve static files from the 'frontend' folder (outside of the 'backend' folder)
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
-app.use((req, res, next) => {
-  console.log(`Received request on ${req.url} with body:`, req.body);
-  next();
+// Route root ('/') to serve the login page located in 'frontend/login_without_user_logged_in'
+app.get('/', (req, res) => {
+    const filePath = path.resolve(__dirname, '..', 'frontend', 'login_without_user_logged_in', 'index.html');
+console.log('Generated file path:', filePath);
+    console.log(`🔹 Request received for '/'`);
+    console.log(`🔹 Serving file: ${filePath}`);
+
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            console.error('❌ Error serving file:', err);
+            res.status(500).send('Error loading the login page.');
+        } else {
+            console.log(`✅ Successfully served: ${filePath}`);
+        }
+    });
 });
 
-// GET
-app.get('/tasks', async (req, res) => {
-    try {
-        const result = await db.pool.query("select * from tasks");
-        res.send(result);
-    } catch (err) {
-        throw err;
-    }
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 
-// POST
-app.post('/tasks', async (req, res) => {
-    let task = req.body;
-    try {
-        const result = await db.pool.query("insert into tasks (description) values (?)", [task.description]);
-        res.send(result);
-    } catch (err) {
-        throw err;
-    }
-});
 
-app.put('/tasks', async (req, res) => {
-    let task = req.body;
-    try {
-        const result = await db.pool.query("update tasks set description = ?, completed = ? where id = ?", [task.description, task.completed, task.id]);
-        res.send(result);
-    } catch (err) {
-        throw err;
-    }
-});
-
-app.delete('/tasks', async (req, res) => {
-    let id = req.query.id;
-    try {
-        const result = await db.pool.query("delete from tasks where id = ?", [id]);
-        res.send(result);
-    } catch (err) {
-        throw err;
-    }
-});
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
