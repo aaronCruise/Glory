@@ -1,11 +1,17 @@
 const express = require('express');
+const loginController = require('./controllers/loginController');
 const path = require('path'); // Required to work with file paths
 
 const app = express();
 const port = 8080;
 
+// Middleware to handle POST data
+app.use(express.urlencoded({ extended: true }));  // For form data
+app.use(express.json());  // For handling JSON requests
+
 // Serve static files from the 'frontend' folder (outside of the 'backend' folder)
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
+
 
 // Route root ('/') to serve the login page located in 'frontend/login_without_user_logged_in'
 app.get('/', (req, res) => {
@@ -23,6 +29,8 @@ console.log('Generated file path:', filePath);
         }
     });
 });
+
+app.use('/login', loginController);
 
 // Start the server
 app.listen(port, () => {
