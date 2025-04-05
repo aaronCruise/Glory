@@ -201,20 +201,9 @@
     align-items: center;
 }
 
-.basic-info img {
-    width: 50%;
-    max-width: 50%;
-    height: auto;
-}
-
-.basic-info h3 {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: black;
-}
-
-.edit-button {
-    font-size: 1rem;
+.hero-btn {
+    font-size: 1.5rem;
+    text-decoration: none;
     background: royalblue;
     padding: 5px;
     border: none;
@@ -226,7 +215,7 @@
     transition: all 0.3s ease;
 }
 
-.edit-button:hover {
+.hero-btn:hover {
     background: gold;
     color: royalblue;
     transform: translateY(-2px);
