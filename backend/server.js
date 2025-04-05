@@ -15,7 +15,9 @@ app.use(express.urlencoded({ extended: true }));  // For form data
 app.use(express.json());  // For handling JSON requests
 
 // Serve static files from the 'images_fonts' folder (outside of the 'backend' folder)
-app.use(express.static(path.join(__dirname, '..', 'images_fonts')));
+//app.use(express.static(path.join(__dirname, '..', 'images_fonts')));
+
+app.use('/images', express.static(path.join(__dirname, '../images_fonts')));
 
 // Serve static files from the 'frontend' folder (outside of the 'backend' folder)
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
@@ -35,6 +37,10 @@ console.log('Generated file path:', filePath);
             console.log(`✅ Successfully served: ${filePath}`);
         }
     });
+});
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/registeration/index.html'));
 });
 
 app.use('/register', registerRoute);
