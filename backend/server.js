@@ -14,11 +14,11 @@ const profileRoute = require('./controllers/profileController');
 app.use(express.urlencoded({ extended: true }));  // For form data
 app.use(express.json());  // For handling JSON requests
 
-// Serve static files from the 'frontend' folder (outside of the 'backend' folder)
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
-
 // Serve static files from the 'images_fonts' folder (outside of the 'backend' folder)
 app.use(express.static(path.join(__dirname, '..', 'images_fonts')));
+
+// Serve static files from the 'frontend' folder (outside of the 'backend' folder)
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Route root ('/') to serve the login page located in 'frontend/login_without_user_logged_in'
 app.get('/', (req, res) => {
