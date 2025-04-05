@@ -222,38 +222,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
-.profile-info {
-    background: #606060;
-    margin-left: 1rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: 4px;
+.hero-image {
+  text-align: center;
 }
 
-.profile-menu {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.profile-item {
-    border-bottom: 2px solid black;
-    margin-bottom: 1rem;
-    margin-top: 8px;
-    color: white;
-}
-
-#credit-card {
-    margin-bottom: 0;
-}
-
-.profile-button {
-    align-self: center;
-}
-
-label {
-    color: gold;
-    font-size: 1.2rem;
+#hero-image {
+  width: 80%;
+  height: 80%;
 }
 
 /* Hero Mobile Responsive CSS */
