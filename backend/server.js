@@ -33,7 +33,7 @@ console.log('Generated file path:', filePath);
             console.log(`✅ Successfully served: ${filePath}`);
         }
     });
-
+});
 
 app.use('/register', registerRoute);
 
