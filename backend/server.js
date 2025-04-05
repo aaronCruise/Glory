@@ -43,6 +43,10 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/registeration/index.html'));
 });
 
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/profile_user_logged_in/index.html'));
+});
+
 app.use('/register', registerRoute);
 
 app.use('/profile', profileRoute);
