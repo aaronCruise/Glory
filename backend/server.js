@@ -2,7 +2,7 @@
 const express = require('express');
 const loginController = require('./controllers/loginController');
 const path = require('path'); // Required to work with file paths
-const db = require('./database')
+const db = require('./db')
 const app = express()
 const port = 8080
 const bodyParser = require("body-parser");
