@@ -213,7 +213,13 @@
     color: black;
 }
 
-.edit-button {
+.save-button {
+    display: none;
+}
+
+.edit-button, 
+.save-button,
+.custom-file-btn {
     font-size: 1rem;
     background: royalblue;
     padding: 5px;
@@ -226,12 +232,20 @@
     transition: all 0.3s ease;
 }
 
-.edit-button:hover {
+.edit-button:hover,
+.save-button:hover,
+.custom-file-btn:hover {
     background: gold;
     color: royalblue;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+} 
+
+#profile-pic-input,
+.basic-info label {
+    display: none;
 }
+
 
 .profile-info {
     background: #606060;
@@ -254,6 +268,24 @@
     color: white;
 }
 
+.profile-item input[disabled] {
+    color: white;
+    background: none;
+    border: none;
+    text-align: center;
+    font-size: 1.25rem;
+    width: 100%;
+}
+
+.profile-item input:enabled {
+    color: royalblue;
+    background-color: gold;
+    border: none;
+    text-align: center;
+    font-size: 1.25rem;
+    width: 100%;
+}
+
 #credit-card {
     margin-bottom: 0;
 }
@@ -272,7 +304,7 @@ label {
     .hero-container {
         grid-template-columns: 1fr;
         height: auto;
-        padding: 60px 0px;
+        padding: 100px 0px;
     }
 
     .hero-content {
@@ -296,5 +328,85 @@ label {
     .profile-info {
         margin: 0;
         padding: 0;
+    }
+}
+
+/* Footer CSS */
+.footer-container {
+    background-color: black;
+    padding: 2rem 0;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+
+.footer-link-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    width: 150px;
+    height: 125px;
+    overflow-y: hidden;
+}
+
+#footer-logo {
+    width: 100%;
+    height: inherit;
+}
+
+.social-media-links {
+    height: 100%;
+}
+
+.social-media-item {
+    padding: 0 0.4rem;
+    text-decoration: none;
+}
+
+.fa-brands {
+    font-size: 25px;
+    color: gold;
+    line-height: normal !important;
+}
+
+.fa-brands:hover {
+    color: royalblue;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgb(65, 105, 225, 1);
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-link-items {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-link {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .social-media-links {
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fa-brands {
+        padding: 0.2rem;
     }
 }

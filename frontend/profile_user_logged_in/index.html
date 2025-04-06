@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glory | Buy Your Fitness Merchandise</title>
-    <link rel="stylesheet" href="/profile_user_logged_in/style.css">
+    <link rel="stylesheet" href="css/profile.css">
     <!-- FontAwesome Link -->
     <script src="https://kit.fontawesome.com/a2aade69e0.js" crossorigin="anonymous"></script>
 </head>
@@ -13,11 +13,11 @@
         <nav class="main-nav" role="navigation">
             <div class="main-nav-container">
                 <a href="/index.html" id="navbar-logo">
-                    <img id="logo" src="/images_fonts/your-image-file.png" alt="Brand logo">
+                    <img id="logo" src="images/glory-logo-noback.png" alt="Brand logo">
                 </a>
                 <ul class="navbar-menu">
                     <li class="navbar-item">
-                        <a href="/index.html" class="navbar-link">Home</a>
+                        <a href="/home.html" class="navbar-link">Home</a>
                     </li>
                     <li class="navbar-item">
                         <a href="/shop.html" class="navbar-link">Shop</a>
@@ -55,32 +55,77 @@
                 <div class="hero-content">
                     <h1>Welcome to Your Profile!</h1>
                     <div class="basic-info">
-                        <img src="/images/undraw_profile-pic_fatv.svg" alt="">
+                        <img id="profile-pic" src="/images/undraw_profile-pic_fatv.svg" alt="Profile Picture">
+                        <label for="profile-pic-input" class="custom-file-btn" id="profile-pic-label">Choose Profile Picture</label>
+                        <input type="file" id="profile-pic-input" accept="image/*">
                         <h3 class="user-name">John Doe</h3>
-                        <button class="edit-button">Edit Profile Picture</button>
+                        <button class="edit-button" id="change-pic-btn">Edit Profile Picture</button>
                     </div> 
                 </div>
                     
                 <div class="profile-info">
-                    <ul class="profile-menu">
-                        <label for="full-name">Full Name:</label>
-                        <li class="profile-item" id="full-name">
-                            John Doe
-                        </li>
-                        <label for="email">Email:</label>
-                        <li class="profile-item" id="email">
-                            someone@gmail.com
-                        </li>
-                        <label for="phone">Phone:</label>
-                        <li class="profile-item" id="phone">
-                            123-456-7891
-                        </li>
-                    </ul>
-                    <button class="profile-button edit-button">Edit Profile Info</button>
+                    <form id="profile-form" method="POST" action="/profile">
+                        <ul class="profile-menu">
+                            <label for="full-name">Full Name:</label>
+                            <li class="profile-item" id="full-name">
+                                <input type="text" id="full-name" name="fullName" value="John Doe" disabled/>
+                            </li>
+                            <label for="email">Email:</label>
+                            <li class="profile-item" id="email">
+                                <input type="email" id="email" name="email" value="someone@gmail.com" disabled/>
+                            </li>
+                            <label for="phone">Phone:</label>
+                            <li class="profile-item" id="phone">
+                                <input type="text" id="phone" name="phone" value="123-456-7891" disabled/>
+                            </li>
+                            <label for="shipping-address">Shipping Address:</label>
+                            <li class="profile-item" id="shipping-address">
+                                <input type="text" id="shipping-address"" name="shipping" value="123 Billing Lane" disabled/>
+                            </li>
+                        </ul>
+                    </form>
+                    <button class="profile-button edit-button" id="edit-btn">Edit Profile Info</button>
+                    <button class="profile-button save-button" type="submit" id="save-btn">Save Changes</button>
                 </div>
             </div>
         </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-links">
+                    <div class="footer-link-wrapper">
+                        <div class="footer-link-items">
+                            <a href="/home.html" class="navbar-link">Home</a>
+                            <a href="/shop.html" class="navbar-link">Shop</a>
+                            <a href="/cart.html" class="navbar-link">Cart</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-logo-container">
+                        <a href="/home.html" class="footer-logo">
+                            <img id="footer-logo" src="/images/glory-logo-noback.png" alt="Brand Logo">
+                        </a>
+                    </div>
+
+                    <div class="social-media-links">
+                        <a href="http://facebook.com" target="_blank" rel="noopener noreferrer" class="social-media-item">
+                            <i class="fa-brands fa-facebook "></i>
+                        </a>
+                        <a href="http://x.com" target="_blank" rel="noopener noreferrer" class="social-media-item">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="http://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-media-item">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="http://instagram.com" target="_blank" rel="noopener noreferrer" class="social-media-item">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
-    <script src="/js/app.js"></script>
+    <script src="/js/profile.js"></script>
 </body>
 </html>
