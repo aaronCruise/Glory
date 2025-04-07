@@ -5,6 +5,7 @@ const path = require('path'); // Required to work with file paths
 const db = require('./db')
 const app = express()
 const port = 8080
+const cors = require('cors');
 const bodyParser = require("body-parser");
 const registerRoute = require('./controllers/registerationController');
 const profileRoute = require('./controllers/profileController');
@@ -13,7 +14,7 @@ const profileRoute = require('./controllers/profileController');
 // Middleware to handle POST data
 app.use(express.urlencoded({ extended: true }));  // For form data
 app.use(express.json());  // For handling JSON requests
-
+app.use(cors());
 // Serve static files from the 'images_fonts' folder (outside of the 'backend' folder)
 //app.use(express.static(path.join(__dirname, '..', 'images_fonts')));
 

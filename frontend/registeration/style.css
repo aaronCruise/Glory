@@ -303,6 +303,15 @@
     transition: all 0.3s ease;
 }
 
+input.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+input.error::placeholder {
+    color: #d00;
+}
+
 @media screen and (max-width: 480px) {
     .login-container {
         padding: 1.5rem;

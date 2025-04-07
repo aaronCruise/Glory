@@ -102,61 +102,103 @@
     </main>
 
     <script>
-        document.getElementById('registerForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const dob = document.getElementById('dob').value;
-            const phone = document.getElementById('phone').value;
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-            // Basic validation
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
+        const firstNameField = document.getElementById('firstName');
+        const lastNameField = document.getElementById('lastName');
+        const emailField = document.getElementById('email');
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        const dobField = document.getElementById('dob');
+        const phoneField = document.getElementById('phone');
 
-            const submitButton = this.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Creating Account...';
+        const firstName = firstNameField.value;
+        const lastName = lastNameField.value;
+        const email = emailField.value;
+        const password = passwordField.value;
+        const confirmPassword = confirmPasswordField.value;
+        const dob = dobField.value;
+        const phone = phoneField.value;
 
-            try {
-                const response = await fetch('http://localhost:5000/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        firstName,
-                        lastName,
-                        email,
-                        password,
-                        dob,
-                        phone
-                    })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    // Store the token
-                    localStorage.setItem('token', data.token);
-                    // Redirect to profile page
-                    window.location.href = '/profile.html';
-                } else {
-                    alert(data.message || 'Registration failed. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again later.');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Create Account';
-            }
+        [firstNameField, lastNameField, emailField, passwordField, confirmPasswordField, dobField, phoneField].forEach(field => {
+            field.classList.remove('error');
         });
+
+        // Basic validation
+        if (password !== confirmPassword) {
+            passwordField.classList.add('error');
+            confirmPasswordField.classList.add('error');
+            alert('Passwords do not match!');
+            return;
+        }
+
+        const submitButton = this.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Creating Account...';
+
+        try {
+            console.log('Request body:', {
+                firstName,
+                lastName,
+                email,
+                password,
+                confirmPassword,
+                dob,
+                phone
+            });
+
+            const response = await fetch('http://128.6.60.9:8080/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    confirmPassword,
+                    dob,
+                    phone
+                })
+            });
+
+            const data = await response.json();
+            console.log('Response from server:', data);
+
+            if (response.ok) {
+                // Store the token
+                localStorage.setItem('token', data.token);
+		localStorage.setItem('user', JSON.stringify(data.user));
+                // Redirect to profile page
+                window.location.href = '/login_without_user_logged_in/index.html';
+            } else {
+                const msg = data.message.toLowerCase();
+                if (msg.includes('first name')) firstNameField.classList.add('error');
+                if (msg.includes('last name')) lastNameField.classList.add('error');
+                if (msg.includes('email')) emailField.classList.add('error');
+                if (msg.includes('password')) passwordField.classList.add('error');
+                if (msg.includes('confirm')) confirmPasswordField.classList.add('error');
+                if (msg.includes('match')) {
+                    passwordField.classList.add('error');
+                    confirmPasswordField.classList.add('error');
+                }
+                if (msg.includes('dob') || msg.includes('date')) dobField.classList.add('error');
+                if (msg.includes('phone')) phoneField.classList.add('error');
+                alert(data.message || 'Registration failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Create Account';
+        }
+    });
+});
+
     </script>
 </body>
 </html> 

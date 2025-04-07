@@ -4,34 +4,18 @@ const db = require('../db');
 
 
 function verifyDate(dateInput) {
-    //console.log('Date input received in verifyDate:', dateInput);
-    if (typeof dateInput !== 'string') {
-        //console.error('DOB is not a string:', dateInput);
-        return false;
-    }
-
-    const parseDate = dateInput.split("-");
-    const year = parseInt(parseDate[0]);
-    const month = parseInt(parseDate[1]);
-    const day = parseInt(parseDate[2]);
-
-    if(year < 1910 || year > 2024){
-        //console.log("Invalid year input");
-        return false;
-    }
-    const date = new Date(year, month - 1, day);
-
-    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    const date = new Date(dateInput);
+    return !isNaN(date.getTime()); // Validate if the date is real
 }
 
-function verifyInput(FName, LName, Email, Password, DOB, Phone) {
+function verifyInput(FName, LName, Email, Password, confirmPassword, DOB, Phone) {
     const nameRegex = /^[A-Za-z]+$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).{10,}$/;
 
-    if (!FName || !LName || !Email || !Password || !DOB || !Phone) {
+    if (!FName || !LName || !Email || !Password || !confirmPassword || !DOB || !Phone) {
         throw new Error('please fill in all fields');
     }
 
@@ -64,13 +48,19 @@ function verifyInput(FName, LName, Email, Password, DOB, Phone) {
         throw new Error('please input a valid password that fulfills all requirments');
     }
 
+    if(!passwordRegex.test(confirmPassword)){
+        throw new Error('please input a valid confirm password that fulfills all requirments');
+    }
+
 }
 
 router.post('/', async  (req, res) => {
-    const {firstName, lastName, email, password, dob, phone } = req.body;
+    const {firstName, lastName, email, password, confirmPassword, dob, phone } = req.body;
+
+     console.log(req.body);
 
     try{
-        verifyInput(firstName, lastName, email, password, dob, phone);
+        verifyInput(firstName, lastName, email, password, confirmPassword, dob, phone);
     } catch (e) {
         return res.status(400).json({ message: e.message });
     }
@@ -86,6 +76,11 @@ router.post('/', async  (req, res) => {
           return res.status(400).json({ message: 'This email has already been registered' });
         }
 
+
+	if (password !== confirmPassword) {
+	  return res.status(400).json({ message: 'Passwords do not match.' });
+	}
+
         const fullName = `${firstName} ${lastName}`;
 
         const result = await db.pool.query(
@@ -94,9 +89,17 @@ router.post('/', async  (req, res) => {
 
         //console.log('Insert result:', result);
 
-        res.status(201).json({message: 'Registration successful!'});
+    	 res.status(201).json({
+   	    message: 'Registration successful!',
+            user: {
+                fullName: fullName,
+        	email: email,
+		phone: phone,
+        	shippingInfo: ''
+    	    }
+	});
     } catch(e){
-        //console.error('Database error:', e);
+        console.error('Registration failed:', e);
         res.status(500).json({message: 'Server error'});
     }
 });
