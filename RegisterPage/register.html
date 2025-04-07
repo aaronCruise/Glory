@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory | Register</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- FontAwesome Link -->
+    <script src="https://kit.fontawesome.com/a2aade69e0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="main-nav" role="navigation">
+            <div class="main-nav-container">
+                <a href="/index.html" id="navbar-logo">
+                    <img id="logo" src="../images/glory-logo-noback.png" alt="Brand logo">
+                </a>
+                <ul class="navbar-menu">
+                    <li class="navbar-item">
+                        <a href="/index.html" class="navbar-link">Home</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/shop.html" class="navbar-link">Shop</a>
+                    </li>
+                    <li class="nvabar-item">
+                        <a href="/cart.html" class="navbar-link">Cart</a> 
+                    </li>
+                    <li class="navbar-btn mobile">
+                        <a href="/login.html" class="button">Login</a>
+                    </li>
+                </ul>
+
+                <div class="navbar-btn desktop">
+                    <a href="/login.html" class="button login-btn">Login</a>
+                </div>
+
+                <button  
+                    class="navbar-toggle" 
+                    id="mobile-menu" 
+                    aria-label="Toggle Navigation" 
+                    aria-expanded="" 
+                    false
+                    >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login-section">
+            <div class="login-container">
+                <div class="login-content">
+                    <h1>Create Account</h1>
+                    <p class="login-subtitle">Join Glory today</p>
+                    
+                    <form class="login-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required placeholder="Create a password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        </div>
+
+                        <button type="submit" class="login-button">Create Account</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Already have an account? <a href="/login.html">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const dob = document.getElementById('dob').value;
+            const phone = document.getElementById('phone').value;
+
+            // Basic validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Creating Account...';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        password,
+                        dob,
+                        phone
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store the token
+                    localStorage.setItem('token', data.token);
+                    // Redirect to profile page
+                    window.location.href = '/profile.html';
+                } else {
+                    alert(data.message || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Create Account';
+            }
+        });
+    </script>
+</body>
+</html> 
