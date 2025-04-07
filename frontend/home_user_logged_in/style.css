@@ -220,6 +220,10 @@
     align-items: center;
 }
 
+.basic-info p {
+    line-height: 1rem;
+}
+
 .hero-btn {
     font-size: 1.5rem;
     text-decoration: none;
