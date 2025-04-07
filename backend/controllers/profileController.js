@@ -24,18 +24,18 @@ function verifyDate(dateInput) {
     return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 }
 
-function verifyInput(FName, LName, Password, DOB, Phone) {
-    const nameRegex = /^[A-Za-z]+$/;
+function verifyInput(FName, Password, DOB, Phone) {
+    const fullNameRegex = /^[A-Za-z]+ [A-Za-z]+$/;
     //const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).{10,}$/;
 
-    if (!FName || !LName || !Password || !DOB || !Phone) {
+    if (!FName || !Password || !DOB || !Phone) {
         throw new Error('please fill in all fields');
     }
 
-    if(!nameRegex.test(FName)){
+    if(!fullNameRegex.test(FName)){
         throw new Error('please input a valid First Name');
     }
 
@@ -66,16 +66,15 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/profile_user_logged_in/index.html'));
 });
 
-router.put('/', async  (req, res) => {
-    const {firstName, lastName, email, password, dob, phone } = req.body;
+router.post('/', async  (req, res) => {
+    const {fullname, email, password, phone } = req.body;
 
     try{
-	verifyInput(firstName, lastName, password, dob, phone);
+	verifyInput(fullname, password, dob, phone);
     } catch (e) {
 	return res.status(400).json({ message: e.message });
     }
     try {
-        const fullName = `${firstName} ${lastName}`;
 
         const result = await db.pool.query(
             'UPDATE user SET full_name = ?, dob = ?, phone = ?, password = ? WHERE email = ?', [fullName, dob, phone, password, email]
