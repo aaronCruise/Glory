@@ -58,36 +58,43 @@
                         <div class="form-group">
                             <label for="firstName">First Name</label>
                             <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+			    <small class="error-message" id="firstNameError"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
                             <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+			    <small class="error-message" id="lastNameError"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" id="email" name="email" required placeholder="Enter your email">
+			    <small class="error-message" id="emailError"></small>
                         </div>
                         
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" required placeholder="Create a password">
+			    <small class="error-message" id="passwordError"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="confirmPassword">Confirm Password</label>
                             <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+			    <small class="error-message" id="confirmPasswordError"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="dob">Date of Birth</label>
                             <input type="date" id="dob" name="dob" required>
+			    <small class="error-message" id="dobError"></small>
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+			    <small class="error-message" id="phoneError"></small>
                         </div>
 
                         <button type="submit" class="login-button">Create Account</button>
@@ -106,31 +113,33 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('registerForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const firstNameField = document.getElementById('firstName');
-        const lastNameField = document.getElementById('lastName');
-        const emailField = document.getElementById('email');
-        const passwordField = document.getElementById('password');
-        const confirmPasswordField = document.getElementById('confirmPassword');
-        const dobField = document.getElementById('dob');
-        const phoneField = document.getElementById('phone');
+        const fields = {
+            firstName: document.getElementById('firstName'),
+            lastName: document.getElementById('lastName'),
+            email: document.getElementById('email'),
+            password: document.getElementById('password'),
+            confirmPassword: document.getElementById('confirmPassword'),
+            dob: document.getElementById('dob'),
+            phone: document.getElementById('phone')
+        };
 
-        const firstName = firstNameField.value;
-        const lastName = lastNameField.value;
-        const email = emailField.value;
-        const password = passwordField.value;
-        const confirmPassword = confirmPasswordField.value;
-        const dob = dobField.value;
-        const phone = phoneField.value;
-
-        [firstNameField, lastNameField, emailField, passwordField, confirmPasswordField, dobField, phoneField].forEach(field => {
-            field.classList.remove('error');
+        // Clear previous error classes and messages
+        Object.keys(fields).forEach(key => {
+            fields[key].classList.remove('error');
+            const errorEl = document.getElementById(`${key}Error`);
+            if (errorEl) errorEl.textContent = '';
         });
 
-        // Basic validation
-        if (password !== confirmPassword) {
-            passwordField.classList.add('error');
-            confirmPasswordField.classList.add('error');
-            alert('Passwords do not match!');
+        const values = Object.fromEntries(
+            Object.entries(fields).map(([key, field]) => [key, field.value])
+        );
+
+        // Basic frontend validation
+        if (values.password !== values.confirmPassword) {
+            fields.password.classList.add('error');
+            fields.confirmPassword.classList.add('error');
+            document.getElementById('passwordError').textContent = 'Passwords do not match';
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
             return;
         }
 
@@ -139,66 +148,65 @@ document.addEventListener('DOMContentLoaded', function () {
         submitButton.textContent = 'Creating Account...';
 
         try {
-            console.log('Request body:', {
-                firstName,
-                lastName,
-                email,
-                password,
-                confirmPassword,
-                dob,
-                phone
-            });
-
             const response = await fetch('http://128.6.60.9:8080/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    firstName,
-                    lastName,
-                    email,
-                    password,
-                    confirmPassword,
-                    dob,
-                    phone
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values)
             });
 
             const data = await response.json();
-            console.log('Response from server:', data);
 
             if (response.ok) {
-                // Store the token
                 localStorage.setItem('token', data.token);
-		localStorage.setItem('user', JSON.stringify(data.user));
-                // Redirect to profile page
+                localStorage.setItem('user', JSON.stringify(data.user));
                 window.location.href = '/login_without_user_logged_in/index.html';
             } else {
                 const msg = data.message.toLowerCase();
-                if (msg.includes('first name')) firstNameField.classList.add('error');
-                if (msg.includes('last name')) lastNameField.classList.add('error');
-                if (msg.includes('email')) emailField.classList.add('error');
-                if (msg.includes('password')) passwordField.classList.add('error');
-                if (msg.includes('confirm')) confirmPasswordField.classList.add('error');
-                if (msg.includes('match')) {
-                    passwordField.classList.add('error');
-                    confirmPasswordField.classList.add('error');
+
+                // Add specific field errors
+                if (msg.includes('first name')) {
+                    fields.firstName.classList.add('error');
+                    document.getElementById('firstNameError').textContent = data.message;
                 }
-                if (msg.includes('dob') || msg.includes('date')) dobField.classList.add('error');
-                if (msg.includes('phone')) phoneField.classList.add('error');
-                alert(data.message || 'Registration failed. Please try again.');
+                if (msg.includes('last name')) {
+                    fields.lastName.classList.add('error');
+                    document.getElementById('lastNameError').textContent = data.message;
+                }
+                if (msg.includes('email')) {
+                    fields.email.classList.add('error');
+                    document.getElementById('emailError').textContent = data.message;
+                }
+                if (msg.includes('password') && !msg.includes('confirm')) {
+                    fields.password.classList.add('error');
+                    document.getElementById('passwordError').textContent = data.message;
+                }
+                if (msg.includes('confirm')) {
+                    fields.confirmPassword.classList.add('error');
+                    document.getElementById('confirmPasswordError').textContent = data.message;
+                }
+                if (msg.includes('match')) {
+                    fields.password.classList.add('error');
+                    fields.confirmPassword.classList.add('error');
+                    document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                }
+                if (msg.includes('dob') || msg.includes('date')) {
+                    fields.dob.classList.add('error');
+                    document.getElementById('dobError').textContent = data.message;
+                }
+                if (msg.includes('phone')) {
+                    fields.phone.classList.add('error');
+                    document.getElementById('phoneError').textContent = data.message;
+                }
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
+            // You can set a global error div here if desired
         } finally {
             submitButton.disabled = false;
             submitButton.textContent = 'Create Account';
         }
     });
 });
-
     </script>
 </body>
 </html> 

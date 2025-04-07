@@ -303,13 +303,20 @@
     transition: all 0.3s ease;
 }
 
-input.error {
-    border: 2px solid red;
-    background-color: #ffe6e6;
+.error {
+    border: 1px solid red;
 }
 
-input.error::placeholder {
-    color: #d00;
+.error-message {
+    color: red;
+    font-size: 0.8em;
+}
+
+input.error,
+select.error,
+textarea.error {
+  border: 2px solid red;
+  outline: none;
 }
 
 @media screen and (max-width: 480px) {
