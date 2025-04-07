@@ -67,7 +67,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async  (req, res) => {
-    const {fullname, email, password, phone } = req.body;
+    const {fullname, email, phone, shippingAddress } = req.body;
 
     try{
 	verifyInput(fullname, password, dob, phone);
@@ -79,6 +79,30 @@ router.post('/', async  (req, res) => {
         const result = await db.pool.query(
             'UPDATE user SET full_name = ?, dob = ?, phone = ?, password = ? WHERE email = ?', [fullName, dob, phone, password, email]
         );
+
+	const [userResult] = await db.pool.query('SELECT id FROM user WHERE email = ?', [email]);
+	const userId = userResult[0]?.id;
+
+	if (!userId) return res.status(404).json({ message: 'User not found' });
+
+
+	const [shippingCheck] = await db.pool.query(
+    	    'SELECT * FROM shipping_info WHERE user_id = ?',
+    	    [userId]
+	);
+
+
+	if (shippingCheck.length > 0) {
+	    await db.pool.query(
+                'UPDATE shipping_info SET address = ? WHERE user_id = ?',
+                 [address, userId]
+    	    );
+	} else {
+    	    await db.pool.query(
+                `INSERT INTO shipping_info (user_id, address) VALUES (?, ?)`,
+                 [userId, address]
+    	    );
+	}
 
         res.status(201).json({message: 'Profile updated successfully!'});
     } catch(e){
