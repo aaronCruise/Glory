@@ -22,9 +22,9 @@ app.use('/images', express.static(path.join(__dirname, '../images_fonts')));
 // Serve static files from the 'frontend' folder (outside of the 'backend' folder)
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
-// Route root ('/') to serve the login page located in 'frontend/login_without_user_logged_in'
+// Route root ('/') to serve the login page located in 'frontend/home_without_user_logged_in'
 app.get('/', (req, res) => {
-    const filePath = path.resolve(__dirname, '..', 'frontend', 'login_without_user_logged_in', 'index.html');
+    const filePath = path.resolve(__dirname, '..', 'frontend', 'home_without_user_logged_in', 'index.html');
 console.log('Generated file path:', filePath);
     console.log(`🔹 Request received for '/'`);
     console.log(`🔹 Serving file: ${filePath}`);
@@ -38,6 +38,7 @@ console.log('Generated file path:', filePath);
         }
     });
 });
+
 
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/registeration/index.html'));
