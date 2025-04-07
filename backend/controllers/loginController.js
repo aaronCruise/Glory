@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
         console.log('✅ Query executed. Results:', results);
 
         if (results.length > 0) {
-            res.send({ message: 'Login successful!' });
+            res.redirect('/UsersHome');
         } else {
             res.status(401).send({ message: 'Invalid email or password.' });
         }
