@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     const password = document.getElementById("password").value;
   
     try {
-      const response = await fetch("http://http://128.6.60.9:8080/login", {
+      const response = await fetch("http://128.6.60.9:8080/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
