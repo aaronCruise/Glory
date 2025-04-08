@@ -21,10 +21,17 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   
       localStorage.setItem("token", data.token);
   
-      window.location.href = "/profile_user_logged_in/index.html";
+      window.location.href = "http://128.6.60.9:8080/profile_user_logged_in/index.html";
     } catch (err) {
       console.error("Login error:", err.message);
       alert("Invalid login credentials");
     }
   });
+
+  const menu = document.querySelector("#mobile-menu")
+  const menuLinks = document.querySelector(".navbar-menu")
   
+  menu.addEventListener("click", function () {
+      menu.classList.toggle("is-active");
+      menuLinks.classList.toggle("active");
+  });
