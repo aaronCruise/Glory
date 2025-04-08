@@ -49,6 +49,10 @@ app.get('/profile', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/profile_user_logged_in/index.html'));
 });
 
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/login_without_user_logged_in/index.html'));
+});
+
 app.get('/UsersHome', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/home_user_logged_in/index.html'));
 });
