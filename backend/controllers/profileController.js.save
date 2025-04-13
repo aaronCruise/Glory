@@ -24,14 +24,14 @@ function verifyDate(dateInput) {
     return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 }
 
-function verifyInput(FName, Phone) {
+function verifyInput(FName, Password, DOB, Phone) {
     const fullNameRegex = /^[A-Za-z]+ [A-Za-z]+$/;
     //const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).{10,}$/;
 
-    if (!FName || !Phone) {
+    if (!FName || !Password || !DOB || !Phone) {
         throw new Error('please fill in all fields');
     }
 
@@ -39,8 +39,25 @@ function verifyInput(FName, Phone) {
         throw new Error('please input a valid First Name');
     }
 
+    if(!nameRegex.test(LName)){
+        throw new Error('please input a valid Last Name');
+    }
+
     if(!phoneRegex.test(Phone)){
         throw new Error('please input a valid phone number');
+    }
+
+    if(!dobRegex.test(DOB)){
+        throw new Error('please format the date of birth properly');
+    }
+
+    //console.log('Before calling verifyDate with DOB:', DOB);
+    if (!verifyDate(DOB)){
+        throw new Error('please input a valid date');
+    }
+
+    if(!passwordRegex.test(Password)){
+        throw new Error('please input a valid password that fulfills all requirments');
     }
 
 }
@@ -55,16 +72,14 @@ router.get('/UserInfo', async (req, res) => {
 
     try {
         const [userResult] = await db.pool.query('SELECT * FROM user WHERE id = ?', [userId]);
-	const [userResult2] = await db.pool.query('SELECT * FROM shipping_info WHERE user_id = ?', [userId]);
         const user = userResult[0];
-	const user2 = userResult2[0];
         if (!user) return res.status(404).json({ error: 'User not found' });
 
         res.json({
             full_name: user.full_name,
             email: user.email,
-            phone: user.phone,
-	    shipping_address: user2.address
+            dob: user.dob,
+            phone: user.phone
         });
     } catch (e) {
         res.status(500).json({ error: 'Server error' });
@@ -75,14 +90,14 @@ router.post('/', async  (req, res) => {
     const {fullname, email, phone, shippingAddress } = req.body;
 
     try{
-	verifyInput(fullname, email, phone);
+	verifyInput(fullname, password, dob, phone);
     } catch (e) {
 	return res.status(400).json({ message: e.message });
     }
     try {
 
         const result = await db.pool.query(
-            'UPDATE user SET full_name = ?, phone = ? WHERE email = ?', [fullName, phone, email]
+            'UPDATE user SET full_name = ?, dob = ?, phone = ?, password = ? WHERE email = ?', [fullName, dob, phone, password, email]
         );
 
 	const [userResult] = await db.pool.query('SELECT id FROM user WHERE email = ?', [email]);

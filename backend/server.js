@@ -7,6 +7,7 @@ const app = express()
 const port = 8080
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const session = require('express-session');
 const registerRoute = require('./controllers/registerationController');
 const profileRoute = require('./controllers/profileController');
 
@@ -14,9 +15,23 @@ const profileRoute = require('./controllers/profileController');
 // Middleware to handle POST data
 app.use(express.urlencoded({ extended: true }));  // For form data
 app.use(express.json());  // For handling JSON requests
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080',
+  credentials: true
+}));
 // Serve static files from the 'images_fonts' folder (outside of the 'backend' folder)
 //app.use(express.static(path.join(__dirname, '..', 'images_fonts')));
+
+app.use(session({
+  secret: 'mySecretString',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+        httpOnly: true,
+        secure: false, // set to true in production if using HTTPS
+        maxAge: 1000 * 60 * 60 * 24 // 1 day
+    }
+}));
 
 app.use('/images', express.static(path.join(__dirname, '../images_fonts')));
 

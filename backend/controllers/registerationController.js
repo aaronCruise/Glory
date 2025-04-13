@@ -87,6 +87,13 @@ router.post('/', async  (req, res) => {
             'INSERT INTO user (full_name, DOB, email, phone, password) VALUES (?,?,?,?,?)', [fullName, dob, email, phone, password]
         );
 
+	 const userId = result.insertId;
+
+        // Step 4: Insert the address into the shipping_info table with the userId
+        const result2 = await db.pool.query('INSERT INTO shipping_info (user_id) VALUES (?)',
+            [userId]
+        );
+
         //console.log('Insert result:', result);
 
     	 res.status(201).json({
