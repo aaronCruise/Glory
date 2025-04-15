@@ -64,8 +64,15 @@ app.use('/profile', profileRoute);
 app.use('/login', loginController);
 
 // Start the server
+/*
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+*/
 
-
+if (require.main === module) {
+  app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+  });
+}
+module.exports = app;

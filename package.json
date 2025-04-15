@@ -4,5 +4,15 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mariadb": "^3.4.0"
+  },
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0",
+    "sinon": "^20.0.0",
+    "supertest": "^7.1.0"
+  },
+  "scripts": {
+    "test": "mocha --exit",
+    "coverage": "nyc mocha --exit"
   }
 }
