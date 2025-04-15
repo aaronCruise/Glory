@@ -16,7 +16,7 @@ const profileRoute = require('./controllers/profileController');
 app.use(express.urlencoded({ extended: true }));  // For form data
 app.use(express.json());  // For handling JSON requests
 app.use(cors({
-  origin: 'http://localhost:8080',
+  origin: 'http://128.6.60.9:8080',
   credentials: true
 }));
 // Serve static files from the 'images_fonts' folder (outside of the 'backend' folder)
@@ -25,11 +25,12 @@ app.use(cors({
 app.use(session({
   secret: 'mySecretString',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
         httpOnly: true,
         secure: false, // set to true in production if using HTTPS
-        maxAge: 1000 * 60 * 60 * 24 // 1 day
+        maxAge: 1000 * 60 * 60 * 24, // 1 day
+	sameSite: 'lax'
     }
 }));
 

@@ -25,7 +25,8 @@ router.post('/', async (req, res) => {
 
             req.session.userId = user.id;
 	    res.cookie('connect.sid', req.sessionID, { httpOnly: true, secure: false }); // For session cookie
-            res.redirect('/UsersHome');
+	    console.log('Session after login:', req.session);
+	    res.status(200).json({ token: req.sessionID });
         } else {
             res.status(401).send({ message: 'Invalid email or password.' });
         }
