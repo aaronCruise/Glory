@@ -20,13 +20,14 @@ Glory offers an e-commerce store where users can shop for fitness gear, apparel 
         - `script.js`   - logic behind front-end components
         - `style.css`   - UI styling
 
-- `tests/`
+- `test/`
     - test case implementation, system testing
+    - each `.js` tests a test case in the test design specification
     
-- `images_fonts`
+- `images_fonts/`
         - `.png` files used in the front-end
 
-- `node_modules`
+- `node_modules/`
         - dependencies for Node.js
 
 
