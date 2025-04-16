@@ -1,8 +1,15 @@
+// Test case T01 - Account registration
 const request = require('supertest');
 const { expect } = require('chai');
 const app = require('../backend/server');
+const db = require('../backend/db');
 
 describe('User Registration (T01)', () => {
+  // Delete account from the previous test and after to keep DB clean
+  afterEach(async () => {
+    await db.pool.query("DELETE FROM user WHERE email = 'testuser@gmail.com' AND password = 'TestPassword!@'");
+  });
+
   it('should create a new user account and return a success message', async () => {
     const newUser = {
       firstName: 'Test',
