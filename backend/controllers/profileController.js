@@ -75,33 +75,11 @@ router.get('/UserInfo', async (req, res) => {
 
 	let shippingAddress = "";
 
-        // Explicitly check if userResult2 is not undefined or null
         if (userResult2 !== undefined && userResult2 !== null) {
-            // If userResult2 is defined and is an array, check its length and address
-            if (Array.isArray(userResult2) && userResult2.length > 0) {
-                if (userResult2[0].address) {
-                    shippingAddress = userResult2[0].address;  // If there's an address, use it
-                } else {
-                    console.log("Shipping info found, but no address field.");
-                }
-            } else {
-                console.log("No shipping information found for this user.");
-            }
+            shippingAddress = userResult2.address;
         } else {
             console.log("Shipping result is undefined or null.");
-        }
-
-
-	//let shippingAddress = "";
-
-	//if(typeof userResult2 !== 'undefined' && userResult2 !== null){
-	    //shippingAddress = userResult2[0].address;
-	//}
-
-        // If userResult2 is undefined or empty, keep shippingAddress as an empty string
-        //if (userResult2 && Array.isArray(userResult2) && userResult2.length > 0) {
-            //shippingAddress = userResult2[0].address;  // If there's an address, set it
-        //}
+	}
 
 	console.log("User full name:", user.full_name);
 	console.log("User email:", user.email);
