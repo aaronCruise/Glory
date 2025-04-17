@@ -24,14 +24,14 @@ function verifyDate(dateInput) {
     return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 }
 
-function verifyInput(FName, Password, DOB, Phone) {
+function verifyInput(FName, Phone, Email) {
     const fullNameRegex = /^[A-Za-z]+ [A-Za-z]+$/;
-    //const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>]).{10,}$/;
 
-    if (!FName || !Password || !DOB || !Phone) {
+    if (!FName || !Phone || !Email) {
         throw new Error('please fill in all fields');
     }
 
@@ -39,25 +39,12 @@ function verifyInput(FName, Password, DOB, Phone) {
         throw new Error('please input a valid First Name');
     }
 
-    if(!nameRegex.test(LName)){
-        throw new Error('please input a valid Last Name');
-    }
-
     if(!phoneRegex.test(Phone)){
         throw new Error('please input a valid phone number');
     }
 
-    if(!dobRegex.test(DOB)){
-        throw new Error('please format the date of birth properly');
-    }
-
-    //console.log('Before calling verifyDate with DOB:', DOB);
-    if (!verifyDate(DOB)){
-        throw new Error('please input a valid date');
-    }
-
-    if(!passwordRegex.test(Password)){
-        throw new Error('please input a valid password that fulfills all requirments');
+    if(!emailRegex.test(Email)){
+        throw new Error('please input a valid phone number');
     }
 
 }
@@ -66,42 +53,98 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/profile_user_logged_in/index.html'));
 });
 
+router.get('/UserInfo', async (req, res) => {
+    console.log('Session when accessing profile:', req.session);
+    const userId = req.session.userId;
+    console.log('User ID is: ', userId);
+    if (!userId) return res.status(401).json({ error: 'Not logged in' });
+
+    try {
+        const [userResult] = await db.pool.query('SELECT * FROM user WHERE id = ?', [userId]);
+	if (userResult.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+	const user = userResult;
+
+
+	const [userResult2] = await db.pool.query('SELECT * FROM shipping_info WHERE user_id = ?', [userId]);
+
+	console.log("First database entry result:", userResult[0]);
+	console.log("Shipping result:", userResult2);
+
+	let shippingAddress = "";
+
+        if (userResult2 !== undefined && userResult2 !== null) {
+            shippingAddress = userResult2.address;
+        } else {
+            console.log("Shipping result is undefined or null.");
+	}
+
+	console.log("User full name:", user.full_name);
+	console.log("User email:", user.email);
+	console.log("User phone:", user.phone);
+	console.log("Shipping address:", shippingAddress);
+
+        return res.status(200).json({
+            full_name: user.full_name,
+            email: user.email,
+            phone: user.phone,
+            shipping_address: shippingAddress
+        });
+    } catch (e) {
+	console.error("Caught error in /UserInfo route:", e);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 router.post('/', async  (req, res) => {
     const {fullname, email, phone, shippingAddress } = req.body;
+    console.log('Received POST:', req.body);
+    console.log('fullname:', fullname);
+    console.log('shippingAddress:', shippingAddress);
 
     try{
-	verifyInput(fullname, password, dob, phone);
+	console.log('Entered first try block');
+	verifyInput(fullname, phone, email);
+	console.log('Successfully verified input');
     } catch (e) {
 	return res.status(400).json({ message: e.message });
     }
     try {
-
+	console.log('Entered second try block');
         const result = await db.pool.query(
-            'UPDATE user SET full_name = ?, dob = ?, phone = ?, password = ? WHERE email = ?', [fullName, dob, phone, password, email]
+            'UPDATE user SET full_name = ?, phone = ? WHERE email = ?', [fullname, phone, email]
         );
 
+	console.log('User table update result:', result);
+	console.log('User update result:', result[0]);
 	const [userResult] = await db.pool.query('SELECT id FROM user WHERE email = ?', [email]);
-	const userId = userResult[0]?.id;
+	const userId = userResult.id;
+
+	console.log('Users ID Value:', userId);
 
 	if (!userId) return res.status(404).json({ message: 'User not found' });
 
-
+	console.log('About to run SELECT for shipping info');
 	const [shippingCheck] = await db.pool.query(
     	    'SELECT * FROM shipping_info WHERE user_id = ?',
     	    [userId]
 	);
 
+	console.log('Shipping Check trying to update info:', shippingCheck);
 
-	if (shippingCheck.length > 0) {
+	if (shippingCheck !== undefined && shippingCheck !== null) {
 	    await db.pool.query(
                 'UPDATE shipping_info SET address = ? WHERE user_id = ?',
-                 [address, userId]
+                 [shippingAddress, userId]
     	    );
 	} else {
-    	    await db.pool.query(
+    	    const insertResult = await db.pool.query(
                 `INSERT INTO shipping_info (user_id, address) VALUES (?, ?)`,
-                 [userId, address]
+                 [userId, shippingAddress]
     	    );
+	    console.log('Shipping address insert result:', insertResult);
 	}
 
         res.status(201).json({message: 'Profile updated successfully!'});

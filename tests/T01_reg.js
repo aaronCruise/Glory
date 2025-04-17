@@ -1,4 +1,4 @@
-// Test case T01 - Account registration
+// Test case T01 - Account Registration
 const request = require('supertest');
 const { expect } = require('chai');
 const app = require('../backend/server');

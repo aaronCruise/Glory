@@ -1,10 +1,10 @@
-// Test Case T03 - Password change
-// TODO fix. this fails
+// Test Case T03 - Password Management
+// TODO
 const request = require('supertest');
 const { expect } = require('chai');
 const app = require('../backend/server');
 
-describe('Profile Update / Change Password (T03)', () => {
+describe('Change Password (T03)', () => {
     it('should update the user profile with the new password and details', async () => {
         // Prepare new profile information.
         const updateData = {
