@@ -9,7 +9,7 @@ menu.addEventListener("click", function () {
 // Logic for getting the items from backend to be displayed
 // and Logic for displaying the correct number of items on each page
 const NUM_PAGE_ITEMS = 4;
-const API_URL = '/api/products';
+const API_URL = '/products';
 
 const productList = document.getElementById('product-list');
 const pagination = document.getElementById('pagination');

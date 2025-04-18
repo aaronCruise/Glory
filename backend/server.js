@@ -1,62 +1,59 @@
-
 const express = require('express');
-const loginController = require('./controllers/loginController');
-const path = require('path'); // Required to work with file paths
-const db = require('./db')
-const app = express()
-const port = 8080
+const path = require('path');
 const cors = require('cors');
-const bodyParser = require("body-parser");
 const session = require('express-session');
+
 const registerRoute = require('./controllers/registerationController');
 const profileRoute = require('./controllers/profileController');
+const loginController = require('./controllers/loginController');
+const productRoute = require('./controllers/shopController');
 
+const app = express();
+const port = 8080;
 
 // Middleware to handle POST data
 app.use(express.urlencoded({ extended: true }));  // For form data
 app.use(express.json());  // For handling JSON requests
+
 app.use(cors({
   origin: 'http://128.6.60.9:8080',
   credentials: true
 }));
-// Serve static files from the 'images_fonts' folder (outside of the 'backend' folder)
-//app.use(express.static(path.join(__dirname, '..', 'images_fonts')));
 
 app.use(session({
   secret: 'mySecretString',
+
   resave: false,
   saveUninitialized: false,
   cookie: {
-        httpOnly: true,
-        secure: false, // set to true in production if using HTTPS
-        maxAge: 1000 * 60 * 60 * 24, // 1 day
-	sameSite: 'lax'
-    }
+    httpOnly: true,
+    secure: false, // set to true in production if using HTTPS
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+    sameSite: 'lax'
+  }
 }));
 
+// Serve product images from backend/images or images_fonts
 app.use('/images', express.static(path.join(__dirname, '../images_fonts')));
-
-// Serve static files from the 'frontend' folder (outside of the 'backend' folder)
+app.use('/products', productRoute);
+// Serve static frontend files
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
-// Route root ('/') to serve the login page located in 'frontend/home_without_user_logged_in'
+// Route root to login page
 app.get('/', (req, res) => {
-    const filePath = path.resolve(__dirname, '..', 'frontend', 'home_without_user_logged_in', 'index.html');
-console.log('Generated file path:', filePath);
-    console.log(`🔹 Request received for '/'`);
-    console.log(`🔹 Serving file: ${filePath}`);
-
-    res.sendFile(filePath, (err) => {
-        if (err) {
-            console.error('❌ Error serving file:', err);
-            res.status(500).send('Error loading the login page.');
-        } else {
-            console.log(`✅ Successfully served: ${filePath}`);
-        }
-    });
+  const filePath = path.resolve(__dirname, '..', 'frontend', 'home_without_user_logged_in', 'index.html');
+  console.log('Generated file path:', filePath);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error('❌ Error serving file:', err);
+      res.status(500).send('Error loading the login page.');
+    } else {
+      console.log(`✅ Successfully served: ${filePath}`);
+    }
+  });
 });
 
-
+// Page routes
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/registeration/index.html'));
 });
@@ -73,15 +70,17 @@ app.get('/UsersHome', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/home_user_logged_in/index.html'));
 });
 
+app.get('/shop', (req, res) => {
+  res.sendFile(path.join(__dirname,'../frontend/shop_without_user_logged_in/index.html'));
+});
+
+// Route logic
 app.use('/register', registerRoute);
-
 app.use('/profile', profileRoute);
-
 app.use('/login', loginController);
+app.use('/products', productRoute); // ✅ Product API
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`🚀 Server is running on port ${port}`);
 });
-
-
