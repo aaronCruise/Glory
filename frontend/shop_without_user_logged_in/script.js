@@ -30,9 +30,9 @@ function cHTML(product) {
 
 // Function to display the items on each shop page
 function displayPage(page) {
-    const startCard = (page - 1) * NUM_ITEMS;
-    const endCard = startCard + NUM_ITEMS;
-    const itemsSlice = items.slice(start, end);
+    const startCard = (page - 1) * NUM_PAGE_ITEMS;
+    const endCard = startCard + NUM_PAGE_ITEMS;
+    const itemsSlice = items.slice(startCard, endCard);
 
     productList.innerHTML = itemsSlice.map(cHTML).join("");
 
