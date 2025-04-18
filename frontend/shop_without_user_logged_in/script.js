@@ -57,7 +57,7 @@ async function initializeShop() {
     try {
         const res = await fetch(API_URL);
         const json = await res.json();
-        items = json.items;
+        items = Array.isArray(json) ? json : json.items;
         totalPages = Math.ceil(items.length / NUM_PAGE_ITEMS);
         buildPagination();
         displayPage(1);

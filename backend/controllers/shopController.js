@@ -15,7 +15,7 @@ const loadProducts = () => {
 const getAllProducts = (req, res) => {
   try {
     const products = loadProducts();
-    res.status(200).json(products);
+    res.status(200).json({items: products});
   } catch (err) {
     console.error("Error loading products:", err);
     res.status(500).json({ error: "Failed to load products" });
