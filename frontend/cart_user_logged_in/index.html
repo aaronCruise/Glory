@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glory | Cart</title>
-    <link rel="stylesheet" href="../registeration/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -111,7 +111,7 @@
                 <a href="../cart_user_logged_in/index.html" class="navbar-link">Cart</a>
             </li>
             <li class="navbar-item">
-                <a href="../profile/index.html" class="navbar-link">Profile</a>
+                <a href="../profile_user_logged_in/index.html" class="navbar-link">Profile</a>
             </li>
         </ul>
         <button class="navbar-toggle">
@@ -119,27 +119,22 @@
         </button>
     </nav>
 
-    <div class="cart-container">
-        <div class="cart-header">
-            <h1>Your Cart</h1>
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1>Your Cart</h1>
+            </div>
+            
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added any items to your cart yet.</p>
+                <a href="../shop_user_logged_in/index.html" class="continue-shopping">Continue Shopping</a>
+            </div>
         </div>
+    </section>
 
-        <div class="empty-cart">
-            <i class="fas fa-shopping-cart"></i>
-            <h2>Your cart is empty</h2>
-            <p>Looks like you haven't added any items to your cart yet.</p>
-            <a href="../shop_user_logged_in/index.html" class="continue-shopping">Continue Shopping</a>
-        </div>
-    </div>
-
-    <script>
-        // Mobile menu toggle
-        const navbarToggle = document.querySelector('.navbar-toggle');
-        const navbarMenu = document.querySelector('.navbar-menu');
-
-        navbarToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -32,143 +32,64 @@
         </button>
     </nav>
 
-    <section class="login-section">
-        <div class="login-container">
-            <div class="login-content">
-                <h1>Create Account</h1>
-                <p class="login-subtitle">Join Glory today</p>
-                
-                <form class="login-form" id="registerForm">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
-                        <small class="error-message" id="firstNameError"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
-                        <small class="error-message" id="lastNameError"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email">
-                        <small class="error-message" id="emailError"></small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required placeholder="Create a password">
-                        <small class="error-message" id="passwordError"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
-                        <small class="error-message" id="confirmPasswordError"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" required>
-                        <small class="error-message" id="dobError"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                        <small class="error-message" id="phoneError"></small>
-                    </div>
-
-                    <button type="submit" class="login-button">Create Account</button>
-                </form>
-
-                <div class="login-footer">
-                    <p>Already have an account? <a href="../login_without_user_logged_in/index.html">Login</a></p>
-                </div>
+    <!-- Registration Section -->
+    <section class="register-section">
+        <div class="register-container">
+            <div class="register-header">
+                <h1>Create an Account</h1>
+                <p>Join Glory to enjoy exclusive benefits and faster checkout</p>
             </div>
+
+            <form id="register-form" class="register-form">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="password-requirements">
+                        <p>Password must contain:</p>
+                        <ul>
+                            <li id="length">At least 8 characters</li>
+                            <li id="uppercase">One uppercase letter</li>
+                            <li id="lowercase">One lowercase letter</li>
+                            <li id="number">One number</li>
+                            <li id="special">One special character</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <button type="submit" class="register-btn">Create Account</button>
+
+                <div class="login-prompt">
+                    <p>Already have an account? <a href="../login_without_user_logged_in/index.html">Log in</a></p>
+                </div>
+            </form>
         </div>
     </section>
 
-    <script>
-        // Mobile menu toggle
-        const navbarToggle = document.querySelector('.navbar-toggle');
-        const navbarMenu = document.querySelector('.navbar-menu');
-
-        navbarToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-
-        // Form submission handling
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('registerForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const fields = {
-                    firstName: document.getElementById('firstName'),
-                    lastName: document.getElementById('lastName'),
-                    email: document.getElementById('email'),
-                    password: document.getElementById('password'),
-                    confirmPassword: document.getElementById('confirmPassword'),
-                    dob: document.getElementById('dob'),
-                    phone: document.getElementById('phone')
-                };
-
-                // Clear previous error classes and messages
-                Object.keys(fields).forEach(key => {
-                    fields[key].classList.remove('error');
-                    const errorEl = document.getElementById(`${key}Error`);
-                    if (errorEl) errorEl.textContent = '';
-                });
-
-                const values = Object.fromEntries(
-                    Object.entries(fields).map(([key, field]) => [key, field.value])
-                );
-
-                // Basic frontend validation
-                if (values.password !== values.confirmPassword) {
-                    fields.password.classList.add('error');
-                    fields.confirmPassword.classList.add('error');
-                    document.getElementById('passwordError').textContent = 'Passwords do not match';
-                    document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
-                    return;
-                }
-
-                const submitButton = this.querySelector('button[type="submit"]');
-                submitButton.disabled = true;
-                submitButton.textContent = 'Creating Account...';
-
-                try {
-                    const response = await fetch('http://localhost:8080/register', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(values)
-                    });
-
-                    const data = await response.json();
-
-                    if (response.ok) {
-                        window.location.href = '../login_without_user_logged_in/index.html';
-                    } else {
-                        const msg = data.message.toLowerCase();
-                        
-                        // Handle specific field errors
-                        Object.keys(fields).forEach(key => {
-                            if (msg.includes(key.toLowerCase())) {
-                                fields[key].classList.add('error');
-                                document.getElementById(`${key}Error`).textContent = data.message;
-                            }
-                        });
-                    }
-                } catch (error) {
-                    console.error('Registration error:', error);
-                } finally {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Create Account';
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html> 

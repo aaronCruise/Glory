@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glory | Help Center</title>
-    <link rel="stylesheet" href="../registeration/style.css">
+    <title>Glory | Help</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -168,105 +168,84 @@
         </button>
     </nav>
 
-    <div class="help-container">
-        <div class="help-header">
-            <h1>Help Center</h1>
-            <p>Find answers to common questions and get support</p>
-        </div>
-
-        <div class="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do I place an order?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>To place an order, simply browse our products, add items to your cart, and proceed to checkout. You'll need to create an account or log in to complete your purchase.</p>
-                </div>
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="help-container">
+            <div class="help-header">
+                <h1>How Can We Help You?</h1>
+                <p>Find answers to common questions or contact our support team for assistance.</p>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What payment methods do you accept?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>We accept all major credit cards, PayPal, and other secure payment methods. All transactions are encrypted for your security.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How can I track my order?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Once your order is shipped, you'll receive a tracking number via email. You can use this number to track your package on our website or the carrier's website.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What is your return policy?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>We offer a 30-day return policy for most items. Items must be in their original condition with all tags attached. Please contact our support team to initiate a return.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-section">
-            <h2>Still Need Help?</h2>
-            <p>Our support team is here to assist you</p>
-            <div class="contact-info">
-                <div class="contact-method">
-                    <i class="fas fa-envelope"></i>
-                    <span>support@glory.com</span>
-                </div>
-                <div class="contact-method">
-                    <i class="fas fa-phone"></i>
-                    <span>+1 (555) 123-4567</span>
-                </div>
-                <div class="contact-method">
-                    <i class="fas fa-clock"></i>
-                    <span>Mon-Fri: 9AM-5PM EST</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Mobile menu toggle
-        const navbarToggle = document.querySelector('.navbar-toggle');
-        const navbarMenu = document.querySelector('.navbar-menu');
-
-        navbarToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isOpen = answer.style.display === 'block';
+            <div class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
                 
-                // Close all answers
-                document.querySelectorAll('.faq-answer').forEach(ans => {
-                    ans.style.display = 'none';
-                    ans.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
-                    ans.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
-                });
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I place an order?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To place an order, simply browse our products, add items to your cart, and proceed to checkout. You'll need to create an account or log in to complete your purchase.</p>
+                    </div>
+                </div>
 
-                // Toggle current answer
-                if (!isOpen) {
-                    answer.style.display = 'block';
-                    question.querySelector('i').classList.remove('fa-chevron-down');
-                    question.querySelector('i').classList.add('fa-chevron-up');
-                }
-            });
-        });
-    </script>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards, PayPal, and other secure payment methods. Your payment information is always encrypted and secure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does shipping take?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard shipping typically takes 3-5 business days. Express shipping options are available at checkout for faster delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your return policy?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day return policy for unused items in their original packaging. Please contact our support team to initiate a return.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone Support</h3>
+                        <p>+1 (555) 123-4567</p>
+                        <p>Monday - Friday, 9AM - 5PM EST</p>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>support@glory.com</p>
+                        <p>24/7 Response Time</p>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-comments"></i>
+                        <h3>Live Chat</h3>
+                        <p>Available 24/7</p>
+                        <p>Click the chat icon to start</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html> 

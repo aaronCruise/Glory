@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glory | Cart</title>
-    <link rel="stylesheet" href="../registeration/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -95,6 +95,52 @@
             color: royalblue;
         }
 
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .auth-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background-color: gold;
+            color: #141414;
+        }
+
+        .register-btn {
+            background-color: royalblue;
+            color: gold;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .continue-guest {
+            margin-top: 20px;
+            color: #e0e0e0;
+        }
+
+        .continue-guest a {
+            color: gold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .continue-guest a:hover {
+            color: royalblue;
+        }
+
         @media screen and (max-width: 768px) {
             .cart-container {
                 margin: 80px auto 20px;
@@ -135,30 +181,22 @@
         </button>
     </nav>
 
-    <div class="cart-container">
-        <div class="cart-header">
-            <h1>Your Cart</h1>
-        </div>
-
-        <div class="empty-cart">
-            <i class="fas fa-shopping-cart"></i>
-            <h2>Your cart is empty</h2>
-            <p>Looks like you haven't added any items to your cart yet.</p>
-            <a href="../shop_without_user_logged_in/index.html" class="continue-shopping">Continue Shopping</a>
-            <div class="login-prompt">
-                <p>Already have an account? <a href="../login_without_user_logged_in/index.html">Login</a> to see your saved items.</p>
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="cart-container">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Please Login or Create an Account</h2>
+                <p>To view your cart and make purchases, please login or create a new account.</p>
+                <div class="auth-buttons">
+                    <a href="../login_without_user_logged_in/index.html" class="auth-btn login-btn">Login</a>
+                    <a href="../registeration/index.html" class="auth-btn register-btn">Create Account</a>
+                </div>
+                <p class="continue-guest">Or <a href="../shop_without_user_logged_in/index.html">continue shopping as a guest</a></p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Mobile menu toggle
-        const navbarToggle = document.querySelector('.navbar-toggle');
-        const navbarMenu = document.querySelector('.navbar-menu');
-
-        navbarToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

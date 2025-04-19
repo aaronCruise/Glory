@@ -6,6 +6,11 @@
     overflow-x: hidden;
 }
 
+body {
+    background-color: #141414;
+    color: #e0e0e0;
+}
+
 .main-nav-container {
     display: flex;
     justify-content: space-between;
@@ -110,7 +115,12 @@
     transition: all 0.3s ease;
 }
 
+/* Mobile Responsiveness */
 @media screen and (max-width: 968px) {
+    .main-nav-container {
+        padding: 0 20px;
+    }
+
     .fa-bars {
         line-height: normal !important;
     }
@@ -165,7 +175,6 @@
         justify-content: center;
     }
 
-    /* Sign Up Button */
     .navbar-btn.desktop {
         display: none;
     }
@@ -181,6 +190,89 @@
         width: 80%;
         height: 60px;
         justify-content: center;
+    }
+
+    /* Login/Register Form Adjustments */
+    .login-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .login-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-group input {
+        padding: 0.6rem;
+    }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+    .main-nav-container {
+        padding: 0 15px;
+    }
+
+    #navbar-logo {
+        width: 60px;
+        height: 55px;
+    }
+
+    .login-container {
+        padding: 1rem;
+    }
+
+    .login-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .login-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .button {
+        height: 50px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet Devices */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .main-nav-container {
+        padding: 0 30px;
+    }
+
+    .login-container {
+        width: 85%;
+        max-width: 350px;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .navbar-menu {
+        padding: 1rem 0;
+    }
+
+    .navbar-item {
+        height: auto;
+    }
+
+    .navbar-link {
+        padding: 1rem;
+    }
+
+    .login-section {
+        padding: 80px 20px;
     }
 }
 
@@ -334,14 +426,231 @@ textarea.error {
     background-color: rgba(255, 68, 68, 0.05);
 }
 
-@media screen and (max-width: 480px) {
-    .login-container {
-        padding: 1.5rem;
+/* Registration Section Styles */
+.register-section {
+    min-height: 100vh;
+    padding: 120px 20px 40px;
+    background-color: #141414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-container {
+    max-width: 600px;
+    width: 100%;
+    background-color: #606060;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.register-header h1 {
+    color: gold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.register-header p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: gold;
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    padding: 0.8rem;
+    border: 1px solid #141414;
+    border-radius: 4px;
+    background-color: #141414;
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: gold;
+}
+
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+}
+
+.checkbox-group a {
+    color: gold;
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    color: royalblue;
+    transition: all 0.3s ease;
+}
+
+.password-requirements {
+    background-color: #141414;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.password-requirements p {
+    color: #e0e0e0;
+    margin-bottom: 0.5rem;
+}
+
+.password-requirements ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.password-requirements li {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    position: relative;
+}
+
+.password-requirements li::before {
+    content: "✗";
+    color: #ff4444;
+    margin-right: 0.5rem;
+}
+
+.password-requirements li.valid::before {
+    content: "✓";
+    color: #00C851;
+}
+
+.register-btn {
+    background-color: gold;
+    color: #141414;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: royalblue;
+    color: gold;
+    transform: translateY(-2px);
+}
+
+.login-prompt {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-prompt p {
+    color: #e0e0e0;
+}
+
+.login-prompt a {
+    color: gold;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    color: royalblue;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 968px) {
+    .register-section {
+        padding: 100px 15px 30px;
     }
 
-    .form-options {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: flex-start;
+    .register-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .register-header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .register-section {
+        padding: 80px 10px 20px;
+    }
+
+    .register-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .register-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .register-header p {
+        font-size: 1rem;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .form-group input {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+
+    .checkbox-group label {
+        font-size: 0.8rem;
+    }
+
+    .register-btn {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .register-container {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .register-section {
+        padding: 80px 15px 20px;
+    }
+
+    .register-container {
+        padding: 1.5rem;
     }
 }
