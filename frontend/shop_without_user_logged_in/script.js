@@ -8,7 +8,7 @@ menu.addEventListener("click", function () {
 
 // Logic for getting the items from backend to be displayed
 // and Logic for displaying the correct number of items on each page
-const NUM_PAGE_ITEMS = 4;
+const NUM_PAGE_ITEMS = 6;
 const API_URL = '/products';
 
 const productList = document.getElementById('product-list');
@@ -23,7 +23,7 @@ function cHTML(product) {
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p class="product-description">${product.description}</p>
-                <p class="price">$${product.price}</p>
+                <p class="price">${product.price}</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>`
 }
