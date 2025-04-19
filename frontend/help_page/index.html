@@ -24,11 +24,15 @@
             max-width: 1200px;
             margin: 100px auto 40px;
             padding: 0 20px;
+            min-height: calc(100vh - 140px); /* Ensure minimum height covers viewport */
         }
 
         .help-header {
             text-align: center;
             margin-bottom: 40px;
+            padding: 20px;
+            background-color: #606060;
+            border-radius: 8px;
         }
 
         .help-header h1 {
@@ -44,6 +48,9 @@
 
         .faq-section {
             margin-bottom: 40px;
+            background-color: #606060;
+            padding: 30px;
+            border-radius: 8px;
         }
 
         .faq-section h2 {
@@ -53,9 +60,8 @@
         }
 
         .faq-item {
-            background-color: #606060;
+            background-color: #141414;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             overflow: hidden;
         }
@@ -103,42 +109,61 @@
         }
 
         .contact-section h2 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: gold;
+            font-size: 1.8rem;
         }
 
-        .contact-section p {
-            color: #e0e0e0;
-            margin-bottom: 20px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 20px;
+            padding: 20px;
         }
 
         .contact-method {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            color: #e0e0e0;
-            transition: color 0.3s ease;
+            gap: 15px;
+            padding: 20px;
+            background-color: #141414;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
         }
 
         .contact-method:hover {
-            color: gold;
+            transform: translateY(-5px);
         }
 
         .contact-method i {
-            font-size: 1.2rem;
+            font-size: 2rem;
+            color: gold;
+        }
+
+        .contact-method h3 {
+            color: gold;
+            margin: 10px 0;
+        }
+
+        .contact-method p {
+            color: #e0e0e0;
+            margin: 5px 0;
         }
 
         @media screen and (max-width: 768px) {
-            .contact-info {
-                flex-direction: column;
-                gap: 15px;
+            .help-container {
+                margin: 80px auto 20px;
+                padding: 0 15px;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-method {
+                padding: 15px;
             }
         }
     </style>
@@ -226,7 +251,7 @@
                     <div class="contact-method">
                         <i class="fas fa-phone"></i>
                         <h3>Phone Support</h3>
-                        <p>+1 (555) 123-4567</p>
+                        <p>123-456-7890</p>
                         <p>Monday - Friday, 9AM - 5PM EST</p>
                     </div>
                     <div class="contact-method">
@@ -248,4 +273,5 @@
 
     <script src="script.js"></script>
 </body>
+</html> 
 </html> 

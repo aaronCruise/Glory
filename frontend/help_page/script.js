@@ -1,28 +1,37 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu toggle
     const navbarToggle = document.querySelector('.navbar-toggle');
     const navbarMenu = document.querySelector('.navbar-menu');
 
-    navbarToggle.addEventListener('click', () => {
-        navbarMenu.classList.toggle('active');
-    });
+    if (navbarToggle) {
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    }
 
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
+    // FAQ functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
 
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
+    faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('i');
+            
+            // Toggle the answer visibility
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            
+            // Rotate the icon
+            icon.style.transform = answer.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0)';
+            
+            // Close other open answers
+            faqQuestions.forEach(otherQuestion => {
+                if (otherQuestion !== question) {
+                    const otherAnswer = otherQuestion.nextElementSibling;
+                    const otherIcon = otherQuestion.querySelector('i');
+                    otherAnswer.style.display = 'none';
+                    otherIcon.style.transform = 'rotate(0)';
                 }
             });
-            
-            // Toggle current item
-            item.classList.toggle('active');
         });
     });
 });
