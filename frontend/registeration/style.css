@@ -17,6 +17,8 @@
     margin: 0 auto;
     padding: 0 50px;
     position: fixed;
+    top: 0;
+    left: 0;
 }
 
 #navbar-logo {
@@ -183,7 +185,6 @@
 }
 
 .login-section {
-    background-color: #141414;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -229,21 +230,22 @@
 
 .form-group label {
     color: gold;
-    font-size: 0.9rem;
+    font-weight: bold;
 }
 
 .form-group input {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
+    padding: 0.75rem;
+    border: 1px solid #141414;
     border-radius: 4px;
+    background-color: #141414;
+    color: #e0e0e0;
     font-size: 1rem;
-    background-color: #fff;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: gold;
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+    border-color: royalblue;
+    box-shadow: 0 0 0 2px rgba(65, 105, 225, 0.2);
 }
 
 .form-options {
@@ -271,52 +273,65 @@
 }
 
 .login-button {
-    background-color: royalblue;
-    color: gold;
+    background-color: gold;
+    color: #141414;
     padding: 1rem;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 1rem;
 }
 
 .login-button:hover {
-    background-color: gold;
-    color: royalblue;
+    background-color: royalblue;
+    color: gold;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(65, 105, 225, 0.4);
+}
+
+.login-button:disabled {
+    background-color: #606060;
+    color: #909090;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .login-footer {
     margin-top: 2rem;
+    text-align: center;
     color: #e0e0e0;
 }
 
 .login-footer a {
     color: gold;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .login-footer a:hover {
     color: royalblue;
-    transition: all 0.3s ease;
+    text-decoration: underline;
 }
 
 .error {
-    border: 1px solid red;
+    border-color: #ff4444 !important;
 }
 
 .error-message {
-    color: red;
-    font-size: 0.8em;
+    color: #ff4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
 }
 
 input.error,
 select.error,
 textarea.error {
-  border: 2px solid red;
-  outline: none;
+    border-color: #ff4444;
+    background-color: rgba(255, 68, 68, 0.05);
 }
 
 @media screen and (max-width: 480px) {

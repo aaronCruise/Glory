@@ -4,209 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glory | Register</title>
-    <link rel="stylesheet" href="/registeration/style.css">
-    <!-- FontAwesome Link -->
-    <script src="https://kit.fontawesome.com/a2aade69e0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="main-nav" role="navigation">
-            <div class="main-nav-container">
-                <a href="/index.html" id="navbar-logo">
-                    <img id="logo" src="../images/glory-logo-noback.png" alt="Brand logo">
-                </a>
-                <ul class="navbar-menu">
-                    <li class="navbar-item">
-                        <a href="/index.html" class="navbar-link">Home</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/shop.html" class="navbar-link">Shop</a>
-                    </li>
-                    <li class="nvabar-item">
-                        <a href="/cart.html" class="navbar-link">Cart</a> 
-                    </li>
-                    <li class="navbar-btn mobile">
-                        <a href="/login.html" class="button">Login</a>
-                    </li>
-                </ul>
+    <!-- Navigation -->
+    <nav class="main-nav-container">
+        <div id="navbar-logo">
+            <img id="logo" src="../home_without_user_logged_in/images/logo.png" alt="Logo">
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-item">
+                <a href="../home_without_user_logged_in/index.html" class="navbar-link">Home</a>
+            </li>
+            <li class="navbar-item">
+                <a href="../shop_without_user_logged_in/index.html" class="navbar-link">Shop</a>
+            </li>
+            <li class="navbar-item">
+                <a href="../cart_without_user_logged_in/index.html" class="navbar-link">Cart</a>
+            </li>
+            <li class="navbar-item">
+                <a href="../login_without_user_logged_in/index.html" class="navbar-link">Login</a>
+            </li>
+        </ul>
+        <button class="navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
 
-                <div class="navbar-btn desktop">
-                    <a href="/login.html" class="button login-btn">Login</a>
-                </div>
-
-                <button  
-                    class="navbar-toggle" 
-                    id="mobile-menu" 
-                    aria-label="Toggle Navigation" 
-                    aria-expanded="" 
-                    false
-                    >
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section class="login-section">
-            <div class="login-container">
-                <div class="login-content">
-                    <h1>Create Account</h1>
-                    <p class="login-subtitle">Join Glory today</p>
-                    
-                    <form class="login-form" id="registerForm">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
-			    <small class="error-message" id="firstNameError"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
-			    <small class="error-message" id="lastNameError"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required placeholder="Enter your email">
-			    <small class="error-message" id="emailError"></small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" required placeholder="Create a password">
-			    <small class="error-message" id="passwordError"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
-			    <small class="error-message" id="confirmPasswordError"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob" name="dob" required>
-			    <small class="error-message" id="dobError"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-			    <small class="error-message" id="phoneError"></small>
-                        </div>
-
-                        <button type="submit" class="login-button">Create Account</button>
-                    </form>
-
-                    <div class="login-footer">
-                        <p>Already have an account? <a href="/login.html">Login</a></p>
+    <section class="login-section">
+        <div class="login-container">
+            <div class="login-content">
+                <h1>Create Account</h1>
+                <p class="login-subtitle">Join Glory today</p>
+                
+                <form class="login-form" id="registerForm">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                        <small class="error-message" id="firstNameError"></small>
                     </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                        <small class="error-message" id="lastNameError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        <small class="error-message" id="emailError"></small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="Create a password">
+                        <small class="error-message" id="passwordError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                        <small class="error-message" id="confirmPasswordError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                        <small class="error-message" id="dobError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        <small class="error-message" id="phoneError"></small>
+                    </div>
+
+                    <button type="submit" class="login-button">Create Account</button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Already have an account? <a href="../login_without_user_logged_in/index.html">Login</a></p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('registerForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
+        // Mobile menu toggle
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarMenu = document.querySelector('.navbar-menu');
 
-        const fields = {
-            firstName: document.getElementById('firstName'),
-            lastName: document.getElementById('lastName'),
-            email: document.getElementById('email'),
-            password: document.getElementById('password'),
-            confirmPassword: document.getElementById('confirmPassword'),
-            dob: document.getElementById('dob'),
-            phone: document.getElementById('phone')
-        };
-
-        // Clear previous error classes and messages
-        Object.keys(fields).forEach(key => {
-            fields[key].classList.remove('error');
-            const errorEl = document.getElementById(`${key}Error`);
-            if (errorEl) errorEl.textContent = '';
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
         });
 
-        const values = Object.fromEntries(
-            Object.entries(fields).map(([key, field]) => [key, field.value])
-        );
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('registerForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
 
-        // Basic frontend validation
-        if (values.password !== values.confirmPassword) {
-            fields.password.classList.add('error');
-            fields.confirmPassword.classList.add('error');
-            document.getElementById('passwordError').textContent = 'Passwords do not match';
-            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
-            return;
-        }
+                const fields = {
+                    firstName: document.getElementById('firstName'),
+                    lastName: document.getElementById('lastName'),
+                    email: document.getElementById('email'),
+                    password: document.getElementById('password'),
+                    confirmPassword: document.getElementById('confirmPassword'),
+                    dob: document.getElementById('dob'),
+                    phone: document.getElementById('phone')
+                };
 
-        const submitButton = this.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Creating Account...';
+                // Clear previous error classes and messages
+                Object.keys(fields).forEach(key => {
+                    fields[key].classList.remove('error');
+                    const errorEl = document.getElementById(`${key}Error`);
+                    if (errorEl) errorEl.textContent = '';
+                });
 
-        try {
-            const response = await fetch('http://128.6.60.9:8080/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values)
-            });
+                const values = Object.fromEntries(
+                    Object.entries(fields).map(([key, field]) => [key, field.value])
+                );
 
-            const data = await response.json();
-
-            if (response.ok) {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
-                window.location.href = '/login_without_user_logged_in/index.html';
-            } else {
-                const msg = data.message.toLowerCase();
-
-                // Add specific field errors
-                if (msg.includes('first name')) {
-                    fields.firstName.classList.add('error');
-                    document.getElementById('firstNameError').textContent = data.message;
-                }
-                if (msg.includes('last name')) {
-                    fields.lastName.classList.add('error');
-                    document.getElementById('lastNameError').textContent = data.message;
-                }
-                if (msg.includes('email')) {
-                    fields.email.classList.add('error');
-                    document.getElementById('emailError').textContent = data.message;
-                }
-                if (msg.includes('password') && !msg.includes('confirm')) {
-                    fields.password.classList.add('error');
-                    document.getElementById('passwordError').textContent = data.message;
-                }
-                if (msg.includes('confirm')) {
-                    fields.confirmPassword.classList.add('error');
-                    document.getElementById('confirmPasswordError').textContent = data.message;
-                }
-                if (msg.includes('match')) {
+                // Basic frontend validation
+                if (values.password !== values.confirmPassword) {
                     fields.password.classList.add('error');
                     fields.confirmPassword.classList.add('error');
+                    document.getElementById('passwordError').textContent = 'Passwords do not match';
                     document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                    return;
                 }
-                if (msg.includes('dob') || msg.includes('date')) {
-                    fields.dob.classList.add('error');
-                    document.getElementById('dobError').textContent = data.message;
+
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Creating Account...';
+
+                try {
+                    const response = await fetch('http://localhost:8080/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(values)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        window.location.href = '../login_without_user_logged_in/index.html';
+                    } else {
+                        const msg = data.message.toLowerCase();
+                        
+                        // Handle specific field errors
+                        Object.keys(fields).forEach(key => {
+                            if (msg.includes(key.toLowerCase())) {
+                                fields[key].classList.add('error');
+                                document.getElementById(`${key}Error`).textContent = data.message;
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Registration error:', error);
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Create Account';
                 }
-                if (msg.includes('phone')) {
-                    fields.phone.classList.add('error');
-                    document.getElementById('phoneError').textContent = data.message;
-                }
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            // You can set a global error div here if desired
-        } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Create Account';
-        }
-    });
-});
+            });
+        });
     </script>
 </body>
 </html> 

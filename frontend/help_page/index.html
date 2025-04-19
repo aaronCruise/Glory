@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory | Help Center</title>
+    <link rel="stylesheet" href="../registeration/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #141414;
+            color: #e0e0e0;
+        }
+
+        .help-container {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .help-header h1 {
+            font-size: 2.5rem;
+            color: gold;
+            margin-bottom: 10px;
+        }
+
+        .help-header p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        .faq-section {
+            margin-bottom: 40px;
+        }
+
+        .faq-section h2 {
+            color: gold;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .faq-item {
+            background-color: #606060;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #141414;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #1a1a1a;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            color: gold;
+        }
+
+        .faq-question i {
+            color: gold;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            background: #606060;
+        }
+
+        .faq-answer p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            background: #606060;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+            color: gold;
+        }
+
+        .contact-section p {
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e0e0e0;
+            transition: color 0.3s ease;
+        }
+
+        .contact-method:hover {
+            color: gold;
+        }
+
+        .contact-method i {
+            font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav-container">
+        <div id="navbar-logo">
+            <img id="logo" src="../home_without_user_logged_in/images/logo.png" alt="Logo">
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-item">
+                <a href="../home_without_user_logged_in/index.html" class="navbar-link">Home</a>
+            </li>
+            <li class="navbar-item">
+                <a href="../shop_without_user_logged_in/index.html" class="navbar-link">Shop</a>
+            </li>
+            <li class="navbar-item">
+                <a href="../cart_without_user_logged_in/index.html" class="navbar-link">Cart</a>
+            </li>
+            <li class="navbar-item">
+                <a href="../login_without_user_logged_in/index.html" class="navbar-link">Login</a>
+            </li>
+        </ul>
+        <button class="navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <div class="help-container">
+        <div class="help-header">
+            <h1>Help Center</h1>
+            <p>Find answers to common questions and get support</p>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do I place an order?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>To place an order, simply browse our products, add items to your cart, and proceed to checkout. You'll need to create an account or log in to complete your purchase.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What payment methods do you accept?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards, PayPal, and other secure payment methods. All transactions are encrypted for your security.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How can I track my order?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Once your order is shipped, you'll receive a tracking number via email. You can use this number to track your package on our website or the carrier's website.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is your return policy?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 30-day return policy for most items. Items must be in their original condition with all tags attached. Please contact our support team to initiate a return.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Still Need Help?</h2>
+            <p>Our support team is here to assist you</p>
+            <div class="contact-info">
+                <div class="contact-method">
+                    <i class="fas fa-envelope"></i>
+                    <span>support@glory.com</span>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-clock"></i>
+                    <span>Mon-Fri: 9AM-5PM EST</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarMenu = document.querySelector('.navbar-menu');
+
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.display = 'none';
+                    ans.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                    ans.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                });
+
+                // Toggle current answer
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                    question.querySelector('i').classList.remove('fa-chevron-down');
+                    question.querySelector('i').classList.add('fa-chevron-up');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
