@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Send registration request
-            const response = await fetch('/api/register', {
+            const response = await fetch('/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 // Registration successful
-                window.location.href = '/login.html';
+                window.location.href = '/login_without_user_logged_in/index.html';
             } else {
                 // Handle registration error
                 const error = await response.json();
