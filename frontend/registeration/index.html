@@ -6,6 +6,203 @@
     <title>Glory | Register</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: #141414;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .main-nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #141414;
+            padding: 1rem;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .navbar-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: gold;
+        }
+
+        .register-container {
+            max-width: 500px;
+            margin: 120px auto 40px;
+            padding: 40px;
+            background-color: #606060;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .register-header h1 {
+            color: gold;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            color: #e0e0e0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: gold;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #141414;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: 2px solid gold;
+        }
+
+        .form-hint {
+            display: block;
+            color: #e0e0e0;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        input[type="date"] {
+            color-scheme: dark;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+
+        input[type="tel"] {
+            letter-spacing: 1px;
+        }
+
+        .password-requirements {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #141414;
+            border-radius: 4px;
+        }
+
+        .password-requirements h3 {
+            color: gold;
+            margin-bottom: 10px;
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirement {
+            color: #e0e0e0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .requirement i {
+            color: #ff4444;
+            margin-right: 8px;
+            min-width: 16px;
+        }
+
+        .requirement.valid i {
+            color: #00ff00;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: gold;
+            color: #141414;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background-color: royalblue;
+            color: gold;
+        }
+
+        .login-prompt {
+            text-align: center;
+            margin-top: 20px;
+            color: #e0e0e0;
+        }
+
+        .login-prompt a {
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-prompt a:hover {
+            color: royalblue;
+        }
+
+        @media screen and (max-width: 768px) {
+            .register-container {
+                margin: 100px 20px 40px;
+                padding: 30px 20px;
+            }
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -32,63 +229,69 @@
         </button>
     </nav>
 
-    <!-- Registration Section -->
-    <section class="register-section">
-        <div class="register-container">
-            <div class="register-header">
-                <h1>Create an Account</h1>
-                <p>Join Glory to enjoy exclusive benefits and faster checkout</p>
+    <!-- Register Section -->
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Create Account</h1>
+            <p>Join Glory today and start shopping</p>
+        </div>
+        
+        <form id="register-form">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
             </div>
 
-            <form id="register-form" class="register-form">
-                <div class="form-group">
-                    <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" name="first-name" required>
-                </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+                <small class="form-hint">Format: YYYY-MM-DD</small>
+            </div>
 
-                <div class="form-group">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" name="last-name" required>
-                </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                <small class="form-hint">Format: 123-456-7890</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                    <div class="password-requirements">
-                        <p>Password must contain:</p>
-                        <ul>
-                            <li id="length">At least 8 characters</li>
-                            <li id="uppercase">One uppercase letter</li>
-                            <li id="lowercase">One lowercase letter</li>
-                            <li id="number">One number</li>
-                            <li id="special">One special character</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
-                </div>
-
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
-                </div>
-
-                <button type="submit" class="register-btn">Create Account</button>
-
-                <div class="login-prompt">
-                    <p>Already have an account? <a href="../login_without_user_logged_in/index.html">Log in</a></p>
-                </div>
-            </form>
+            <div class="password-requirements">
+                <h3>Password Requirements:</h3>
+                <ul>
+                    <li class="requirement"><i class="fas fa-times"></i> At least 10 characters long</li>
+                    <li class="requirement"><i class="fas fa-times"></i> At least one uppercase letter</li>
+                    <li class="requirement"><i class="fas fa-times"></i> At least one lowercase letter</li>
+                    <li class="requirement"><i class="fas fa-times"></i> At least one special character</li>
+                    <li class="requirement"><i class="fas fa-times"></i> Passwords must match</li>
+                </ul>
+            </div>
+            
+            <button type="submit" class="register-btn">Create Account</button>
+        </form>
+        
+        <div class="login-prompt">
+            Already have an account? <a href="../login_without_user_logged_in/index.html">Login</a>
         </div>
-    </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
