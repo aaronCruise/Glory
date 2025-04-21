@@ -7,7 +7,7 @@ const registerRoute = require('./controllers/registerationController');
 const profileRoute = require('./controllers/profileController');
 const loginController = require('./controllers/loginController');
 const productRoute = require('./controllers/shopController');
-const cartRoutes = require('./controllers/cartController');
+const cartRoute = require('./controllers/cartController');
 
 const app = express();
 const port = 8080;

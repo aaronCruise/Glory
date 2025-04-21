@@ -33,6 +33,7 @@ describe('Shop Page Endpoints (T05)', () => {
         .get(`/products/${testId}`)
         .expect(200);
 
+        // Verify that products display as expected
       expect(res.body).to.deep.equal(products.find(p => p.id === testId));
     });
 

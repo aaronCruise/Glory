@@ -11,6 +11,8 @@ describe('User Registration (T01)', () => {
   });
 
   it('should create a new user account and return a success message', async () => {
+
+    // Create a new user credentials
     const newUser = {
       firstName: 'Test',
       lastName: 'User',
@@ -21,11 +23,13 @@ describe('User Registration (T01)', () => {
       phone: '123-456-7890'
     };
 
+    // Send the registration request with that user
     const res = await request(app)
       .post('/register')
       .send(newUser)
       .expect(201);
 
+    // Check confirmation message and new user created
     expect(res.body).to.have.property('message', 'Registration successful!');
     expect(res.body).to.have.property('user');
     expect(res.body.user).to.include({

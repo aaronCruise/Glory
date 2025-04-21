@@ -47,6 +47,7 @@ describe('User Profile Info (T04)', () => {
       .get('/profile/UserInfo')
       .expect(200);
 
+    // Verify that profile page displays correct credentials
     expect(res.body).to.deep.equal({
       full_name: 'Info User',
       email: 'infouser@example.com',

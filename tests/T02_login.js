@@ -21,6 +21,7 @@ describe('User Login (T02)', () => {
     });
 
     it('should authenticate the registered user and redirect to the Users Home page', async () => {
+        // Use a registered user's credentials
         const credentials = {
             email: 'testuser@gmail.com',
             password: 'TestPassword!@'
