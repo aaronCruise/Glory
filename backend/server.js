@@ -7,6 +7,7 @@ const registerRoute = require('./controllers/registerationController');
 const profileRoute = require('./controllers/profileController');
 const loginController = require('./controllers/loginController');
 const productRoute = require('./controllers/shopController');
+const cartRoutes = require('./controllers/cartController');
 
 const app = express();
 const port = 8080;
@@ -78,7 +79,8 @@ app.get('/shop', (req, res) => {
 app.use('/register', registerRoute);
 app.use('/profile', profileRoute);
 app.use('/login', loginController);
-app.use('/products', productRoute); // ✅ Product API
+app.use('/products', productRoute);
+app.use('/cart', cartRoute);     // ✅ Product API
 
 // Start the server
 app.listen(port, () => {
