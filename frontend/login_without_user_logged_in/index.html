@@ -20,10 +20,10 @@
                         <a href="../home_without_user_logged_in/index.html" class="navbar-link">Home</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="/shop.html" class="navbar-link">Shop</a>
+                        <a href="shop_without_user_logged_in/index.html" class="navbar-link">Shop</a>
                     </li>
                     <li class="nvabar-item">
-                        <a href="/cart.html" class="navbar-link">Cart</a> 
+                        <a href="/cart_without_user_logged_in/index.html" class="navbar-link">Cart</a> 
                     </li>
                 </ul>
 
@@ -47,7 +47,7 @@
                     <h1>Welcome Back</h1>
                     <p class="login-subtitle">Please login to your account</p>
                     
-                    <form class="login-form" action="/login" method="POST">
+                    <form id="login-form" class="login-form" action="/login" method="POST">
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" id="email" name="email" required placeholder="Enter your email">
@@ -63,20 +63,20 @@
                                 <input type="checkbox" name="remember">
                                 <span>Remember me</span>
                             </label>
-                            <a href="#" class="forgot-password">Forgot Password?</a>
+                            <a href="../forgot_password/index.html" class="forgot-password">Forgot Password?</a>
                         </div>
 
                         <button type="submit" class="login-button">Login</button>
                     </form>
 
                     <div class="login-footer">
-                        <p>Don't have an account? <a href="/register">Sign up</a></p>
+                        <p>Don't have an account? <a href="../registeration/index.html">Sign up</a></p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="/js/app.js"></script>
+    <script src="/login_without_user_logged_in/script.js"></script>
 </body>
 </html> 

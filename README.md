@@ -20,8 +20,8 @@ Glory offers an e-commerce store where users can shop for fitness gear, apparel 
         - `script.js`   - logic behind front-end components
         - `style.css`   - UI styling
 
-- `test/`
-    - test case implementation, system testing
+- `tests/`
+    - test case implementation; automated system testing
     - each `.js` tests a test case in the test design specification
     
 - `images_fonts/`
@@ -34,6 +34,7 @@ Glory offers an e-commerce store where users can shop for fitness gear, apparel 
 ## How to run:
 
 #### Prerequisites: 
+
     - Access to the CS431 VM
     - Clone of this repository in the VM
     - Configured MariaDB in the VM

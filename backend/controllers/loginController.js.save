@@ -14,24 +14,27 @@ router.post('/', async (req, res) => {
         const connection = await db.pool.getConnection();
         console.log('✅ Database connection successful');
 
-        // Run the query
         const query = 'SELECT * FROM user WHERE email = ? AND password = ?';
         const results = await connection.query(query, [email, password]);
 
         console.log('✅ Query executed. Results:', results);
 
         if (results.length > 0) {
-	    const user = results[0];
+            const user = results[0];
 
-            req.session.userId = user.id;
-	    res.cookie('connect.sid', req.sessionID, { httpOnly: true, secure: false }); // For session cookie
-	    console.log('Session after login:', req.session);
-	    res.status(200).json({ token: req.sessionID });
+            // Store user info in session
+            req.session.userId = user.id; // or user.user_id if your column name is different
+
+            // Optional: Store more user data if needed
+            // req.session.user = {
+            //   
+
+            res.redirect('/UsersHome');
         } else {
             res.status(401).send({ message: 'Invalid email or password.' });
         }
 
-        connection.release(); // Release connection
+        connection.release();
         console.log('🔹 Connection released back to pool');
 
     } catch (err) {
