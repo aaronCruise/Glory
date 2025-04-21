@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("JS loaded");
     // Mobile menu toggle
     const navbarToggle = document.querySelector('.navbar-toggle');
     const navbarMenu = document.querySelector('.navbar-menu');
@@ -10,18 +11,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sample cart data (replace with actual API calls)
     let cartItems = [];
 
-    fetch('/cart')
-       .then(response => response.json())
-       .then(data => {
-            cartItems = data.items || [];
-    	    displayCartItems();
+    fetch('http://128.6.60.9:8080/cart/products')
+    .then(response => response.json())
+    .then(data => {
+       console.log("✅ Cart data:", data);
+       cartItems = data.items || [];
+       displayCartItems();
     })
     .catch(err => {
-    	console.error('Error fetching cart:', err);
-    	document.querySelector('.cart-items').innerHTML = '<p class="empty-cart">Failed to load cart.</p>';
+       console.error('❌ Error fetching cart:', err);
+       document.querySelector('.cart-items').innerHTML = '<p class="empty-cart">Failed to load cart.</p>';
     });
 
-    
+
     function displayCartItems() {
         const cartItemsContainer = document.querySelector('.cart-items');
         const cartSummary = document.querySelector('.cart-summary');

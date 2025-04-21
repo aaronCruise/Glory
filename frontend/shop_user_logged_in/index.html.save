@@ -77,57 +77,57 @@
                 <p class="price">$49.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "102">
+            <div class="product-card" data-id= >
                 <img src="/images/Yoga_Mat.png" alt="Fitness Product 2">
                 <h3>Yoga Mat</h3>
                 <p class="product-description">Perfect for your yoga sessions, this mat provides comfort and support.</p>
                 <p class="price">$24.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "103">
+            <div class="product-card" data-id= >
                 <img src="/images/Resistant_Bands.png" alt="Fitness Product 3">
                 <h3>Resistance Bands</h3>
                 <p class="product-description">Set of resistance bands for strength training and flexibility.</p>
                 <p class="price">$4.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "104">
+            <div class="product-card" data-id= >
                 <img src="/images/Track_Pants.png" alt="Fitness Product 1">
                 <h3>Grey Sweatpants</h3>
                 <p class="product-description">Enhance your workouts with these stylish sweatpants.</p>
                 <p class="price">$14.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "105">
+            <div class="product-card" data-id= >
                 <img src="/images/Shoes.png" alt="Fitness Product 2">
                 <h3>Running Shoes</h3>
                 <p class="product-description">Increase support and comfort while pushing the limits in your runs.</p>
                 <p class="price">$79.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "106">
+            <div class="product-card" data-id= >
                 <img src="/images/Protein_Powder.png" alt="Fitness Product 3">
                 <h3>Protein Powder</h3>
                 <p class="product-description">Build your muscles with our specialized protein powder.</p>
                 <p class="price">$49.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "107">
+            <div class="product-card" data-id= >
                 <img src="/images/Dumbbells.png" alt="Fitness Product 1">
                 <h3>Adjustable Dumbbells</h3>
                 <p class="product-description">An all-in-one set of dumbbells.</p>
                 <p class="price">$79.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "108">
+            <div class="product-card" data-id= >
                 <img src="/images/Hoodie.png" alt="Fitness Product 2">
                 <h3>Track Hoodie</h3>
                 <p class="product-description">Show off your muscles even in the cold.</p>
                 <p class="price">$29.99</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="product-card" data-id= "109">
-                <img src="/images/Socks.png" alt="Fitness Product 3">
+            <div class="product-card" data-id= >
+                <img src="/images/Socks.png" alt= "Fitness Product 3">
                 <h3>Cotton Socks</h3>
                 <p class="product-description">Socks which absorb sweat and improve comfort.</p>
                 <p class="price">$10.99</p>

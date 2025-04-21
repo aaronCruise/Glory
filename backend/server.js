@@ -7,7 +7,7 @@ const registerRoute = require('./controllers/registerationController');
 const profileRoute = require('./controllers/profileController');
 const loginController = require('./controllers/loginController');
 const productRoute = require('./controllers/shopController');
-const cartRoutes = require('./controllers/cartController');
+const cartRoute = require('./controllers/cartController');
 
 const app = express();
 const port = 8080;
@@ -73,6 +73,10 @@ app.get('/UsersHome', (req, res) => {
 
 app.get('/shop', (req, res) => {
   res.sendFile(path.join(__dirname,'../frontend/shop_without_user_logged_in/index.html'));
+});
+
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/cart_user_logged_in/index.html'));
 });
 
 // Route logic

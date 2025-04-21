@@ -1,0 +1,28 @@
+const express = require('express');
+const router = express.Router();
+
+router.get('/cart', (req, res) => {
+    // Test products – hardcoded
+    const testCart = {
+        items: [
+            {
+                id: 101,
+                name: "Test Product A",
+                price: 49.99,
+                image: "/images_fonts/product1.jpg",
+                quantity: 1
+            },
+            {
+                id: 2,
+                name: "Test Product B",
+                price: 79.99,
+                image: "/images_fonts/product2.jpg",
+                quantity: 2
+            }
+        ]
+    };
+
+    res.json(testCart);
+});
+
+module.exports = router;
