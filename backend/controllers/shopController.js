@@ -44,4 +44,10 @@ const getProductById = (req, res) => {
 router.get('/', getAllProducts);
 router.get('/:id', getProductById);
 
+// Don't allow customers to PUT (update) the product list
+router.put('/:id', (req,res,next) => {
+  if (!req.session.userId || !req.session.isAdmin) 
+    return res.status(403).json({ error:'Forbidden' });
+});
+
 module.exports = router;

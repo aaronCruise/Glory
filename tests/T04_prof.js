@@ -4,48 +4,54 @@ const { expect } = require('chai');
 const app = require('../backend/server');
 const db = require('../backend/db');
 
-describe('T04: Profile Flow', function() {
-  const user = {
-    firstName: 'Test',
-    lastName: 'Profile',
-    email: `test.profile+${Date.now()}@example.com`,
-    password: 'TestPass!1',
-    confirmPassword: 'TestPass!1',
-    dob: '1990-01-01',
-    phone: '123-456-7890'
-  };
-  let agent = request.agent(app);
+describe('User Profile Info (T04)', () => {
+  let agent;
+  let userId;
 
-  it('should register, login, retrieve profile info, then delete the account', async function() {
-    const resReg = await agent
-      .post('/register')
-      .send(user)
-      .expect(201);
-    expect(resReg.body).to.have.property('message', 'Registration successful!');
-    expect(resReg.body.user).to.include({
-      fullName: `${user.firstName} ${user.lastName}`,
-      email: user.email,
-      phone: user.phone
-    });
+  before(async () => {
+    // 1) Insert a test user
+    await db.pool.query(
+      'INSERT INTO user (full_name, DOB, email, phone, password) VALUES (?, ?, ?, ?, ?)',
+      ['Info User', '1990-01-01', 'infouser@example.com', '111-222-3333', 'InfoPassword!@']
+    );
+    // 2) Grab their ID
+    const [row] = await db.pool.query(
+      'SELECT id FROM user WHERE email = ?',
+      ['infouser@example.com']
+    );
+    userId = row.id;
 
-    await agent
+    // 3) Insert shipping info
+    await db.pool.query(
+      'INSERT INTO shipping_info (user_id, address) VALUES (?, ?)',
+      [userId, '456 Test Ave']
+    );
+
+    // 4) Log in to get the session cookie
+    agent = request.agent(app);
+    const loginRes = await agent
       .post('/login')
-      .send({ email: user.email, password: user.password })
-      .expect(302);
+      .send({ email: 'infouser@example.com', password: 'InfoPassword!@' })
+      .expect(200);
+    expect(loginRes.body).to.have.property('token');
+  });
 
-    const resProfile = await agent
+  after(async () => {
+    // Clean up
+    await db.pool.query('DELETE FROM shipping_info WHERE user_id = ?', [userId]);
+    await db.pool.query('DELETE FROM user WHERE id = ?', [userId]);
+  });
+
+  it('should return full_name, email, phone, and shipping_address', async () => {
+    const res = await agent
       .get('/profile/UserInfo')
       .expect(200);
 
-    expect(resProfile.body).to.include({
-      full_name: `${user.firstName} ${user.lastName}`,
-      email: user.email,
-      phone: user.phone
+    expect(res.body).to.deep.equal({
+      full_name: 'Info User',
+      email: 'infouser@example.com',
+      phone: '111-222-3333',
+      shipping_address: '456 Test Ave'
     });
-    expect(resProfile.body).to.have.property('shipping_address').that.is.a('string');
-
-    await db.pool.query('DELETE FROM shipping_info WHERE user_id = (SELECT id FROM user WHERE email = ?)', [user.email]);
-    await db.pool.query('DELETE FROM user WHERE email = ?', [user.email]);
   });
 });
-

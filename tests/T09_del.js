@@ -5,6 +5,6 @@ const app = require('../backend/server');
 
 describe('Admin Delete Customer Account (T09)', () => {
     it('should allow an admin to delete a customer account', async () => {
-        throw new Error('Feature not implemented.');
+        throw new Error('Feature to be implemented in S6.');
     });
 });

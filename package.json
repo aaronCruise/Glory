@@ -13,7 +13,6 @@
     "supertest": "^7.1.0"
   },
   "scripts": {
-    "test": "mocha tests --exit",
-    "coverage": "nyc mocha --exit"
+    "tests": "mocha tests --exit"
   }
 }

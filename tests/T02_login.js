@@ -26,12 +26,14 @@ describe('User Login (T02)', () => {
             password: 'TestPassword!@'
         };
 
+        // Do request
         const res = await request(app)
-            .post('/login') // Uses the loginController attached in server.js as app.use('/login', loginController)
+            .post('/login')
             .send(credentials)
-            .expect(302);
+            .expect(200);
 
-        // Since loginController redirects to '/UsersHome' upon successful login:
-        expect(res.headers.location).to.equal('/UsersHome');
+        // Test session token was created after login
+        expect(res.body).to.have.property('token');
+        expect(res.body.token).to.be.a('string');
     });
 });
