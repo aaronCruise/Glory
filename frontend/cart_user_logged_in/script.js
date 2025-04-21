@@ -8,24 +8,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Sample cart data (replace with actual API calls)
-    const cartItems = [
-        {
-            id: 1,
-            name: "Product 1",
-            price: 99.99,
-            image: "../images_fonts/product1.jpg",
-            quantity: 1
-        },
-        {
-            id: 2,
-            name: "Product 2",
-            price: 149.99,
-            image: "../images_fonts/product2.jpg",
-            quantity: 2
-        }
-    ];
+    let cartItems = [];
 
-    // Display cart items
+    fetch('/cart')
+       .then(response => response.json())
+       .then(data => {
+            cartItems = data.items || [];
+    	    displayCartItems();
+    })
+    .catch(err => {
+    	console.error('Error fetching cart:', err);
+    	document.querySelector('.cart-items').innerHTML = '<p class="empty-cart">Failed to load cart.</p>';
+    });
+
+    
     function displayCartItems() {
         const cartItemsContainer = document.querySelector('.cart-items');
         const cartSummary = document.querySelector('.cart-summary');
