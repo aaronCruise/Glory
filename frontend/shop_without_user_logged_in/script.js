@@ -38,6 +38,14 @@ function displayPage(page) {
 
     const paginationButtons = document.querySelectorAll('.pagination button');
     paginationButtons.forEach(button => button.classList.toggle('active', +button.textContent == page))
+
+    // Add listener to add to cart buttons
+    document.addEventListener("click", e => {
+        if (!e.target.matches("add-to-cart")) return;
+
+        const id = +e.target.dataset.id;
+        addtocart(id)
+    });
 }
 
 // Function to build the pagination bar itself
@@ -64,6 +72,25 @@ async function initializeShop() {
     } catch(err) {
         console.log("Failed to load products to be displayed:", err);
         productList.innerHTML = "<p style='color: royalblue;'>Products failed to load!</p>"
+    }
+}
+
+// Function to add items to cart
+function addtocart(id) {
+    try {
+        const res = await fetch("/cart", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include",
+            body: JSON.stringify({productId, qty: 1})
+        });
+        if (!res.ok) {
+            throw new Error("Failed to add item to cart!");
+        }
+        alert("Added to cart!");
+    } catch(err) {
+        console.error();
+        alert("Could not add item to cart!")
     }
 }
 
