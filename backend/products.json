@@ -4,7 +4,7 @@
     { "id": 3, "name": "Baseball Cap", "price": "$14.99", "image": "/images/Glory_BaseballCap.png" },
     { "id": 4, "name": "Hoodie", "price": "$29.99", "image": "/images/Hoodie_Glory.png" },
     { "id": 5, "name": "Jeans", "price": "$39.99", "image": "jeans.jpg" },
-    { "id": 6, "name": "Backpack", "price": "$34.99", "image": "backpack.jpg" },
+    { "id": 6, "name": "Backpack", "price": "$34.99", "image": "/images/BackPack_Glory.png" },
     { "id": 7, "name": "Wristwatch", "price": "$59.99", "image": "/images/Glory_WristWatch.png" },
     { "id": 8, "name": "Sunglasses", "price": "$24.99", "image": "/images/Glory_Sunglasses.png" },
     { "id": 9, "name": "Wallet", "price": "$15.99", "image": "/images/Wallet_Glory.png" },
