@@ -24,7 +24,7 @@ function cHTML(product) {
                 <h3>${product.name}</h3>
                 <p class="product-description">${product.description}</p>
                 <p class="price">${product.price}</p>
-                <button class="add-to-cart" data-id="${prod.id}">Add to Cart</button>
+                <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
             </div>`
 }
 
