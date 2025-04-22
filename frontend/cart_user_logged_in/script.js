@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sample cart data (replace with actual API calls)
     let cartItems = [];
 
-    fetch('http://128.6.60.9:8080/cart/products')
+    fetch('/cart')
     .then(response => response.json())
     .then(data => {
        console.log("✅ Cart data:", data);
