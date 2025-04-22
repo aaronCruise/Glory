@@ -41,10 +41,10 @@ function displayPage(page) {
 
     // Add listener to add to cart buttons
     document.addEventListener("click", e => {
-        if (!e.target.matches("add-to-cart")) return;
+        if (!e.target.matches(".add-to-cart")) return;
 
         const id = +e.target.dataset.id;
-        addtocart(id)
+        addToCart(id)
     });
 }
 
@@ -76,13 +76,13 @@ async function initializeShop() {
 }
 
 // Function to add items to cart
-function addtocart(id) {
+async function addToCart(id) {
     try {
         const res = await fetch("/cart", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             credentials: "include",
-            body: JSON.stringify({productId, qty: 1})
+            body: JSON.stringify({productId: id, qty: 1})
         });
         if (!res.ok) {
             throw new Error("Failed to add item to cart!");
