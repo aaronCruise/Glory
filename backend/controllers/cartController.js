@@ -5,7 +5,7 @@ const path = require("path");
 const router = express.Router();
 
 // Load all products
-const loadProducts = JSON.parse(
+const products = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "products.json"), "utf8")
 );
 

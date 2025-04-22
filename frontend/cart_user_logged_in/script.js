@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayCartItems() {
         const cartItemsContainer = document.querySelector('.cart-items');
         const cartSummary = document.querySelector('.cart-summary');
+        const numericPrice = +item.price.replace("$", "");
         let total = 0;
 
         if (cartItems.length === 0) {
@@ -40,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <img src="${item.image}" alt="${item.name}" class="item-image">
                 <div class="item-details">
                     <h3>${item.name}</h3>
-                    <p class="item-price">$${(+item.price).toFixed(2)}</p>
+                    <p class="item-price">$${numericPrice.toFixed(2)}</p>
                     <div class="quantity-controls">
                         <button class="quantity-btn decrease">-</button>
-                        <input type="number" class="quantity-input" value="${item.quantity}" min="1">
+                        <input type="number" class="quantity-input" value="${item.qty}" min="1">
                         <button class="quantity-btn increase">+</button>
                     </div>
                     <button class="remove-btn">Remove</button>
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `).join('');
 
         // Calculate total
-        total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        total = cartItems.reduce((sum, item) => sum + (numericPrice * item.qty), 0);
 
         // Update summary
         document.querySelector('.summary-row:nth-child(2)').innerHTML = `
@@ -85,11 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (this.classList.contains('decrease')) {
                     if (input.value > 1) {
                         input.value = parseInt(input.value) - 1;
-                        item.quantity = parseInt(input.value);
+                        item.qty = parseInt(input.value);
                     }
                 } else {
                     input.value = parseInt(input.value) + 1;
-                    item.quantity = parseInt(input.value);
+                    item.qty = parseInt(input.value);
                 }
 
                 displayCartItems();
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             input.addEventListener('change', function() {
                 const itemId = this.closest('.cart-item').dataset.id;
                 const item = cartItems.find(item => item.id === parseInt(itemId));
-                item.quantity = parseInt(this.value);
+                item.qty = parseInt(this.value);
                 displayCartItems();
             });
         });
