@@ -1,0 +1,26 @@
+// Test Case T03 - Password Management
+// TODO fix for sprint 6
+const request = require('supertest');
+const { expect } = require('chai');
+const app = require('../backend/server');
+
+describe('Change Password (T03)', () => {
+    it('should update the user profile with the new password and details', async () => {
+        // Prepare new profile information.
+        const updateData = {
+            fullname: 'Test User', 
+            email: 'testuser@gmail.com',
+            phone: '123-456-7890',
+            password: 'NewPassword!@',
+            dob: '1990-01-01',
+            shippingAddress: '123 Main St'
+        };
+
+        const res = await request(app)
+            .post('/profile')
+            .send(updateData)
+            .expect(201);
+
+        expect(res.body).to.have.property('message', 'Profile updated successfully!');
+    });
+});
