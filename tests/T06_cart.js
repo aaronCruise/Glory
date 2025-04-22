@@ -7,7 +7,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const cartRouter = require('../backend/controllers/cartController');
 
-describe('GET /cart', () => {
+describe('Cart Functionality (T06)', () => {
   let app, agent, products;
 
   before(() => {

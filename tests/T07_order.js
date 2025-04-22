@@ -1,11 +1,14 @@
 // Test case T07 - Order Checkout
+// TODO: fix for sprint 6
 const express   = require('express');
 const request   = require('supertest');
 const session   = require('express-session');
 const chai      = require('chai');
 const expect    = chai.expect;
 
-describe('T07: Order Confirmation Flow', () => {
+describe('Order Confirmation Flow (T07)', () => {
+    it('should determine the order flow based on cart state', async () => {
+
   let app, agent, orders;
 
   before(() => {
@@ -51,5 +54,6 @@ describe('T07: Order Confirmation Flow', () => {
 
     agent = request.agent(app);
   });
+});
 });
 ;

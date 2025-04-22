@@ -1,5 +1,5 @@
 // Test Case T03 - Password Management
-// TODO
+// TODO fix for sprint 6
 const request = require('supertest');
 const { expect } = require('chai');
 const app = require('../backend/server');
