@@ -119,7 +119,7 @@
     <script>
       fetch('../shared_elements/header_logged_in.html')
       .then(res => res.text())
-      .then(data => {document.getElementById('header').innerHTML(data);});
+      .then(data => {document.getElementById('header').innerHTML = data;});
     </script>
   </body>
 </html>
