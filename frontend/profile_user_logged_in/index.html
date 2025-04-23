@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/a2aade69e0.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header></header>
+    <div id="header"></div>
 
     <!-- Hero Section -->
     <main>
@@ -118,7 +118,7 @@
     <script src="../profile_user_logged_in/script.js"></script>
     <script>
       fetch('../shared_elements/header_logged_in.html')
-      .then(res => console.log(res.text()))
+      .then(res => res.text())
       .then(data => {document.getElementById('header').innerHTML(data);});
     </script>
   </body>
