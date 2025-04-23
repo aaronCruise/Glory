@@ -1,4 +1,4 @@
-import {initHeader} from './header.js'
+import {initHeader} from './initialize_header.js'
 fetch('./header_logged_in.html')
 .then(res => res.text())
 .then(data => {
