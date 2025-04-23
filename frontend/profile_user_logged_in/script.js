@@ -1,13 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-    const menu = document.querySelector("#mobile-menu")
-    const menuLinks = document.querySelector(".navbar-menu")
-
-    menu.addEventListener("click", function () {
-        menu.classList.toggle("is-active");
-        menuLinks.classList.toggle("active");
-    });
-
     fetch('/profile/UserInfo', {
     	method: 'GET',
     	credentials: 'include',  // Ensure the session cookie is sent
@@ -86,5 +78,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
 });
