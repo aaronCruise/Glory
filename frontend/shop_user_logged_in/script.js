@@ -1,11 +1,3 @@
-const menu = document.querySelector("#mobile-menu")
-const menuLinks = document.querySelector(".navbar-menu")
-
-menu.addEventListener("click", function () {
-    menu.classList.toggle("is-active");
-    menuLinks.classList.toggle("active");
-});
-
 // Logic for getting the items from backend to be displayed
 // and Logic for displaying the correct number of items on each page
 const NUM_PAGE_ITEMS = 6;

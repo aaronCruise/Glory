@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Glory | Buy Your Fitness Merchandise</title>
     <link rel="stylesheet" href="/home_user_logged_in/style.css" />
+    <link rel="stylesheet" href="../shared_elements/header_in_style.css">
+    <link rel="stylesheet" href="../shared_elements/footer.css">
     <!-- FontAwesome Link -->
     <script
       src="https://kit.fontawesome.com/a2aade69e0.js"
@@ -12,59 +14,7 @@
     ></script>
   </head>
   <body>
-    <header>
-      <nav class="main-nav" role="navigation">
-        <div class="main-nav-container">
-          <a href="#" id="navbar-logo">
-            <img
-              id="logo"
-              src="/images/glory-logo-noback.png"
-              alt="Brand logo"
-            />
-          </a>
-          <ul class="navbar-menu">
-            <li class="navbar-item">
-              <a href="#" class="navbar-link">Home</a>
-            </li>
-            <li class="navbar-item">
-              <a href="../shop_user_logged_in/index.html" class="navbar-link">Shop</a>
-            </li>
-            <li class="nvabar-item">
-              <a href="../cart_user_logged_in/index.html" class="navbar-link">Cart</a>
-            </li>
-            <li class="navbar-btn mobile">
-                <button
-                class="profile-btn"
-                id="profile-btn"
-                aria-label="Toggle Navigation"
-                aria-expanded=""
-                false
-              >
-                <a href='../profile_user_logged_in/index.html'>
-                    <i class="fa-solid fa-user"></i>
-                </a>
-              </button>
-            </li>
-          </ul>
-
-          <div class="navbar-btn desktop">
-            <a href="../profile_user_logged_in/index.html" class="button">
-                <i class="fa-solid fa-user"></i>
-            </a>
-          </div>
-
-          <button
-            class="navbar-toggle"
-            id="mobile-menu"
-            aria-label="Toggle Navigation"
-            aria-expanded=""
-            false
-          >
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-      </nav>
-    </header>
+    <div id="header"></div>
 
     <!-- Hero Section -->
     <main>
@@ -101,67 +51,10 @@
         </div>
       </section>
 
-      <!-- Footer Section -->
-      <footer>
-        <div class="footer-container">
-          <div class="footer-links">
-            <div class="footer-link-wrapper">
-              <div class="footer-link-items">
-                <a href="#" class="navbar-link">Home</a>
-                <a href="../shop_user_logged_in/index.html" class="navbar-link">Shop</a>
-                <a href="../cart_user_logged_in/index.html" class="navbar-link">Cart</a>
-              </div>
-            </div>
-
-            <div class="footer-logo-container">
-              <a href="#" class="footer-logo">
-                <img
-                  id="footer-logo"
-                  src="/images/glory-logo-noback.png"
-                  alt="Brand Logo"
-                />
-              </a>
-            </div>
-
-            <div class="social-media-links">
-              <a
-                href="http://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-media-item"
-              >
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-              <a
-                href="http://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-media-item"
-              >
-                <i class="fa-brands fa-x-twitter"></i>
-              </a>
-              <a
-                href="http://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-media-item"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-              <a
-                href="http://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-media-item"
-              >
-                <i class="fa-brands fa-instagram"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <div id="footer"></div>
     </main>
-    <script src="../home_user_logged_in/script.js"></script>
+    <script type="module" src="../shared_elements/inject_header.js"></script>
+    <script src="../shared_elements/inject_footer.js"></script>
   </body>
 </html>
 

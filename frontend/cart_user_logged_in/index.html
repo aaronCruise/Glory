@@ -6,6 +6,8 @@
     <title>Glory | Cart</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared_elements/header_in_style.css">
+    <link rel="stylesheet" href="../shared_elements/footer.css">
     <style>
         * {
             box-sizing: border-box;
@@ -95,29 +97,7 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav-container">
-        <div id="navbar-logo">
-            <img id="logo" src="/images/glory-logo-noback.png" alt="Logo">
-        </div>
-        <ul class="navbar-menu">
-            <li class="navbar-item">
-                <a href="../home_user_logged_in/index.html" class="navbar-link">Home</a>
-            </li>
-            <li class="navbar-item">
-                <a href="../shop_user_logged_in/index.html" class="navbar-link">Shop</a>
-            </li>
-            <li class="navbar-item">
-                <a href="../cart_user_logged_in/index.html" class="navbar-link">Cart</a>
-            </li>
-            <li class="navbar-item">
-                <a href="../profile_user_logged_in/index.html" class="navbar-link">Profile</a>
-            </li>
-        </ul>
-        <button class="navbar-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+    <div id="header"></div>
 
     <!-- Cart Section -->
     <section class="cart-section">
@@ -136,6 +116,9 @@
         </div>
     </section>
 
+    <div id="footer"></div>
     <script src="../cart_user_logged_in/script.js"></script>
+    <script type="module" src="../shared_elements/inject_header.js"></script>
+    <script src="../shared_elements/inject_footer.js"></script>
 </body>
 </html>

@@ -1,12 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("JS loaded");
-    // Mobile menu toggle
-    const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
-
-    navbarToggle.addEventListener('click', () => {
-        navbarMenu.classList.toggle('active');
-    });
 
     // Sample cart data (replace with actual API calls)
     let cartItems = [];
