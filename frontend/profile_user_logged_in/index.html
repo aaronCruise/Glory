@@ -118,7 +118,7 @@
     <script src="../profile_user_logged_in/script.js"></script>
     <script>
       fetch('../shared_elements/header_logged_in.html')
-      .then(res => res.text())
+      .then(res => console.log(res.text()))
       .then(data => {document.getElementById('header').innerHTML(data);});
     </script>
   </body>
