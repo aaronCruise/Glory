@@ -1,14 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile menu toggle
-    const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
-
-    if (navbarToggle) {
-        navbarToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-        });
-    }
-
     // Form elements
     const form = document.getElementById('register-form');
     const passwordInput = document.getElementById('password');
