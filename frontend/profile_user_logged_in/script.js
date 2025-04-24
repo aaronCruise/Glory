@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error updating profile.');
     	});
 
+        document.getElementById('user-name').textContent =  document.getElementById('full-name').value;
     	inputs.forEach(input => input.disabled = true);
     	editbtn.style.display = 'inline-block';
     	savebtn.style.display = 'none';
