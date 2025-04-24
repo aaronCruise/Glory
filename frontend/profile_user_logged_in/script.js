@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     	return res.json();
     })
     .then(user => {
+        document.getElementById('user-name').value = user.full_name;
         document.getElementById('full-name').value = user.full_name;
         document.getElementById('email').value = user.email;
         document.getElementById('phone').value = user.phone;
