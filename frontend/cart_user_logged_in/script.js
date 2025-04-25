@@ -23,28 +23,32 @@ document.addEventListener('DOMContentLoaded', function () {
     cartSummary.style.display = 'block';
     checkoutBtn.style.display = 'block';
 
-    cartItemsContainer.innerHTML = cartItems.map(item => `
-      <div class="cart-item" data-id="${item.id}">
-        <img src="${item.image}" alt="${item.name}" class="item-image">
-        <div class="item-details">
-          <h3>${item.name}</h3>
-          <p class="item-price">$${item.price.toFixed(2)}</p>
-          <div class="quantity-controls">
-            <button class="quantity-btn decrease">-</button>
-            <input type="number" class="quantity-input" value="${item.qty}" min="1">
-            <button class="quantity-btn increase">+</button>
+    cartItemsContainer.innerHTML = cartItems.map(item => {
+      const displayPrice = item.price != null ? `$${parseFloat(item.price).toFixed(2)}` : 'N/A';
+      return `
+        <div class="cart-item" data-id="${item.id}">
+          <img src="${item.image}" alt="${item.name}" class="item-image">
+          <div class="item-details">
+            <h3>${item.name}</h3>
+            <p class="item-price">${displayPrice}</p>
+            <div class="quantity-controls">
+              <button class="quantity-btn decrease">-</button>
+              <input type="number" class="quantity-input" value="${item.qty}" min="1">
+              <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="remove-btn">Remove</button>
           </div>
-          <button class="remove-btn">Remove</button>
         </div>
-      </div>
-    `).join('');
-    if (item && item.price != null) {
-    total += item.price;
- } else {
-    console.warn('Item or price missing:', item);
-  }
+      `;
+    }).join('');
 
-    total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    // Safe total calculation
+    total = cartItems.reduce((sum, item) => {
+      if (item.price != null) {
+        return sum + parseFloat(item.price) * item.qty;
+      }
+      return sum;
+    }, 0);
 
     const summaryRows = document.querySelectorAll('.summary-row');
     summaryRows[0].innerHTML = `<span>Subtotal</span><span>$${total.toFixed(2)}</span>`;
@@ -91,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Checkout action (you can replace this with redirect if needed)
+  // Checkout action (optional: redirect after)
   checkoutBtn.addEventListener('click', () => {
     alert('Proceeding to checkout...');
-    // Optionally redirect or clear cart:
+    // Optionally clear cart or redirect:
     // localStorage.removeItem("cart");
     // location.href = "../checkout_success/index.html";
   });
@@ -102,4 +106,5 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize cart view
   displayCartItems();
 });
+
 
