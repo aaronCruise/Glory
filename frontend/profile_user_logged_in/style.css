@@ -62,7 +62,7 @@
 
 .edit-button, 
 .save-button,
-.custom-file-btn {
+.logout-btn {
     font-size: 1rem;
     background: royalblue;
     padding: 5px;
@@ -77,7 +77,7 @@
 
 .edit-button:hover,
 .save-button:hover,
-.custom-file-btn:hover {
+.logout-btn:hover {
     background: gold;
     color: royalblue;
     transform: translateY(-2px);
