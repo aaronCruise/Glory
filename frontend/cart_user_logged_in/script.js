@@ -24,7 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
     checkoutBtn.style.display = 'block';
 
     cartItemsContainer.innerHTML = cartItems.map(item => {
-      const displayPrice = item.price != null ? `$${parseFloat(item.price).toFixed(2)}` : 'N/A';
+      const displayPrice = item.price != null 
+  ? `$${parseFloat(item.price.toString().replace('$', '').replace(',', '')).toFixed(2)}`
+  : 'N/A';
+
       return `
         <div class="cart-item" data-id="${item.id}">
           <img src="${item.image}" alt="${item.name}" class="item-image">
