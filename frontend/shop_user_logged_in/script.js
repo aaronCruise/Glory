@@ -74,6 +74,8 @@ function addToCart(id) {
         alert("Product not found!");
         return;
     }
+    
+    console.log("🛒 Adding product:", product);
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
