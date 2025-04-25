@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory | Help</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared_elements/header_out_style.css">
+    <link rel="stylesheet" href="../shared_elements/footer.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #141414;
+            color: #e0e0e0;
+        }
+
+        .help-container {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+            min-height: calc(100vh - 140px); /* Ensure minimum height covers viewport */
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #606060;
+            border-radius: 8px;
+        }
+
+        .help-header h1 {
+            font-size: 2.5rem;
+            color: gold;
+            margin-bottom: 10px;
+        }
+
+        .help-header p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        .faq-section {
+            margin-bottom: 40px;
+            background-color: #606060;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .faq-section h2 {
+            color: gold;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .faq-item {
+            background-color: #141414;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #141414;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #1a1a1a;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            color: gold;
+        }
+
+        .faq-question i {
+            color: gold;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            background: #606060;
+        }
+
+        .faq-answer p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            background: #606060;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 30px;
+            color: gold;
+            font-size: 1.8rem;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background-color: #141414;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-method i {
+            font-size: 2rem;
+            color: gold;
+        }
+
+        .contact-method h3 {
+            color: gold;
+            margin: 10px 0;
+        }
+
+        .contact-method p {
+            color: #e0e0e0;
+            margin: 5px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .help-container {
+                margin: 80px auto 20px;
+                padding: 0 15px;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-method {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="help-container">
+            <div class="help-header">
+                <h1>How Can We Help You?</h1>
+                <p>Find answers to common questions or contact our support team for assistance.</p>
+            </div>
+
+            <div class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I place an order?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To place an order, simply browse our products, add items to your cart, and proceed to checkout. You'll need to create an account or log in to complete your purchase.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards, PayPal, and other secure payment methods. Your payment information is always encrypted and secure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does shipping take?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard shipping typically takes 3-5 business days. Express shipping options are available at checkout for faster delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your return policy?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day return policy for unused items in their original packaging. Please contact our support team to initiate a return.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone Support</h3>
+                        <p>123-456-7890</p>
+                        <p>Monday - Friday, 9AM - 5PM EST</p>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>support@glory.com</p>
+                        <p>24/7 Response Time</p>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-comments"></i>
+                        <h3>Live Chat</h3>
+                        <p>Available 24/7</p>
+                        <p>Click the chat icon to start</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="footer"></div>
+
+    <script src="script.js"></script>
+    <script type="module" src="../shared_elements/inject_header_out.js"></script>
+    <script src="../shared_elements/inject_footer_out.js"></script>
+</body>
+</html> 
+</html> 
