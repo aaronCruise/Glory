@@ -1,120 +1,100 @@
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("JS loaded");
+document.addEventListener('DOMContentLoaded', function () {
+  console.log("🛒 Cart script loaded");
 
-    // Sample cart data (replace with actual API calls)
-    let cartItems = [];
+  const cartItemsContainer = document.querySelector('.cart-items');
+  const cartSummary = document.querySelector('.cart-summary');
+  const emptyCartMessage = document.querySelector('.empty-cart');
+  const checkoutBtn = document.querySelector('.checkout-btn');
 
-    fetch('/cart')
-    .then(response => response.json())
-    .then(data => {
-       console.log("✅ Cart data:", data);
-       cartItems = data.items || [];
-       displayCartItems();
-    })
-    .catch(err => {
-       console.error('❌ Error fetching cart:', err);
-       document.querySelector('.cart-items').innerHTML = '<p class="empty-cart">Failed to load cart.</p>';
-    });
+  let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
+  function displayCartItems() {
+    let total = 0;
 
-    function displayCartItems() {
-        const cartItemsContainer = document.querySelector('.cart-items');
-        const cartSummary = document.querySelector('.cart-summary');
-        const numericPrice = +item.price.replace("$", "");
-        let total = 0;
+    if (cartItems.length === 0) {
+      cartItemsContainer.innerHTML = '';
+      cartSummary.style.display = 'none';
+      emptyCartMessage.style.display = 'block';
+      checkoutBtn.style.display = 'none';
+      return;
+    }
 
-        if (cartItems.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
-            cartSummary.style.display = 'none';
-            return;
+    emptyCartMessage.style.display = 'none';
+    cartSummary.style.display = 'block';
+    checkoutBtn.style.display = 'block';
+
+    cartItemsContainer.innerHTML = cartItems.map(item => `
+      <div class="cart-item" data-id="${item.id}">
+        <img src="${item.image}" alt="${item.name}" class="item-image">
+        <div class="item-details">
+          <h3>${item.name}</h3>
+          <p class="item-price">$${item.price.toFixed(2)}</p>
+          <div class="quantity-controls">
+            <button class="quantity-btn decrease">-</button>
+            <input type="number" class="quantity-input" value="${item.qty}" min="1">
+            <button class="quantity-btn increase">+</button>
+          </div>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+    `).join('');
+
+    total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+    const summaryRows = document.querySelectorAll('.summary-row');
+    summaryRows[0].innerHTML = `<span>Subtotal</span><span>$${total.toFixed(2)}</span>`;
+    summaryRows[1].innerHTML = `<span>Shipping</span><span>Free</span>`;
+    summaryRows[2].innerHTML = `<span>Total</span><span>$${total.toFixed(2)}</span>`;
+
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    addEventListeners();
+  }
+
+  function addEventListeners() {
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const input = this.parentElement.querySelector('.quantity-input');
+        const itemId = this.closest('.cart-item').dataset.id;
+        const item = cartItems.find(item => item.id === itemId);
+
+        if (this.classList.contains('decrease') && input.value > 1) {
+          input.value--;
+        } else if (this.classList.contains('increase')) {
+          input.value++;
         }
 
-        cartItemsContainer.innerHTML = cartItems.map(item => `
-            <div class="cart-item" data-id="${item.id}">
-                <img src="${item.image}" alt="${item.name}" class="item-image">
-                <div class="item-details">
-                    <h3>${item.name}</h3>
-                    <p class="item-price">$${numericPrice.toFixed(2)}</p>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn decrease">-</button>
-                        <input type="number" class="quantity-input" value="${item.qty}" min="1">
-                        <button class="quantity-btn increase">+</button>
-                    </div>
-                    <button class="remove-btn">Remove</button>
-                </div>
-            </div>
-        `).join('');
-
-        // Calculate total
-        total = cartItems.reduce((sum, item) => sum + (numericPrice * item.qty), 0);
-
-        // Update summary
-        document.querySelector('.summary-row:nth-child(2)').innerHTML = `
-            <span>Subtotal</span>
-            <span>$${total.toFixed(2)}</span>
-        `;
-
-        document.querySelector('.summary-row:nth-child(3)').innerHTML = `
-            <span>Shipping</span>
-            <span>Free</span>
-        `;
-
-        document.querySelector('.summary-row:nth-child(4)').innerHTML = `
-            <span>Total</span>
-            <span>$${total.toFixed(2)}</span>
-        `;
-
-        // Add event listeners
-        addEventListeners();
-    }
-
-    // Add event listeners to cart items
-    function addEventListeners() {
-        document.querySelectorAll('.quantity-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const input = this.parentElement.querySelector('.quantity-input');
-                const itemId = this.closest('.cart-item').dataset.id;
-                const item = cartItems.find(item => item.id === parseInt(itemId));
-
-                if (this.classList.contains('decrease')) {
-                    if (input.value > 1) {
-                        input.value = parseInt(input.value) - 1;
-                        item.qty = parseInt(input.value);
-                    }
-                } else {
-                    input.value = parseInt(input.value) + 1;
-                    item.qty = parseInt(input.value);
-                }
-
-                displayCartItems();
-            });
-        });
-
-        document.querySelectorAll('.remove-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const itemId = parseInt(this.closest('.cart-item').dataset.id);
-                const index = cartItems.findIndex(item => item.id === itemId);
-                cartItems.splice(index, 1);
-                displayCartItems();
-            });
-        });
-
-        document.querySelectorAll('.quantity-input').forEach(input => {
-            input.addEventListener('change', function() {
-                const itemId = this.closest('.cart-item').dataset.id;
-                const item = cartItems.find(item => item.id === parseInt(itemId));
-                item.qty = parseInt(this.value);
-                displayCartItems();
-            });
-        });
-    }
-
-    // Checkout button handler
-    document.querySelector('.checkout-btn').addEventListener('click', function() {
-        // Add checkout logic here
-        alert('Proceeding to checkout...');
+        item.qty = parseInt(input.value);
+        displayCartItems();
+      });
     });
 
-    // Initialize cart
-    displayCartItems();
+    document.querySelectorAll('.quantity-input').forEach(input => {
+      input.addEventListener('change', function () {
+        const itemId = this.closest('.cart-item').dataset.id;
+        const item = cartItems.find(item => item.id === itemId);
+        item.qty = parseInt(this.value);
+        displayCartItems();
+      });
+    });
+
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const itemId = this.closest('.cart-item').dataset.id;
+        cartItems = cartItems.filter(item => item.id !== itemId);
+        displayCartItems();
+      });
+    });
+  }
+
+  // Checkout action (you can replace this with redirect if needed)
+  checkoutBtn.addEventListener('click', () => {
+    alert('Proceeding to checkout...');
+    // Optionally redirect or clear cart:
+    // localStorage.removeItem("cart");
+    // location.href = "../checkout_success/index.html";
+  });
+
+  // Initialize cart view
+  displayCartItems();
 });
+
