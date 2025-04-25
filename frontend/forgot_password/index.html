@@ -6,31 +6,11 @@
     <title>Glory | Forgot Password</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared_elements/header_out_style.css">
+    <link rel="stylesheet" href="../shared_elements/footer.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav-container">
-        <div id="navbar-logo">
-            <img id="logo" src="../home_without_user_logged_in/images/logo.png" alt="Logo">
-        </div>
-        <ul class="navbar-menu">
-            <li class="navbar-item">
-                <a href="../home_without_user_logged_in/index.html" class="navbar-link">Home</a>
-            </li>
-            <li class="navbar-item">
-                <a href="../shop_without_user_logged_in/index.html" class="navbar-link">Shop</a>
-            </li>
-            <li class="navbar-item">
-                <a href="../cart_without_user_logged_in/index.html" class="navbar-link">Cart</a>
-            </li>
-            <li class="navbar-item">
-                <a href="../login_without_user_logged_in/index.html" class="navbar-link">Login</a>
-            </li>
-        </ul>
-        <button class="navbar-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+    <div id="header"></div>
 
     <!-- Forgot Password Section -->
     <section class="forgot-password-section">
@@ -55,7 +35,10 @@
             </div>
         </div>
     </section>
+    <div id="footer"></div>
 
     <script src="script.js"></script>
+    <script type="module" src="../shared_elements/inject_header_out.js"></script>
+    <script src="../shared_elements/inject_footer_out.js"></script>
 </body>
 </html> 
