@@ -81,10 +81,16 @@ function addToCart(id) {
     if (existing) {
         existing.qty += 1;
     } else {
+        let cleanPrice = product.price;
+
+        if (typeof cleanPrice === "string") {
+            cleanPrice = parseFloat(cleanPrice.replace('$', '').replace(',', ''));
+        }
+
         cart.push({
             id: product.id,
             name: product.name,
-            price: parseFloat(product.price),
+            price: cleanPrice != null ? cleanPrice : 0,
             image: product.image,
             qty: 1
         });
@@ -93,6 +99,7 @@ function addToCart(id) {
     localStorage.setItem("cart", JSON.stringify(cart));
     alert(`${product.name} added to cart!`);
 }
+
 
 
 document.addEventListener("DOMContentLoaded", initializeShop);
