@@ -68,22 +68,31 @@ async function initializeShop() {
 }
 
 // Function to add items to cart
-async function addToCart(id) {
-    try {
-        const res = await fetch("/cart", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            credentials: "include",
-            body: JSON.stringify({productId: id, qty: 1})
-        });
-        if (!res.ok) {
-            throw new Error("Failed to add item to cart!");
-        }
-        alert("Added to cart!");
-    } catch(err) {
-        console.error();
-        alert("Could not add item to cart!")
+function addToCart(id) {
+    const product = items.find(item => item.id == id);
+    if (!product) {
+        alert("Product not found!");
+        return;
     }
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.id == product.id);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: parseFloat(product.price),
+            image: product.image,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${product.name} added to cart!`);
 }
+
 
 document.addEventListener("DOMContentLoaded", initializeShop);
