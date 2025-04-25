@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
     `).join('');
+    if (item && item.price != null) {
+    total += item.price;
+ } else {
+    console.warn('Item or price missing:', item);
+  }
 
     total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
