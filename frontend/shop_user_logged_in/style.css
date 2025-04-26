@@ -16,6 +16,7 @@
     max-width: 1300px;
 }
 
+/* Filter */
 .filter {
     display: flex;
     flex-direction: column;
@@ -57,6 +58,7 @@
     display: none;
 }
 
+/* Products */
 .product-list {
     display: flex;
     justify-content: space-around;
