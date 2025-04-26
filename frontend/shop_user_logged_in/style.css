@@ -16,6 +16,12 @@
     max-width: 1300px;
 }
 
+.filter-list {
+    display: none;
+}
+
+
+
 .product-list {
     display: flex;
     justify-content: space-around;
