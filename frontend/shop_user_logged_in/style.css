@@ -38,6 +38,7 @@
 
 #label-container.active {
     background-color: royalblue;
+    border: none;
     padding: 4px;
     border-radius: 4px;
     transition: all ease 0.3s;
@@ -45,7 +46,7 @@
 }
 
 .label-container i {
-    justify-self: end;
+    text-align: end;
 }
 
 .filter-list {
