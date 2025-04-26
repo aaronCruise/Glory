@@ -105,7 +105,7 @@ function addToCart(id) {
 document.addEventListener("DOMContentLoaded", initializeShop);
 
 // Filter Button is Pressed
-const filter = document.getElementById("filter-label");
+const filter = document.getElementById("label-container");
 filter.addEventListener("click", () => {
     const list = document.getElementById("filter-list");
     if (filter.classList.contains("active")) {

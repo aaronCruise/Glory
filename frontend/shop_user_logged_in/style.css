@@ -23,7 +23,9 @@
     max-width: 25%;
 }
 
-#filter-label {
+.label-container {
+    display: flex;
+    justify-content: stretch;
     color: gold;
     background: gray;
     margin: 0 0 0.5rem;
@@ -35,7 +37,7 @@
     height: auto;
 }
 
-#filter-label.active {
+#label-container.active {
     background-color: royalblue;
     padding: 4px;
     border-radius: 4px;
