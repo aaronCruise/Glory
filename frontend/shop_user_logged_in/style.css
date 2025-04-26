@@ -22,7 +22,7 @@
     justify-content: space-evenly;
 }
 
-.filter-label {
+#filter-label {
     cursor: pointer;
 }
 
