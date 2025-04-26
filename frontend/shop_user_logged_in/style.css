@@ -46,7 +46,7 @@
 }
 
 .icon {
-    transition: all ease 0.3;
+    transition: transform ease 0.3s;
 }
 
 .icon.rotate {
