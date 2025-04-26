@@ -16,11 +16,19 @@
     max-width: 1300px;
 }
 
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.filter-label {
+    cursor: pointer;
+}
+
 .filter-list {
     display: none;
 }
-
-
 
 .product-list {
     display: flex;

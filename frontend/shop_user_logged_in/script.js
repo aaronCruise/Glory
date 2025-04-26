@@ -102,6 +102,10 @@ function addToCart(id) {
     alert(`${product.name} added to cart!`);
 }
 
-
-
 document.addEventListener("DOMContentLoaded", initializeShop);
+
+// Filter Button is Pressed
+document.getElementById("filter-label").addEventListener("click", () => {
+    const list = document.getElementById("filter-list");
+    list.toggle("active");
+});
