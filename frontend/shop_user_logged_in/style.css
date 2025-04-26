@@ -47,6 +47,7 @@
 
 .label-container.active i {
     transform: rotate(180deg);
+    transition: all ease 0.3s;
 }
 
 .filter-list {
