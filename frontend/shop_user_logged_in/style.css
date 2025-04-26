@@ -25,7 +25,7 @@
 
 .label-container {
     display: flex;
-    justify-content: stretch;
+    display: stretch;
     color: gold;
     background: gray;
     margin: 0 0 0.5rem;
@@ -44,6 +44,8 @@
     transition: all ease 0.3s;
     transform: translateY(-2px);
 }
+
+
 
 .filter-list {
     display: none;
