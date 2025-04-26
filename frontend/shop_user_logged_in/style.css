@@ -27,8 +27,7 @@
     display: flex;
     color: gold;
     background: gray;
-    margin: 0 0 0.5rem;
-    padding: 0.5rem;
+    padding: 4px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -38,15 +37,16 @@
 
 #label-container.active {
     background-color: royalblue;
-    border: none;
-    padding: 4px;
-    border-radius: 4px;
     transition: all ease 0.3s;
     transform: translateY(-2px);
 }
 
 .label-container i {
     margin-left: auto;
+}
+
+.label-container.active i {
+    transform: rotate(180deg);
 }
 
 .filter-list {
