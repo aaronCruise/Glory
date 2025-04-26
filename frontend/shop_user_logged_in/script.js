@@ -105,7 +105,7 @@ function addToCart(id) {
 document.addEventListener("DOMContentLoaded", initializeShop);
 
 // Filter Button is Pressed
-filter = document.document.getElementById("filter-label");
+const filter = document.getElementById("filter-label");
 filter.addEventListener("click", () => {
     const list = document.getElementById("filter-list");
     if (filter.classList.contains("active")) {
@@ -113,5 +113,5 @@ filter.addEventListener("click", () => {
     } else {
         list.style.display = 'inline-block';
     }
-    fitler.toggle("active");
+    filter.classList.toggle("active");
 });
