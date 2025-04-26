@@ -25,7 +25,7 @@
 
 .label-container {
     display: flex;
-    display: stretch;
+    justify-content: stretch;
     color: gold;
     background: gray;
     margin: 0 0 0.5rem;
