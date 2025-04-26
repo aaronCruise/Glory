@@ -45,9 +45,12 @@
     margin-left: auto;
 }
 
-.label-container.active i {
+.icon {
+    transition: all ease 0.3;
+}
+
+.icon.rotate {
     transform: rotate(180deg);
-    transition: all ease 0.3s;
 }
 
 .filter-list {

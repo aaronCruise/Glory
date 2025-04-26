@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", initializeShop);
 // Filter Button is Pressed
 const filter = document.getElementById("label-container");
 filter.addEventListener("click", () => {
+    const icon = document.querySelector(".icon");
     const list = document.getElementById("filter-list");
     if (filter.classList.contains("active")) {
         list.style.display = 'none';
@@ -114,4 +115,5 @@ filter.addEventListener("click", () => {
         list.style.display = 'inline-block';
     }
     filter.classList.toggle("active");
+    icon.classList.toggle("rotate");
 });
