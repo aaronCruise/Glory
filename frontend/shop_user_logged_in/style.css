@@ -23,7 +23,18 @@
 }
 
 #filter-label {
+    color: gold;
+    margin: 0 0 0.5rem;
     cursor: pointer;
+}
+
+#filter-label.active {
+    background-color: gold;
+    color: royalblue;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all ease 0.3s;
+    transform: translateY(-2px);
 }
 
 .filter-list {
