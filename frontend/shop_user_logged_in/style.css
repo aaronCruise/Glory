@@ -6,6 +6,10 @@
     overflow-x: hidden;
 }
 
+main {
+    width: 100%;
+}
+
 /* Hero CSS */
 .hero {
     background-color:  #141414;;
@@ -28,6 +32,7 @@
     cursor: pointer;
     user-select: none;
     overflow: visible;
+    left: 
 }
 
 .filter-label {
