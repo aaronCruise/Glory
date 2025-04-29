@@ -30,6 +30,11 @@
     overflow: visible;
 }
 
+.filter-label {
+    color: royalblue;
+    margin-right: 0.4rem;
+}
+
 .filter:focus {
     outline: 2px solid gold;
 }
