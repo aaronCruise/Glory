@@ -62,7 +62,8 @@
     cursor: pointer;
 }
 
-.filter-list li:hover {
+.filter-list li:hover,
+.filter-list li[aria-selected="true"] {
     background: royalblue;
     color: white;
 }
