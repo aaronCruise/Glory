@@ -5,7 +5,8 @@ const API_URL = '/products';
 
 const productList = document.getElementById('product-list');
 const pagination = document.getElementById('pagination');
-let items = [];
+let viewItems = [];
+let allItems = [];
 let totalPages = 0;
 
 // Function to create the html for the product cards
@@ -24,7 +25,7 @@ function cHTML(product) {
 function displayPage(page) {
     const startCard = (page - 1) * NUM_PAGE_ITEMS;
     const endCard = startCard + NUM_PAGE_ITEMS;
-    const itemsSlice = items.slice(startCard, endCard);
+    const itemsSlice = viewItems.slice(startCard, endCard);
 
     productList.innerHTML = itemsSlice.map(cHTML).join("");
 
@@ -52,13 +53,43 @@ function buildPagination() {
     }
 }
 
+function applyCategory(cat) {
+    viewItems = cat ? allItems.filter(p => p.category === cat) : allItems;
+
+    totalPages = Math.ceil(viewItems.length / NUM_PAGE_ITEMS);
+    buildPagination();
+    displayPage(1);
+}
+
+function categoryHTML(category) {
+    return `
+    <li class="filter-item" data-value="${category.trim().toLowerCase()}">
+    ${category.trim().charAt(0).toUpperCase() + category.trim().slice(1)}</li>
+    `
+}
+
+function addListCategories() {
+    const categories = [];
+    for (let i = 0; i < allItems.length; i++) {
+        let cat = allItems[i].category;
+        if(!categories.includes(cat)) {
+            categories.push(cat);
+        }
+    }
+    const list = document.querySelector(".filter-list");
+    const currentHTML = list.innerHTML;
+    list.innerHTML = currentHTML + categories.map(categoryHTML).join("");
+}
+
 // Function to help initialize the shop
 async function initializeShop() {
     try {
         const res = await fetch(API_URL);
         const json = await res.json();
-        items = Array.isArray(json) ? json : json.items;
-        totalPages = Math.ceil(items.length / NUM_PAGE_ITEMS);
+        allItems = Array.isArray(json) ? json : json.items;
+        viewItems = allItems;
+        totalPages = Math.ceil(viewItems.length / NUM_PAGE_ITEMS);
+        addListCategories();
         buildPagination();
         displayPage(1);
     } catch(err) {
@@ -68,22 +99,83 @@ async function initializeShop() {
 }
 
 // Function to add items to cart
-async function addToCart(id) {
-    try {
-        const res = await fetch("/cart", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            credentials: "include",
-            body: JSON.stringify({productId: id, qty: 1})
-        });
-        if (!res.ok) {
-            throw new Error("Failed to add item to cart!");
-        }
-        alert("Added to cart!");
-    } catch(err) {
-        console.error();
-        alert("Could not add item to cart!")
+function addToCart(id) {
+    const product = viewItems.find(item => item.id == id);
+    if (!product) {
+        alert("Product not found!");
+        return;
     }
+    
+    console.log("🛒 Adding product:", product);
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.id == product.id);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        let cleanPrice = product.price;
+
+        if (typeof cleanPrice === "string") {
+            cleanPrice = parseFloat(cleanPrice.replace('$', '').replace(',', ''));
+        }
+
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: cleanPrice != null ? cleanPrice : 0,
+            image: product.image,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${product.name} added to cart!`);
 }
 
 document.addEventListener("DOMContentLoaded", initializeShop);
+
+// Filter logic
+const filter = document.getElementById("category-filter");
+const list = document.querySelector(".filter-list");
+const label = document.querySelector(".filter-label");
+let open = false;
+
+function toggleList(openNow = !open) {
+    open = openNow;
+    list.hidden = !open;
+    filter.classList.toggle("open", open);
+}
+
+function closeList() {
+    toggleList(false);
+}
+
+function selectOption(li) {
+    list.querySelectorAll('[aria-selected="true"]')
+      .forEach(o => o.removeAttribute('aria-selected'));
+    li.setAttribute("aria-selected", "true");
+    label.textContent = li.textContent;
+    applyCategory(li.dataset.value);
+    closeList();
+}
+
+filter.addEventListener("click", e => {
+    if (!open) {
+        toggleList(true);
+        return;
+    }
+
+    const li = e.target.closest(".filter-list li");
+    if (li) {
+        selectOption(li);
+    } else {
+        closeList();
+    }
+});
+
+document.addEventListener("click", e => {
+    if (!filter.contains(e.target)) {
+        closeList();
+    }
+});
