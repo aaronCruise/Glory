@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", initializeShop);
 const filter = document.getElementById("category-filter");
 const list = document.querySelector(".filter-list");
 const label = document.querySelector(".filter-label");
-let options = Array.from(list.children);
 let open = false;
 
 function toggleList(openNow = !open) {
@@ -153,7 +152,8 @@ function closeList() {
 }
 
 function selectOption(li) {
-    options.forEach(o => o.removeAttribute("aria-selected"));
+    list.querySelectorAll('[aria-selected="true"]')
+      .forEach(o => o.removeAttribute('aria-selected'));
     li.setAttribute("aria-selected", "true");
     label.textContent = li.textContent;
     applyCategory(li.dataset.value);
