@@ -76,7 +76,6 @@
 .filter-list li:hover,
 .filter-list li[aria-selected="true"] {
     background: royalblue;
-    color: gray;
 }
 
 /* Products */
