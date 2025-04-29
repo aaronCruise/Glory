@@ -61,6 +61,26 @@ function applyCategory(cat) {
     displayPage(1);
 }
 
+function categoryHTML(category) {
+    return `
+    <li class="filter-item" data-value="${category.toLowerCase()}">
+    ${category.charAt(0).toUpperCase() + category.slice(1)}</li>
+    `
+}
+
+function addListCategories() {
+    const categories = [];
+    for (let i = 0; i < allItems.length; i++) {
+        if (allItems[i].category in categories) {
+            continue;
+        } else {
+            categories.push(allItems[i].category);
+        }
+    }
+    const list = document.querySelector(".filter-list");
+    list.innerHTML += categories.map(categoryHTML).join("");
+}
+
 // Function to help initialize the shop
 async function initializeShop() {
     try {
