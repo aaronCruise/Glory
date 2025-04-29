@@ -71,10 +71,9 @@ function categoryHTML(category) {
 function addListCategories() {
     const categories = [];
     for (let i = 0; i < allItems.length; i++) {
-        if (allItems[i].category in categories) {
-            continue;
-        } else {
-            categories.push(allItems[i].category);
+        let cat = allItems[i].category;
+        if(!categories.includes(cat)) {
+            categories.push(cat);
         }
     }
     const list = document.querySelector(".filter-list");
