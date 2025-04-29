@@ -16,19 +16,18 @@
     <!-- Hero Section -->
     <main>
       <section class="hero">
-        <div class="filter">
-          <div class="label-container" id="label-container">
-            <label for="filter-list" id="filter-label">Filter</label>
-            <i class="fa-solid fa-filter icon"></i>
-          </div>
-          <select name="filter" id="filter-list" class="filter-list">
-            <option value="all" class="filter-option">All</option>
-            <option value="shirts" class="filter-option">Shirts</option>
-            <option value="hats" class="filter-option">Hats</option>
-            <option value="pants" class="filter-option">Pants</option>
-            <option value="hoodies" class="filter-option">Hoodies</option>
-          </select>
+        <div class="filter" id="category-filter" tabindex="0">
+          <span class="filter-label">All Categories</span>
+          <i class="fa-solid fa-filter icon"></i>
+
+          <ul class="filter-list" hidden>
+            <li class="filter-item" data-value="">All Categories</li>
+            <li class="filter-item" data-value="clothing">All Categories</li>
+            <li class="filter-item" data-value="equipment">Equipment</li>
+            <li class="filter-item" data-value="supplements">Supplements</li>
+          </ul>
         </div>
+
         <div id="product-list" class="product-list"></div>
         <div id="pagination" class="pagination"></div>
       </section>

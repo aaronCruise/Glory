@@ -18,44 +18,18 @@
 
 /* Filter */
 .filter {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    max-width: 25%;
-}
-
-.label-container {
-    display: flex;
-    color: gold;
-    background: gray;
-    padding: 4px;
-    border: none;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid royalblue;
     border-radius: 4px;
+    background: black;
     cursor: pointer;
-    width: auto;
-    height: auto;
+    user-select: none;
 }
 
-#label-container.active {
-    background-color: royalblue;
-    transition: all ease 0.3s;
-    transform: translateY(-2px);
-}
-
-.label-container i {
-    margin-left: auto;
-}
-
-.icon {
-    transition: transform ease 0.3s;
-}
-
-.icon.rotate {
-    transform: rotate(180deg);
-}
-
-.filter-list {
-    display: none;
+.filter:focus {
+    outline: 2px solid gold;
 }
 
 /* Products */
