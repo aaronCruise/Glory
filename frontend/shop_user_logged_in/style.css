@@ -27,6 +27,7 @@
     background: white;
     cursor: pointer;
     user-select: none;
+    overflow: visible;
 }
 
 .filter:focus {
