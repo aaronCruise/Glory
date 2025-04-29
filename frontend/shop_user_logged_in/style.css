@@ -6,18 +6,13 @@
     overflow-x: hidden;
 }
 
-main {
-    width: 100%;
-}
-
 /* Hero CSS */
 .hero {
     background-color:  #141414;;
     height: 90vh;
     width: 100%;
     margin: 0 auto;
-    padding: 150px 50px;
-    max-width: 1300px;
+    padding: 150px 0;
 }
 
 /* Filter */
