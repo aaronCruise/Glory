@@ -63,8 +63,8 @@ function applyCategory(cat) {
 
 function categoryHTML(category) {
     return `
-    <li class="filter-item" data-value="${category.toLowerCase()}">
-    ${category.charAt(0).toUpperCase() + category.slice(1)}</li>
+    <li class="filter-item" data-value="${category.trim().toLowerCase()}">
+    ${category.trim().charAt(0).toUpperCase() + category.trim().slice(1)}</li>
     `
 }
 
@@ -77,7 +77,8 @@ function addListCategories() {
         }
     }
     const list = document.querySelector(".filter-list");
-    list.innerHTML += categories.map(categoryHTML).join("");
+    const currentHTML = list.innerHTML;
+    list.innerHTML = currentHTML + categories.map(categoryHTML).join("");
 }
 
 // Function to help initialize the shop
@@ -88,6 +89,7 @@ async function initializeShop() {
         allItems = Array.isArray(json) ? json : json.items;
         viewItems = allItems;
         totalPages = Math.ceil(viewItems.length / NUM_PAGE_ITEMS);
+        addListCategories();
         buildPagination();
         displayPage(1);
     } catch(err) {
