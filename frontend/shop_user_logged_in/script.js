@@ -5,7 +5,8 @@ const API_URL = '/products';
 
 const productList = document.getElementById('product-list');
 const pagination = document.getElementById('pagination');
-let items = [];
+let viewItems = [];
+let allItems = [];
 let totalPages = 0;
 
 // Function to create the html for the product cards
@@ -24,7 +25,7 @@ function cHTML(product) {
 function displayPage(page) {
     const startCard = (page - 1) * NUM_PAGE_ITEMS;
     const endCard = startCard + NUM_PAGE_ITEMS;
-    const itemsSlice = items.slice(startCard, endCard);
+    const itemsSlice = viewItems.slice(startCard, endCard);
 
     productList.innerHTML = itemsSlice.map(cHTML).join("");
 
@@ -52,13 +53,22 @@ function buildPagination() {
     }
 }
 
+function applyCategory(cat) {
+    viewItems = cat ? allItems.filter(p => p.category === cat) : allItems;
+
+    totalPages = Math.ceil(viewItems.length / NUM_PAGE_ITEMS);
+    buildPagination();
+    displayPage(1);
+}
+
 // Function to help initialize the shop
 async function initializeShop() {
     try {
         const res = await fetch(API_URL);
         const json = await res.json();
-        items = Array.isArray(json) ? json : json.items;
-        totalPages = Math.ceil(items.length / NUM_PAGE_ITEMS);
+        allItems = Array.isArray(json) ? json : json.items;
+        viewItems = allItems;
+        totalPages = Math.ceil(viewItems.length / NUM_PAGE_ITEMS);
         buildPagination();
         displayPage(1);
     } catch(err) {
@@ -69,7 +79,7 @@ async function initializeShop() {
 
 // Function to add items to cart
 function addToCart(id) {
-    const product = items.find(item => item.id == id);
+    const product = viewItems.find(item => item.id == id);
     if (!product) {
         alert("Product not found!");
         return;
@@ -125,6 +135,7 @@ function selectOption(li) {
     options.forEach(o => o.removeAttribute("aria-selected"));
     li.setAttribute("aria-selected", "true");
     label.textContent = li.textContent;
+    applyCategory(li.dataset.value);
     closeList();
 }
 
