@@ -134,9 +134,11 @@ filter.addEventListener("click", e => {
         return;
     }
 
-    const li = filter.closest("li");
+    const li = e.target.closest(".filter-list li");
     if (li) {
         selectOption(li);
+    } else {
+        closeList();
     }
 });
 
