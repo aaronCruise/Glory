@@ -31,7 +31,7 @@
 }
 
 .filter-label {
-    color: black;
+    color: gold;
     margin-right: 1rem;
 }
 
@@ -41,12 +41,12 @@
 
 .filter i {
     color: royalblue;
+    transition: all ease 0.2s;
 }
 
 .filter.open i {
     color: gold;
     transform: rotate(180deg);
-    transition: all ease 0.2s;
 }
 
 .filter-list {
