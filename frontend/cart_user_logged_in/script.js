@@ -100,7 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Checkout action (optional: redirect after)
   checkoutBtn.addEventListener('click', () => {
-    alert('Proceeding to checkout...');
+    const confirmRedirect = confirm("You're being redirected to our secure payment portal. Continue?");
+    if(confirmRedirect){
+    	window.open("https://example.com/payment", "_blank");
+    }
     // Optionally clear cart or redirect:
     // localStorage.removeItem("cart");
     // location.href = "../checkout_success/index.html";
