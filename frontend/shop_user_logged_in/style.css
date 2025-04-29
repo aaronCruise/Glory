@@ -50,6 +50,7 @@
     left: 0;
     min-width: 220px;
     max-height: 260px;
+    width: max-content;
     overflow-y: auto;
     margin: 0;
     padding: 0.4rem 0;
