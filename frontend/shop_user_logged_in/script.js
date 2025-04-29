@@ -118,7 +118,7 @@ function toggleList(openNow = !open) {
 }
 
 function closeList() {
-    toggle(false);
+    toggleList(false);
 }
 
 function selectOption(li) {
@@ -130,7 +130,7 @@ function selectOption(li) {
 
 filter.addEventListener("click", e => {
     if (!open) {
-        toggle(true);
+        toggleList(true);
         return;
     }
 
