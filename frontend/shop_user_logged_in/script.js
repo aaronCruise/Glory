@@ -104,16 +104,44 @@ function addToCart(id) {
 
 document.addEventListener("DOMContentLoaded", initializeShop);
 
-// Filter Button is Pressed
-const filter = document.getElementById("label-container");
-filter.addEventListener("click", () => {
-    const icon = document.querySelector(".icon");
-    const list = document.getElementById("filter-list");
-    if (filter.classList.contains("active")) {
-        list.style.display = 'none';
-    } else {
-        list.style.display = 'inline-block';
+// Filter logic
+const filter = document.getElementById("category-filter");
+const list = document.querySelector(".filter-list");
+const label = document.querySelector(".filter-label");
+let options = Array.from(list.children);
+let open = false;
+
+function toggleList(openNow = !open) {
+    open = openNow;
+    list.hidden = !open;
+    filter.classList.toggle("open", open);
+}
+
+function closeList() {
+    toggle(false);
+}
+
+function selectOption(li) {
+    options.forEach(o => o.removeAttribute("aria-selected"));
+    li.setAttribute("aria-selected", "true");
+    label.textContent = li.textContent;
+    closeList();
+}
+
+filter.addEventListener("click", e => {
+    if (!open) {
+        toggle(true);
+        return;
     }
-    filter.classList.toggle("active");
-    icon.classList.toggle("rotate");
+
+    const li = filter.closest("li");
+    if (li) {
+        selectOption(li);
+    }
+});
+
+document.addEventListener("click", e => {
+    if (!filter.contains(e.target)) {
+        closeList();
+    }
 });

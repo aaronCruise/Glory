@@ -62,6 +62,11 @@
     cursor: pointer;
 }
 
+.filter-list li:hover {
+    background: royalblue;
+    color: white;
+}
+
 /* Products */
 .product-list {
     display: flex;
