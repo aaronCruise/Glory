@@ -24,7 +24,7 @@
     padding: 0.6rem 0.8rem;
     border: 1px solid royalblue;
     border-radius: 4px;
-    background: white;
+    background: gray;
     cursor: pointer;
     user-select: none;
     overflow: visible;
@@ -60,7 +60,7 @@
     margin: 0;
     padding: 0.4rem 0;
     list-style: none;
-    background: white;
+    background: gray;
     border: 1px solid royalblue;
     border-radius: 4px;
     box-shadow: 0 6px 16px rgb(0 0 0 / .1);
@@ -76,7 +76,7 @@
 .filter-list li:hover,
 .filter-list li[aria-selected="true"] {
     background: royalblue;
-    color: white;
+    color: gray;
 }
 
 /* Products */
