@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	localStorage.removeItem("cart");   
   	localStorage.removeItem("token");  
  	sessionStorage.removeItem("token"); 
- 	 fetch("/profile/logout") // or your correct logout route
+ 	 fetch("/profile/logout") 
     	.then(() => {
-      	window.location.href = "/"; // or "/login" or any landing page
+      	window.location.href = "/"; 
    	 })
     	.catch(err => console.error("Logout failed", err));
 });
