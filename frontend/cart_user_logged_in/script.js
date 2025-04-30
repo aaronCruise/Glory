@@ -8,16 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-  function displayCartItems() {
-    let total = 0;
+function displayCartItems() {
+  let total = 0;
+  
+  localStorage.setItem("cart", JSON.stringify(cartItems));
 
-    if (cartItems.length === 0) {
-      cartItemsContainer.innerHTML = '';
-      cartSummary.style.display = 'none';
-      emptyCartMessage.style.display = 'block';
-      checkoutBtn.style.display = 'none';
-      return;
-    }
+  if (cartItems.length === 0) {
+    cartItemsContainer.innerHTML = '';
+    cartSummary.style.display = 'none';
+    emptyCartMessage.style.display = 'block';
+    checkoutBtn.style.display = 'none';
+    return;
+  }
 
     emptyCartMessage.style.display = 'none';
     cartSummary.style.display = 'block';
