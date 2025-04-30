@@ -1,5 +1,4 @@
-// Logic for getting the items from backend to be displayed
-// and Logic for displaying the correct number of items on each page
+
 const NUM_PAGE_ITEMS = 6;
 const API_URL = '/products';
 
@@ -9,7 +8,7 @@ let viewItems = [];
 let allItems = [];
 let totalPages = 0;
 
-// Function to create the html for the product cards
+
 function cHTML(product) {
     return `
     <div class="product-card">
@@ -21,7 +20,7 @@ function cHTML(product) {
             </div>`
 }
 
-// Function to display the items on each shop page
+
 function displayPage(page) {
     const startCard = (page - 1) * NUM_PAGE_ITEMS;
     const endCard = startCard + NUM_PAGE_ITEMS;
@@ -32,16 +31,9 @@ function displayPage(page) {
     const paginationButtons = document.querySelectorAll('.pagination button');
     paginationButtons.forEach(button => button.classList.toggle('active', +button.textContent == page))
 
-    // Add listener to add to cart buttons
-    document.addEventListener("click", e => {
-        if (!e.target.matches(".add-to-cart")) return;
-
-        const id = +e.target.dataset.id;
-        addToCart(id)
-    });
 }
 
-// Function to build the pagination bar itself
+
 function buildPagination() {
     pagination.innerHTML = '';
 
@@ -81,7 +73,7 @@ function addListCategories() {
     list.innerHTML = currentHTML + categories.map(categoryHTML).join("");
 }
 
-// Function to help initialize the shop
+
 async function initializeShop() {
     try {
         const res = await fetch(API_URL);
@@ -98,7 +90,7 @@ async function initializeShop() {
     }
 }
 
-// Function to add items to cart
+
 function addToCart(id) {
     const product = viewItems.find(item => item.id == id);
     if (!product) {
@@ -133,7 +125,17 @@ function addToCart(id) {
     alert(`${product.name} added to cart!`);
 }
 
-document.addEventListener("DOMContentLoaded", initializeShop);
+document.addEventListener("DOMContentLoaded", () => {
+  initializeShop();
+
+  document.addEventListener("click", e => {
+    if (e.target.matches(".add-to-cart")) {
+      const id = +e.target.dataset.id;
+      addToCart(id);
+    }
+  });
+});
+
 
 // Filter logic
 const filter = document.getElementById("category-filter");
