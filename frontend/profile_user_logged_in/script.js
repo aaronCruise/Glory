@@ -64,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
     	savebtn.style.display = 'none';
     });
 	document.getElementById("logout-btn")?.addEventListener("click", () => {
+	localStorage.removeItem("cart");   
+  	localStorage.removeItem("token");  
+ 	sessionStorage.removeItem("token"); 
  	 fetch("/profile/logout") // or your correct logout route
     	.then(() => {
       	window.location.href = "/"; // or "/login" or any landing page
