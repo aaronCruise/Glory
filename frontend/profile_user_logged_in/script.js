@@ -63,7 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
     	editbtn.style.display = 'inline-block';
     	savebtn.style.display = 'none';
     });
-
+	document.getElementById("logout-btn")?.addEventListener("click", () => {
+ 	 fetch("/profile/logout") // or your correct logout route
+    	.then(() => {
+      	window.location.href = "/"; // or "/login" or any landing page
+   	 })
+    	.catch(err => console.error("Logout failed", err));
+});
     // Logout Event
     
 });
