@@ -149,9 +149,18 @@ router.post('/', async  (req, res) => {
 
         res.status(201).json({message: 'Profile updated successfully!'});
     } catch(e){
-        //console.error('Database error:', e);
+	    
         res.status(500).json({message: 'Server error'});
     }
 });
-
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).json({ message: 'Logout failed' });
+        }
+        res.clearCookie('connect.sid');
+        res.redirect('/login_without_user_logged_in/index.html'); // Change this path as needed
+    });
+});
 module.exports = router;
