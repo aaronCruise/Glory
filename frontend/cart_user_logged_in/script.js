@@ -88,15 +88,16 @@ document.addEventListener('DOMContentLoaded', function () {
         displayCartItems();
       });
     });
+  document.querySelectorAll('.remove-btn').forEach(btn => {       
+  btn.addEventListener('click', function () {                   
+    const itemId = parseInt(this.closest('.cart-item').dataset.id);
+    if (!isNaN(itemId)) {                                       
+      cartItems = cartItems.filter(item => item.id !== itemId);
+      displayCartItems();
+      }                                                           
+    });                                                           
+  });                                                             
 
-    document.querySelectorAll('.remove-btn').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const itemId = this.closest('.cart-item').dataset.id;
-        cartItems = cartItems.filter(item => item.id !== itemId);
-        displayCartItems();
-      });
-    });
-  }
 
   // Checkout action (optional: redirect after)
   checkoutBtn.addEventListener('click', () => {
