@@ -5,8 +5,9 @@ fetch('../shared_elements/header_logged_in.html')
     document.getElementById('header').innerHTML = data;
     initHeader();
 
-    const isAdmin = localStorage.getItem("role") === "admin";
-    if (!isAdmin) {
-        document.querySelector('[a href="../admin/index.html"]').style.display = "none";
-    }
+    // Include admin dashboard in header
+    // const isAdmin = localStorage.getItem("role") === "admin";
+    // if (isAdmin) {
+        // document.getElementById("dashboard").hidden = false;
+    // }
 });
