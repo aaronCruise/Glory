@@ -100,37 +100,7 @@ async function initializeShop() {
 
 // Function to add items to cart
 function addToCart(id) {
-    const product = viewItems.find(item => item.id == id);
-    if (!product) {
-        alert("Product not found!");
-        return;
-    }
-    
-    console.log("🛒 Adding product:", product);
-
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const existing = cart.find(item => item.id == product.id);
-    if (existing) {
-        existing.qty += 1;
-    } else {
-        let cleanPrice = product.price;
-
-        if (typeof cleanPrice === "string") {
-            cleanPrice = parseFloat(cleanPrice.replace('$', '').replace(',', ''));
-        }
-
-        cart.push({
-            id: product.id,
-            name: product.name,
-            price: cleanPrice != null ? cleanPrice : 0,
-            image: product.image,
-            qty: 1
-        });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${product.name} added to cart!`);
+    alert(`Please create an account to begin shopping!`);
 }
 
 document.addEventListener("DOMContentLoaded", initializeShop);
