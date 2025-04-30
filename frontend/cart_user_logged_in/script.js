@@ -102,7 +102,7 @@ function displayCartItems() {
   });
 }
 
-  // Checkout action (optional: redirect after)
+  
   checkoutBtn.addEventListener('click', () => {
     const confirmRedirect = confirm("You're being redirected to our secure payment portal. Continue?");
     if(confirmRedirect){
