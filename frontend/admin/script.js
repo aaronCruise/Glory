@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .forEach(o => o.removeAttribute('aria-selected'));
         li.setAttribute("aria-selected", "true");
         label.textContent = li.textContent;
-        applyCategory(li.dataset.value);
         closeList();
     }
 
