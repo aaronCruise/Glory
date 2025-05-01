@@ -59,15 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     intializeCategoryList();
 
-    // Logic for putting selected category into input element
-    document.querySelectorAll(".filter-item").forEach(item => {
-        item.addEventListener("click", () => {
-            const selectedCategory = item.dataset.value;
-            document.getElementById('category').value = selectedCategory;
-            console.log("Hidden category value:", document.getElementById("category").value);
-        });
-    });
-
     // Filter logic
     const filter = document.getElementById("category-filter");
     const list = document.querySelector(".filter-list");
@@ -109,6 +100,24 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", e => {
         if (!filter.contains(e.target)) {
             closeList();
+        }
+    });
+
+    // Logic for updating the hidden input value in discounts form
+    list.addEventListener("click", e => {
+        const li = e.target.closest(".filter-item");
+        if (li) {
+            const selectedCategory = li.dataset.value;
+            document.getElementById("discounts-category").value = selectedCategory;
+            label.textContent = li.textContent;
+    
+            list.querySelectorAll('[aria-selected="true"]').forEach(el =>
+                el.removeAttribute("aria-selected")
+            );
+            li.setAttribute("aria-selected", "true");
+    
+            closeList();
+            console.log("Hidden category value:", selectedCategory);
         }
     });
 });
