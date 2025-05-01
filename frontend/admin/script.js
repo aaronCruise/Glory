@@ -59,13 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     intializeCategoryList();
 
-        // Logic for putting selected category into input element
-        document.querySelectorAll(".filter-list li").forEach(item => {
-            item.addEventListener("click", () => {
-            document.getElementById("discounts-category").value = item.dataset.value;
-            document.querySelector(".filter-label").textContent = item.textContent;
-            });
+    // Logic for putting selected category into input element
+    document.querySelectorAll(".filter-list li").forEach(item => {
+        item.addEventListener("click", () => {
+        document.getElementById("discounts-category").value = item.dataset.value;
+        console.log( document.getElementById("discounts-category").value);
+        document.querySelector(".filter-label").textContent = item.textContent;
         });
+    });
 
     // Filter logic
     const filter = document.getElementById("category-filter");
