@@ -57,4 +57,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     intializeCategoryList();
+
+    // Filter logic
+    const filter = document.getElementById("category-filter");
+    const list = document.querySelector(".filter-list");
+    const label = document.querySelector(".filter-label");
+    let open = false;
+
+    function toggleList(openNow = !open) {
+        open = openNow;
+        list.hidden = !open;
+        filter.classList.toggle("open", open);
+    }
+
+    function closeList() {
+        toggleList(false);
+    }
+
+    function selectOption(li) {
+        list.querySelectorAll('[aria-selected="true"]')
+        .forEach(o => o.removeAttribute('aria-selected'));
+        li.setAttribute("aria-selected", "true");
+        label.textContent = li.textContent;
+        applyCategory(li.dataset.value);
+        closeList();
+    }
+
+    filter.addEventListener("click", e => {
+        if (!open) {
+            toggleList(true);
+            return;
+        }
+
+        const li = e.target.closest(".filter-list li");
+        if (li) {
+            selectOption(li);
+        } else {
+            closeList();
+        }
+    });
+
+    document.addEventListener("click", e => {
+        if (!filter.contains(e.target)) {
+            closeList();
+        }
+    });
 });
