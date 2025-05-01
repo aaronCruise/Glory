@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Glory | Admin Dashboard</title>
-    <link rel="stylesheet" href="/home_user_logged_in/style.css" />
+    <link rel="stylesheet" href="../admin/style.css"/>
     <link rel="stylesheet" href="../shared_elements/header_in_style.css">
     <link rel="stylesheet" href="../shared_elements/footer.css">
     <!-- FontAwesome Link -->
@@ -18,12 +18,94 @@
 
     <!-- Hero Section -->
     <main>
-      <section class="hero">
-        
-      </section>
-
-      <div id="footer"></div>
-    </main>
+        <section class="hero">
+          <div class="adding-container">
+              <h1 class="adding-title">Add a New Product to the Shop</h1>
+              <div class="form-container">
+                  <form action="/admin" method="POST">
+                      <ul class="form-list">
+                          <li class="form-item">
+                              <label for="product-name">Name:</label>
+                              <input type="text" name="product-name" id="product-name" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="image">Image Link:</label>
+                              <div class="image-container">
+                                  <img alt="Chosen image." id="image-preview" class="image-preview">
+                                  <input type="file" name="image" id="image" accept="image/*" required>
+                              </div>
+                          </li>
+                          <li class="form-item">
+                              <label for="category">Category:</label>
+                              <input type="text" name="category" id="category" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="description">Item Description:</label>
+                              <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
+                          </li>
+                          <button class="add-submission" type="submit" id="submit-btn">Submit</button>
+                      </ul>
+                  </form>
+              </div>
+          </div>
+  
+          <div class="removing-container">
+              <div class="form-container">
+                  <form action="/admin" method="POST">
+                      <ul class="form-list">
+                          <li class="form-item">
+                              <label for="product-name">Name:</label>
+                              <input type="text" name="product-name" id="product-name" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="image">Image Link:</label>
+                              <img alt="Chosen image." id="image-preview" style="max-width: 50%; margin-top: 10px;" hidden>
+                              <input type="file" name="image" id="image" accept="image/*" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="category">Category:</label>
+                              <input type="text" name="category" id="category" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="description">Item Description:</label>
+                              <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
+                          </li>
+                          <button class="add-submission" type="submit" id="submit-btn">Submit</button>
+                      </ul>
+                  </form>
+              </div>
+          </div>
+  
+          <div class="discounts-container">
+              <div class="form-container">
+                  <form action="/admin" method="POST">
+                      <ul class="form-list">
+                          <li class="form-item">
+                              <label for="product-name">Name:</label>
+                              <input type="text" name="product-name" id="product-name" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="image">Image Link:</label>
+                              <img alt="Chosen image." id="image-preview" style="max-width: 50%; margin-top: 10px;" hidden>
+                              <input type="file" name="image" id="image" accept="image/*" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="category">Category:</label>
+                              <input type="text" name="category" id="category" required>
+                          </li>
+                          <li class="form-item">
+                              <label for="description">Item Description:</label>
+                              <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
+                          </li>
+                          <button class="add-submission" type="submit" id="submit-btn">Submit</button>
+                      </ul>
+                  </form>
+              </div>
+          </div>
+        </section>
+  
+        <div id="footer"></div>
+      </main>
     <script type="module" src="../shared_elements/inject_header.js"></script>
     <script src="../shared_elements/inject_footer.js"></script>
   </body>
