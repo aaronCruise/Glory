@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
     intializeCategoryList();
 
     // Logic for putting selected category into input element
-    document.querySelectorAll(".filter-list li").forEach(item => {
+    document.querySelectorAll(".filter-item").forEach(item => {
         item.addEventListener("click", () => {
-        document.getElementById("discounts-category").value = item.dataset.value;
-        console.log( document.getElementById("discounts-category").value);
-        document.querySelector(".filter-label").textContent = item.textContent;
+            const selectedCategory = item.dataset.value;
+            document.getElementById('category').value = selectedCategory;
+            console.log("Hidden category value:", document.getElementById("category").value);
         });
     });
 
