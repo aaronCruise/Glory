@@ -103,4 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
             closeList();
         }
     });
+
+    // Logic for putting selected category into input element
+    document.querySelectorAll(".filter-list li").forEach(item => {
+        item.addEventListener("click", () => {
+          document.getElementById("category").value = item.dataset.value;
+          document.querySelector(".filter-label").textContent = item.textContent;
+        });
+      });
 });
