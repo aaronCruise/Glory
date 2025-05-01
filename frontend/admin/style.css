@@ -138,10 +138,12 @@
 /* Applying Discounts to categories */
 .discounts-container {
     height: 200px;
+    width: 200px;
 }
 
 .discounts-container .form-container {
-    height: 100%;
+    height: auto;
+    width: auto;
 }
 
 .filter-container {
