@@ -167,6 +167,7 @@
     border-radius: 4px;
     background: gray;
     cursor: pointer;
+    overflow: visible;
 }
 
 .filter-label {
@@ -201,6 +202,7 @@
     list-style: none;
     max-height: 200px;
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 10;
 }
 
