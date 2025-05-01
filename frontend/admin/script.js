@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    // Initialize Category List
     const API_URL = '/products';
     let allItems = [];
 

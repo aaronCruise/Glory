@@ -140,5 +140,69 @@
     display: flex;
     justify-content: space-between;
     margin: 2px;
+}
 
+/* Filter */
+.filter {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid royalblue;
+    border-radius: 4px;
+    background: gray;
+    cursor: pointer;
+    user-select: none;
+    overflow: visible;
+    left: 20px;
+}
+
+.filter-label {
+    color: gold;
+    margin-right: 1rem;
+}
+
+.filter:focus {
+    outline: 2px solid gold;
+}
+
+.filter i {
+    color: royalblue;
+    transition: all ease 0.2s;
+}
+
+.filter.open i {
+    color: gold;
+    transform: rotate(180deg);
+}
+
+.filter-list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    min-width: 220px;
+    max-height: 260px;
+    width: max-content;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.4rem 0;
+    list-style: none;
+    background: gray;
+    border: 1px solid royalblue;
+    border-radius: 4px;
+    box-shadow: 0 6px 16px rgb(0 0 0 / .1);
+    z-index: 10;
+}
+
+.filter-list li {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+}
+
+.filter-list li:hover,
+.filter-list li[aria-selected="true"] {
+    background: royalblue;
+    color: gold;
+    transition: all ease 0.3s;
 }
