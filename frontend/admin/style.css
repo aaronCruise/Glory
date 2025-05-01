@@ -5,7 +5,7 @@
     overflow-x: hidden;
 }
 
-.hero {
+.hero-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -17,6 +17,33 @@
     background-color:  #141414;
 }
 
+.hero-title {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title h1 {
+    width: fit-content;
+    background-color: gray;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    color: gold;
+    margin: 0 auto;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* Adding a Product */
 .adding-container,
 .removing-container,
 .discounts-container {
@@ -28,7 +55,7 @@
     border-radius: 4px;
 }
 
-.adding-title {
+.container-title {
     text-align: center;
     margin-bottom: 0.5rem;
     font-style: italic;
@@ -104,4 +131,14 @@
     background: royalblue;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+/* Removing a Product */
+
+/* Applying Discounts to categories */
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+
 }

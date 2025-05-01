@@ -18,94 +18,98 @@
 
     <!-- Hero Section -->
     <main>
-        <section class="hero">
-          <div class="adding-container">
-              <h1 class="adding-title">Add a New Product to the Shop</h1>
-              <div class="form-container">
-                  <form action="/admin" method="POST">
-                      <ul class="form-list">
-                          <li class="form-item">
-                              <label for="product-name">Name:</label>
-                              <input type="text" name="product-name" id="product-name" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="image">Image Link:</label>
-                              <div class="image-container">
-                                  <img alt="Chosen image." id="image-preview" class="image-preview">
-                                  <input type="file" name="image" id="image" accept="image/*" required>
-                              </div>
-                          </li>
-                          <li class="form-item">
-                              <label for="category">Category:</label>
-                              <input type="text" name="category" id="category" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="description">Item Description:</label>
-                              <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
-                          </li>
-                          <button class="add-submission" type="submit" id="submit-btn">Submit</button>
-                      </ul>
-                  </form>
-              </div>
-          </div>
-  
-          <div class="removing-container">
-              <div class="form-container">
-                  <form action="/admin" method="POST">
-                      <ul class="form-list">
-                          <li class="form-item">
-                              <label for="product-name">Name:</label>
-                              <input type="text" name="product-name" id="product-name" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="image">Image Link:</label>
-                              <img alt="Chosen image." id="image-preview" style="max-width: 50%; margin-top: 10px;" hidden>
-                              <input type="file" name="image" id="image" accept="image/*" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="category">Category:</label>
-                              <input type="text" name="category" id="category" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="description">Item Description:</label>
-                              <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
-                          </li>
-                          <button class="add-submission" type="submit" id="submit-btn">Submit</button>
-                      </ul>
-                  </form>
-              </div>
-          </div>
-  
-          <div class="discounts-container">
-              <div class="form-container">
-                  <form action="/admin" method="POST">
-                      <ul class="form-list">
-                          <li class="form-item">
-                              <label for="product-name">Name:</label>
-                              <input type="text" name="product-name" id="product-name" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="image">Image Link:</label>
-                              <img alt="Chosen image." id="image-preview" style="max-width: 50%; margin-top: 10px;" hidden>
-                              <input type="file" name="image" id="image" accept="image/*" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="category">Category:</label>
-                              <input type="text" name="category" id="category" required>
-                          </li>
-                          <li class="form-item">
-                              <label for="description">Item Description:</label>
-                              <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
-                          </li>
-                          <button class="add-submission" type="submit" id="submit-btn">Submit</button>
-                      </ul>
-                  </form>
-              </div>
-          </div>
-        </section>
-  
-        <div id="footer"></div>
-      </main>
+        <div class="hero-container">
+            <div class="hero-title"><h1>Welcome to Your Dashboard!</h1></div>
+            <section class="hero">
+                <div class="adding-container">
+                    <h1 class="container-title">Add a New Product to the Shop</h1>
+                    <div class="form-container">
+                        <form action="/admin" method="POST">
+                            <ul class="form-list">
+                                <li class="form-item">
+                                    <label for="product-name">Name:</label>
+                                    <input type="text" name="product-name" id="product-name" required>
+                                </li>
+                                <li class="form-item">
+                                    <label for="image">Image Link:</label>
+                                    <div class="image-container">
+                                        <img alt="Chosen image." id="image-preview" class="image-preview">
+                                        <input type="file" name="image" id="image" accept="image/*" required>
+                                    </div>
+                                </li>
+                                <li class="form-item">
+                                    <label for="category">Category:</label>
+                                    <input type="text" name="category" id="category" required>
+                                </li>
+                                <li class="form-item">
+                                    <label for="description">Item Description:</label>
+                                    <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
+                                </li>
+                                <button class="add-submission" type="submit" id="submit-btn">Submit</button>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="removing-container">
+                    <h1 class="container-title">Select a Product to be Removed</h1>
+                    <div class="form-container">
+                        <form action="/admin" method="POST">
+                            <ul class="form-list">
+                                <li class="form-item">
+                                    <label for="product-name">Name:</label>
+                                    <input type="text" name="product-name" id="product-name" required>
+                                </li>
+                                <li class="form-item">
+                                    <label for="image">Image Link:</label>
+                                    <img alt="Chosen image." id="image-preview" style="max-width: 50%; margin-top: 10px;" hidden>
+                                    <input type="file" name="image" id="image" accept="image/*" required>
+                                </li>
+                                <li class="form-item">
+                                    <label for="category">Category:</label>
+                                    <input type="text" name="category" id="category" required>
+                                </li>
+                                <li class="form-item">
+                                    <label for="description">Item Description:</label>
+                                    <textarea name="description" id="description" rows="5" maxlength="100" style="resize: none;" required></textarea>
+                                </li>
+                                <button class="add-submission" type="submit" id="submit-btn">Submit</button>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="discounts-container">
+                    <h1 class="container-title">Add Discounts to Categories</h1>
+                    <div class="form-container">
+                        <div class="filter-container">
+                            <label for="category-filter">Select a Category:</label>
+                            <div class="filter" id="category-filter" tabindex="0">
+                                <span class="filter-label">All Categories</span>
+                                <i class="fa-solid fa-filter icon"></i>
+                    
+                                <ul class="filter-list" hidden>
+                                <li class="filter-item" data-value="">All Categories</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form action="/admin" method="POST">
+                            <input type="hidden" name="category" id="category" value="" hidden>
+                            <label for="discount">Enter Discount Amount:</label>
+                            <input type="number" name="discount" id="discount" min="0" max="100" 
+                                onkeypress="return (event.charCode !=8 && event.charCode ==0 
+                                || (event.charCode >= 48 && event.charCode <= 57))" required >
+                            <label for="discount">%</label>
+                            <br>
+                            <button class="add-submission" type="submit" id="submit-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+      <div id="footer"></div>
+    </main>
     <script src="../admin/script.js"></script>
     <script type="module" src="../shared_elements/inject_header.js"></script>
     <script src="../shared_elements/inject_footer.js"></script>
