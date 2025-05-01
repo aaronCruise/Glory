@@ -156,6 +156,10 @@
 }
 
 /* Filter */
+.filter-container {
+    overflow: visible;
+}
+
 .filter {
     display: flex;
     justify-content: space-between;
