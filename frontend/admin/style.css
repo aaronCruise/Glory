@@ -136,12 +136,19 @@
 /* Removing a Product */
 
 /* Applying Discounts to categories */
+.discounts-container {
+    height: 200px;
+}
+
+.discounts-container .form-container {
+    height: 100%;
+}
+
 .filter-container {
     display: flex;
     justify-content: space-between;
     margin: 2px;
     overflow: visible;
-    height: auto;
 }
 
 /* Filter */
