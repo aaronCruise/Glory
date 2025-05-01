@@ -137,49 +137,39 @@
 
 /* Applying Discounts to categories */
 .discounts-container {
-    width: 350px;
-    min-height: 250px;
-    padding: 16px;
     background: gray;
+    padding: 1rem;
+    margin: 1rem;
     border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    max-width: 400px; /* adjust as needed */
+    flex-grow: 1;
 }
-
+  
 .discounts-container .form-container {
-    width: 100%;
-    padding: 12px;
     background-color: gold;
+    padding: 1rem;
     border-radius: 4px;
-}
-
-.filter-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
     width: 100%;
-    margin-bottom: 1rem;
 }
 
 /* Filter */
 .filter {
-    position: relative;
-    display: inline-flex;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0.6rem 0.8rem;
+    width: 100%;
+    position: relative;
+    padding: 0.6rem;
     border: 1px solid royalblue;
     border-radius: 4px;
     background: gray;
     cursor: pointer;
-    user-select: none;
-    overflow: visible;
-    left: 20px;
 }
 
 .filter-label {
     color: gold;
-    margin-right: 1rem;
+    flex: 1;
 }
 
 .filter:focus {
@@ -198,20 +188,18 @@
 
 .filter-list {
     position: absolute;
-    top: 110%;
-    left: 0;
-    min-width: 220px;
-    max-height: 260px;
-    width: max-content;
-    overflow-y: auto;
-    margin: 0;
-    padding: 0.4rem 0;
-    list-style: none;
-    background: gray;
-    border: 1px solid royalblue;
-    border-radius: 4px;
-    box-shadow: 0 6px 16px rgb(0 0 0 / .1);
-    z-index: 10;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 100%;
+  background: gray;
+  border: 1px solid royalblue;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
 }
 
 .filter-list li {
