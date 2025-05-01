@@ -137,20 +137,29 @@
 
 /* Applying Discounts to categories */
 .discounts-container {
-    height: 200px;
-    width: 200px;
+    width: 350px;
+    min-height: 250px;
+    padding: 16px;
+    background: gray;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .discounts-container .form-container {
-    height: auto;
-    width: auto;
+    width: 100%;
+    padding: 12px;
+    background-color: gold;
+    border-radius: 4px;
 }
 
 .filter-container {
     display: flex;
-    justify-content: space-between;
-    margin: 2px;
-    overflow: visible;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 /* Filter */
