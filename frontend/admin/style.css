@@ -141,6 +141,7 @@
     justify-content: space-between;
     margin: 2px;
     overflow: visible;
+    height: auto;
 }
 
 /* Filter */
