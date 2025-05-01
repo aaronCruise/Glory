@@ -155,10 +155,6 @@
     overflow: visible;
 }
 
-.filter-container {
-    overflow: visible;
-}
-
 /* Filter */
 .filter {
     display: flex;

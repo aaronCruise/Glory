@@ -82,16 +82,14 @@
                 <div class="discounts-container">
                     <h1 class="container-title">Add Discounts to Categories</h1>
                     <div class="form-container">
-                        <div class="filter-container">
-                            <label for="category-filter">Select a Category:</label>
-                            <div class="filter" id="category-filter" tabindex="0">
-                                <span class="filter-label">All Categories</span>
-                                <i class="fa-solid fa-filter icon"></i>
-                    
-                                <ul class="filter-list" hidden>
-                                <li class="filter-item" data-value="">All Categories</li>
-                                </ul>
-                            </div>
+                        <label for="category-filter">Select a Category:</label>
+                        <div class="filter" id="category-filter" tabindex="0">
+                            <span class="filter-label">All Categories</span>
+                            <i class="fa-solid fa-filter icon"></i>
+                
+                            <ul class="filter-list" hidden>
+                            <li class="filter-item" data-value="">All Categories</li>
+                            </ul>
                         </div>
                         <form action="/admin" method="POST">
                             <input type="hidden" name="category" id="category" value="" hidden>
