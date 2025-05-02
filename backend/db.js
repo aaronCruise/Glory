@@ -3,10 +3,10 @@ const mariadb = require('mariadb');
 
 // Create a connection pool
 const pool = mariadb.createPool({
-    host: "127.0.0.1",
+    host: "128.6.60.9",
     port: 3306,
-    user: "glory",
-    password: "your_password", // Change this to your actual password
+    user: "John Doe",
+    password: "test123",
     database: "customer",
     connectionLimit: 5 // Optional: Limits the number of connections
 });
