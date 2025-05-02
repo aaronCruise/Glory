@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
     try {
         console.log('🔹 Trying to get a database connection...');
         const connection = await db.pool.getConnection();
+	console.log('Connection is....:', connection);
         console.log('✅ Database connection successful');
 
         // Run the query
@@ -22,11 +23,17 @@ router.post('/', async (req, res) => {
 
         if (results.length > 0) {
 	    const user = results[0];
+	    let role = "user";
+	    if(user.full_name == "glory"){
+		role = "Admin";
+	    }
 
             req.session.userId = user.id;
 	    res.cookie('connect.sid', req.sessionID, { httpOnly: true, secure: false }); // For session cookie
 	    console.log('Session after login:', req.session);
-	    res.status(200).json({ token: req.sessionID });
+	    console.log('json message sent:', user);
+	    console.log('json role sent:', role);
+	    res.status(200).json({ token: role});
         } else {
             res.status(401).send({ message: 'Invalid email or password.' });
         }
