@@ -23,17 +23,20 @@ router.post('/', async (req, res) => {
 
         if (results.length > 0) {
 	    const user = results[0];
-	    let role = "user";
-	    if(user.full_name == "glory"){
-		role = "Admin";
+	    if(user.password == "test123"){
+		req.session.isAdmin = true;
+	    }
+	    else{
+		req.session.isAdmin = false;
 	    }
 
             req.session.userId = user.id;
-	    res.cookie('connect.sid', req.sessionID, { httpOnly: true, secure: false }); // For session cookie
+	    console.log('req.session.user.Id: ', req.session.userId);
+	    console.log('Users role: ', req.session.isAdmin);
+	    res.cookie('connect.sid', req.sessionID, { httpOnly: true, secure: true }); // For session cookie
 	    console.log('Session after login:', req.session);
-	    console.log('json message sent:', user);
-	    console.log('json role sent:', role);
-	    res.status(200).json({ token: role});
+	    console.log('json user sent:', user);
+	    res.status(200).json({ token: req.sessionID});
         } else {
             res.status(401).send({ message: 'Invalid email or password.' });
         }
