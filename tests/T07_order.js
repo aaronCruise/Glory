@@ -1,59 +1,74 @@
 // Test case T07 - Order Checkout
-// TODO: fix for sprint 6
-const express   = require('express');
-const request   = require('supertest');
-const session   = require('express-session');
-const chai      = require('chai');
-const expect    = chai.expect;
+const fs = require('fs');
+const path = require('path');
+const { JSDOM } = require('jsdom');
+const { expect } = require('chai');
+const sinon = require('sinon');
 
-describe('Order Confirmation Flow (T07)', () => {
-    it('should determine the order flow based on cart state', async () => {
+// Simulate a browser window checkout flow
+describe('Checkout workflow (T07)', () => {
+    let dom, window, document;
 
-  let app, agent, orders;
+    // Get paths to frontend cart files
+    const cartHtmlPath = path.resolve(__dirname, '../frontend/cart_user_logged_in/index.html');
+    const cartScriptPath = path.resolve(__dirname, '../frontend/cart_user_logged_in/script.js');
 
-  before(() => {
-    orders = [];
-    app = express();
-    app.use(express.json());
-    app.use(session({
-      secret: 'test-secret',
-      resave: false,
-      saveUninitialized: true
-    }));
+    beforeEach(() => {
+        // Load HTML
+        let html = fs.readFileSync(cartHtmlPath, 'utf8');
 
-    // Helper route to seed req.session.cart with two items
-    app.get('/set-cart', (req, res) => {
-      req.session.cart = [1, 2];
-      res.sendStatus(200);
+        // Remove all <scripts>
+        html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+
+        // Create JSDOM enviornment
+        dom = new JSDOM(html, {
+          runScripts: 'dangerously',
+          resources: 'usable',
+          url: 'http://localhost/cart.html'
+        });
+        window  = dom.window;
+        document = window.document;
+        
+        // Stub a confirm and open window
+        sinon.stub(window, 'confirm');
+        sinon.stub(window, 'open');
+
+        // Add test cart data 
+        window.localStorage.setItem('cart', JSON.stringify([
+          { id: 1, name: 'Widget A', price: '10.00', qty: 2 },
+          { id: 2, name: 'Gadget B', price: '5.50', qty: 1 }
+        ]));
+
+        // Inject cart script
+        const scriptContent = fs.readFileSync(cartScriptPath, 'utf8');
+        const scriptEl = document.createElement('script');
+        scriptEl.textContent = scriptContent;
+        document.body.appendChild(scriptEl);
+
+        // Launch the DOM
+        document.dispatchEvent(new window.Event('DOMContentLoaded'));
     });
 
-    // Stub GET /cart to return whatever is in session.cart
-    app.get('/cart', (req, res) => {
-      const cart = req.session.cart || [];
-      res.status(200).json({ items: cart });
+    // Cleanup after test
+    afterEach(() => {
+        sinon.restore();
+        dom.window.close();
     });
 
-    // Stub POST /checkout to "process" the order and clear the cart
-    app.post('/checkout', (req, res) => {
-      const cart = req.session.cart || [];
-      if (cart.length === 0) {
-        return res.status(400).json({ error: 'Cart is empty' });
-      }
-      const orderId = orders.length + 1;
-      const newOrder = { id: orderId, items: [...cart] };
-      orders.push(newOrder);
-      // clear the cart
-      req.session.cart = [];
-      res.status(200).json({
-        success: true,
-        message: 'Order confirmed',
-        orderId,
-        items: newOrder.items
-      });
+    // Verify correct subtotal & total
+    it('shows the correct subtotal & total and displays the Checkout button', () => {
+        const rows = document.querySelectorAll('.summary-row');
+        expect(rows[0].textContent).to.contain('Subtotal').and.to.contain('$25.50');
+        expect(rows[2].textContent).to.contain('Total').and.to.contain('$25.50');
+        expect(document.querySelector('.checkout-btn').style.display).to.equal('block');
     });
 
-    agent = request.agent(app);
-  });
+    // Verify redirection to payment portal
+    it('opens payment portal when user confirms', () => {
+        window.confirm.returns(true);
+        document.querySelector('.checkout-btn').click();
+        expect(window.open.calledOnceWithExactly(
+          'https://example.com/payment', '_blank'
+        )).to.be.true;
+    });
 });
-});
-;

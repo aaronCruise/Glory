@@ -12,33 +12,22 @@ Glory offers an e-commerce store where users can shop for fitness gear, apparel 
 - `backend/`
     - `controllers/`    - business logic between front-end components and the database
     - `db.js`           - connecting to MariaDB
-    - `server.js`       - launches server
+    - `server.js`       - server launcher
+    - `products.json`   - products repository
 
 - `frontend/`
-    - folders for each webpage
+    - view-specific folders for each webpage
         - `index.html`  - defines UI components
         - `script.js`   - logic behind front-end components
         - `style.css`   - UI styling
+    - `shared_elements` - common header/footer styles
 
 - `tests/`
     - test case implementation; automated system testing
-    - each `.js` tests a test case in the test design specification
+    - each `.js` tests a case in the test design specification
     
 - `images_fonts/`
         - `.png` files used in the front-end
 
 - `node_modules/`
-        - dependencies for Node.js
-
-
-## How to run:
-
-#### Prerequisites: 
-
-    - Access to the CS431 VM
-    - Clone of this repository in the VM
-    - Configured MariaDB in the VM
-    - Node.js installed with appropriate dependencies
-
-In the root project directory, run `node backend/server.js`
-
+        - external dependencies for Node.js

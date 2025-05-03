@@ -4,13 +4,12 @@ const { expect } = require('chai');
 const app = require('../backend/server');
 const db = require('../backend/db');
 
+// Verify that a user can log into an existing account
 describe('User Login (T02)', () => {
+
+    // Insert an account
     before(async () => {
-        // Insert a test user into the database
-        // Needed even though registration test is before, since
-        // the test user is deleted after registration is ran
-        await db.pool.query(
-            'INSERT INTO user (full_name, DOB, email, phone, password) VALUES (?, ?, ?, ?, ?)',
+        await db.pool.query('INSERT INTO user (full_name, DOB, email, phone, password) VALUES (?, ?, ?, ?, ?)',
             ['Test User', '1990-01-01', 'testuser@gmail.com', '123-456-7890', 'TestPassword!@']
         );
     });
@@ -20,8 +19,8 @@ describe('User Login (T02)', () => {
         await db.pool.query("DELETE FROM user WHERE email = 'testuser@gmail.com'");
     });
 
-    it('should authenticate the registered user and redirect to the Users Home page', async () => {
-        // Use a registered user's credentials
+    it('should authenticate the registered user', async () => {
+        // Use the existing credentials
         const credentials = {
             email: 'testuser@gmail.com',
             password: 'TestPassword!@'

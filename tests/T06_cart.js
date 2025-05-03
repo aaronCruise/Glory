@@ -1,65 +1,77 @@
-// Test case T06 - Shopping Cart Management
-const request = require('supertest');
-const express = require('express');
-const session = require('express-session');
-const path = require('path');
-const chai = require('chai');
+// Test case T06 - Cart Management
+const path   = require('path');
+const fs     = require('fs');
+const chai   = require('chai');
 const expect = chai.expect;
-const cartRouter = require('../backend/controllers/cartController');
 
-describe('Cart Functionality (T06)', () => {
-  let app, agent, products;
+// Load the products JSON
+const products = require('../backend/products.json');
 
-  before(() => {
-    app = express();
+// Grab the cart operation functions
+const { addToCart, getCart } = (() => {
+    const code = fs.readFileSync(
+        path.resolve(__dirname, '../backend/controllers/shopController.js'), 'utf8'
+    );
+    const controllersDir = JSON.stringify(
+        path.resolve(__dirname, '../backend/controllers')
+    );
+    // Wrap into a function for convenience
+    const wrapper = `
+        (function() { const __dirname = ${controllersDir}; ${code}
+            return { addToCart, getCart }; })()`;
+    return eval(wrapper);
+})();
 
-    // Set up express‑session
-    app.use(session({
-      secret: 'test-secret',
-      resave: false,
-      saveUninitialized: true
-    }));
 
-    // Helper route to seed session.cart
-    app.get('/set-session', (req, res) => {
-      req.session.cart = [1, 2];
-      res.sendStatus(200);
+// Unit test the cart functions
+describe('Unit Test Cart Functions (T06)', function() {
+    let req, res;
+
+    // Reset req/res before each test
+    beforeEach(function() {
+        req = { session: {}, body: {} };
+        res = {
+            statusCode: null,
+            jsonData:   null,
+            status(code) {
+                this.statusCode = code;
+                return this;
+            },
+            json(obj) {
+                this.jsonData = obj;
+                return this;
+            }
+        };
     });
 
-    app.use('/cart', cartRouter);
+    // No additions = cart empty
+    it('getCart() returns empty array when no cart in session', function() {
+        getCart(req, res);
+        expect(res.statusCode).to.equal(200);
+        expect(res.jsonData).to.deep.equal({ cart: [] });
+    });
 
-    // Load the products file
-    products = require(path.join(__dirname, '../backend/', 'products.json'));
+    // Simulate adding a product
+    it('addToCart() adds a real product to an empty cart', function() {
+        const sample = products[0];
+        req.body.productId = sample.id;
+        addToCart(req, res);
 
-    // Use a persistent agent so cookies (session) are kept across requests
-    agent = request.agent(app);
-  });
+        expect(res.statusCode).to.equal(200);
+        expect(res.jsonData).to.have.property('message', 'Product added to cart');
+        expect(res.jsonData)
+            .to.have.property('cart')
+            .that.is.an('array')
+            .with.lengthOf(1);
+        expect(res.jsonData.cart[0].id).to.equal(sample.id);
+    });
 
-  it('returns an empty array when session.cart is not set', async () => {
-    const res = await request(app)
-      .get('/cart')
-      .expect(200);
+    // Simulate persistent session = same cart
+    it('getCart() returns items previously added', function() {
+        req.session.cart = [ products[0] ];
+        getCart(req, res);
 
-    expect(res.body).to.have.property('items')
-      .that.is.an('array')
-      .that.is.empty;
-  });
-
-  it('returns full product objects for IDs in session.cart', async () => {
-    // First set req.session.cart = [1,2]
-    await agent
-      .get('/set-session')
-      .expect(200);
-
-    // Then call GET /cart
-    const res = await agent
-      .get('/cart')
-      .expect(200);
-
-    // Build expected result from products.json
-    const expected = products.filter(p => [1, 2].includes(p.id));
-
-    expect(res.body).to.have.property('items')
-      .that.deep.equals(expected);
-  });
+        expect(res.statusCode).to.equal(200);
+        expect(res.jsonData).to.deep.equal({ cart: [ products[0] ] });
+    });
 });
