@@ -2,6 +2,7 @@
 const request = require('supertest');
 const app = require('../backend/server');
 
+// Verify that many users can request the home page at the same time
 describe('Concurrent Access to Home Page (T11)', function () {
     it('should handle 50 concurrent GET requests to the home page', async function () {
         this.timeout(10000);
