@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-
+//Validate the date created
 function verifyDate(dateInput) {
     const date = new Date(dateInput);
-    return !isNaN(date.getTime()); // Validate if the date is real
+    return !isNaN(date.getTime());
 }
 
 function verifyInput(FName, LName, Email, Password, confirmPassword, DOB, Phone) {
@@ -39,7 +39,7 @@ function verifyInput(FName, LName, Email, Password, confirmPassword, DOB, Phone)
         throw new Error('please format the date of birth properly');
     }
 
-    //console.log('Before calling verifyDate with DOB:', DOB);
+    console.log('Before calling verifyDate with DOB:', DOB);
     if (!verifyDate(DOB)){
         throw new Error('please input a valid date');
     }
@@ -82,9 +82,10 @@ router.post('/', async  (req, res) => {
 	}
 
         const fullName = `${firstName} ${lastName}`;
-
+	const role = 'customer'
+	//insert into user table of the customer database
         const result = await db.pool.query(
-            'INSERT INTO user (full_name, DOB, email, phone, password) VALUES (?,?,?,?,?)', [fullName, dob, email, phone, password]
+            'INSERT INTO user (full_name, DOB, email, phone, password, role) VALUES (?,?,?,?,?,?)', [fullName, dob, email, phone, password, role]
         );
 
 	 const userId = result.insertId;
@@ -94,7 +95,7 @@ router.post('/', async  (req, res) => {
             [userId]
         );
 
-        //console.log('Insert result:', result);
+        console.log('Insert result:', result);
 
     	 res.status(201).json({
    	    message: 'Registration successful!',
@@ -102,7 +103,8 @@ router.post('/', async  (req, res) => {
                 fullName: fullName,
         	email: email,
 		phone: phone,
-        	shippingInfo: ''
+        	shippingInfo: '',
+		role: role
     	    }
 	});
     } catch(e){
