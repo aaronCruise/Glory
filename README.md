@@ -1,14 +1,16 @@
-# Glory
+# Glory - E-commerce Fitness Website
 
-### by: Team Minimal Effort
-
-#### A software product of the Spring '25 semester
-
+### Description:
 As more people prioritize their health, the demand for smart fitness solutions is higher than ever. 
 Glory offers an e-commerce store where users can shop for fitness gear, apparel and supplements customized to their needs.
 
-## Project Structure
+## Tech Stack:
+- HTML
+- CSS
+- JavaScript
+- mySQL
 
+## Project Structure
 - `backend/`
     - `controllers/`    - business logic between front-end components and the database
     - `db.js`           - connecting to MariaDB
@@ -31,3 +33,6 @@ Glory offers an e-commerce store where users can shop for fitness gear, apparel 
 
 - `node_modules/`
         - external dependencies for Node.js
+
+## Notes
+Originally built as part of a course project with a focus on learning full-stack development from scratch.
